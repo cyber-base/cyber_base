@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnimateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -18,11 +20,19 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     protected $email;
 
-    #[ORM\Column(type: 'array')]
+    #[ORM\Column(type: 'json')]
     protected $roles = [];
 
     #[ORM\Column(type: 'string')]
     protected $password;
+
+    #[ORM\OneToMany(mappedBy: 'animateurs', targetEntity: Atelier::class)]
+    private $ateliers;
+
+    public function __construct()
+    {
+        $this->ateliers = new ArrayCollection();
+    }
 
 
     public function __toString()
@@ -67,7 +77,7 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = '';
 
         return array_unique($roles);
     }
@@ -112,5 +122,35 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Atelier>
+     */
+    public function getAteliers(): Collection
+    {
+        return $this->ateliers;
+    }
+
+    public function addAtelier(Atelier $atelier): self
+    {
+        if (!$this->ateliers->contains($atelier)) {
+            $this->ateliers[] = $atelier;
+            $atelier->setAnimateurs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAtelier(Atelier $atelier): self
+    {
+        if ($this->ateliers->removeElement($atelier)) {
+            // set the owning side to null (unless already changed)
+            if ($atelier->getAnimateurs() === $this) {
+                $atelier->setAnimateurs(null);
+            }
+        }
+
+        return $this;
     }
 }

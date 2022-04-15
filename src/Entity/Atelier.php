@@ -33,6 +33,10 @@ class Atelier
     #[ORM\OneToMany(mappedBy: 'ateliers', targetEntity: Planning::class)]
     private $plannings;
 
+    #[ORM\ManyToOne(targetEntity: Animateur::class, inversedBy: 'ateliers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $animateurs;
+
     public function __construct()
     {
         $this->plannings = new ArrayCollection();
@@ -136,6 +140,18 @@ class Atelier
                 $planning->setAteliers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAnimateurs(): ?Animateur
+    {
+        return $this->animateurs;
+    }
+
+    public function setAnimateurs(?Animateur $animateurs): self
+    {
+        $this->animateurs = $animateurs;
 
         return $this;
     }

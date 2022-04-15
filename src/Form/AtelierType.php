@@ -17,6 +17,7 @@ class AtelierType extends AbstractType
             ->add('heureDebut')
             ->add('heureFin')
             ->add('statut')
+            ->add('animateurs')
         ;
     }
 

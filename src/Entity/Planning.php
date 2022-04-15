@@ -28,6 +28,12 @@ class Planning
     #[ORM\JoinColumn(nullable: false)]
     private $ateliers;
 
+    public function __construct()
+    {
+        // Par défaut, la date de l'annonce est la date d'aujourd'hui
+        $this->date = new \Datetime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -35,10 +35,10 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     }
 
 
-    public function __toString()
-    {
-        return $this->getNom() .' '. $this->getPrenom();
-    }
+    // public function __toString()
+    // {
+    //     return $this->getNom() .' '. $this->getPrenom();
+    // }
     
     public function getEmail(): ?string
     {

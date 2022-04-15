@@ -6,6 +6,9 @@ use App\Entity\Usager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class UsagerType extends AbstractType
 {
@@ -16,7 +19,6 @@ class UsagerType extends AbstractType
             ->add('prenom')
             ->add('tel')
             ->add('email')
-            ->add('roles')
             ->add('password')
             ->add('categorie')
             ->add('niveau')
@@ -26,7 +28,9 @@ class UsagerType extends AbstractType
             ->add('cp')
             ->add('quartiers')
             ->add('partenaires')
-        ;
+            // ->add('roles', ChoiceType::class
+            // )
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -77,7 +77,7 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = '';
+        // $roles[] = '';
 
         return array_unique($roles);
     }

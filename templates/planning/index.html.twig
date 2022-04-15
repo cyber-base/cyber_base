@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planning index{% endblock %}
+
+{% block body %}
+    <h1>Planning index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Réf</th>
+                <th>Atelier</th>   
+                <th>Usager</th>
+                <th>Poste</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for planning in plannings %}
+            <tr>
+                <td>CB-00{{ planning.id }}</td>
+                <td>{{ planning.ateliers }}</td>
+                <td>{{ planning.usagers }}</td>
+                <td>{{ planning.postes }}</td>
+                <td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_planning_show', {'id': planning.id}) }}">show</a>
+                    <a href="{{ path('app_planning_edit', {'id': planning.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_planning_new') }}">Create new</a>
+{% endblock %}

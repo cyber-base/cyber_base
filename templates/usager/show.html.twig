@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usager{% endblock %}
+
+{% block body %}
+    <h1>Usager</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ usager.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ usager.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ usager.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ usager.tel }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ usager.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ usager.roles ? usager.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ usager.password }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ usager.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ usager.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Loisir</th>
+                <td>{{ usager.loisir }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ usager.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ usager.ville }}</td>
+            </tr>
+            <tr>
+                <th>Cp</th>
+                <td>{{ usager.cp }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_usager_index') }}">back to list</a>
+
+    <a href="{{ path('app_usager_edit', {'id': usager.id}) }}">edit</a>
+
+    {{ include('usager/_delete_form.html.twig') }}
+{% endblock %}

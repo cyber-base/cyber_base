@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quartier index{% endblock %}
+
+{% block body %}
+    <h1>Quartier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomQuartier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quartier in quartiers %}
+            <tr>
+                <td>{{ quartier.id }}</td>
+                <td>{{ quartier.nomQuartier }}</td>
+                <td>
+                    <a href="{{ path('app_quartier_show', {'id': quartier.id}) }}">show</a>
+                    <a href="{{ path('app_quartier_edit', {'id': quartier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_quartier_new') }}">Create new</a>
+{% endblock %}

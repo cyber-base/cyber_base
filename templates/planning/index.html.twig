@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Planning index{% endblock %}
+{% block title %} Cyber Base - Planning{% endblock %}
 
 {% block body %}
-    <h1>Planning index</h1>
 
-    <table class="table">
+
+    <h2 class="text-center">Planning</h2>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_planning_new') }}">+ Planning</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
         <thead>
             <tr>
                 <th>Réf</th>
-                <th>Atelier</th>   
+                <th>Atelier</th>
                 <th>Usager</th>
                 <th>Poste</th>
                 <th>Date</th>
@@ -25,8 +30,14 @@
                 <td>{{ planning.postes }}</td>
                 <td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_planning_show', {'id': planning.id}) }}">show</a>
-                    <a href="{{ path('app_planning_edit', {'id': planning.id}) }}">edit</a>
+                    <a class="btn btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.id}) }}">
+                    <i class="fa-regular fa-eye"></i></a>
+                    
+                    <a class="btn btn-outline-secondary" href="{{ path('app_planning_edit', {'id': planning.id}) }}">
+                    <i class="fa-regular fa-pen-to-square"></i></a>
+
+                    <a class="btn btn-outline-secondary" href="{{ path('app_planning_delete', {'id': planning.id}) }}">
+                    <i class="fa-regular fa-trash-can"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +48,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_planning_new') }}">Create new</a>
 {% endblock %}

@@ -3,41 +3,26 @@
 {% block title %}Atelier index{% endblock %}
 
 {% block body %}
-    <h1>Atelier index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libelle</th>
-                <th>Date</th>
-                <th>HeureDebut</th>
-                <th>HeureFin</th>
-                <th>Statut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for atelier in ateliers %}
-            <tr>
-                <td>{{ atelier.id }}</td>
-                <td>{{ atelier.libelle }}</td>
-                <td>{{ atelier.date ? atelier.date|date('Y-m-d') : '' }}</td>
-                <td>{{ atelier.heureDebut ? atelier.heureDebut|date('H:i:s') : '' }}</td>
-                <td>{{ atelier.heureFin ? atelier.heureFin|date('H:i:s') : '' }}</td>
-                <td>{{ atelier.statut }}</td>
-                <td>
-                    <a href="{{ path('app_atelier_show', {'id': atelier.id}) }}">show</a>
-                    <a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h3 class="text-center">Liste des ateliers</h3>
 
-    <a href="{{ path('app_atelier_new') }}">Create new</a>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+       {% for atelier in ateliers %}
+
+            <div class="col">
+                <div class="card">
+                <img src="{{ asset('images/', {'id': atelier.id}) }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Atelier : {{ atelier.libelle }}</h5>
+                    <h5 class="card-title">Date : {{ atelier.date ? atelier.date|date('d-m-Y') : '' }}</h5>
+                    <h5 class="card-title">Heure Debut : {{ atelier.heureDebut ? atelier.heureDebut|date('H:i:s') : '' }}</h5>
+                    <h5 class="card-title">Heure Fin : {{ atelier.heureFin ? atelier.heureFin|date('H:i:s') : '' }}</h5>
+                    <h5 class="card-title">Status : {{ atelier.statut }}</h5>
+                  </div>
+                </div>
+            </div>
+                {% endfor %}
+</div>
+
 {% endblock %}

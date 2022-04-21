@@ -37,6 +37,9 @@ class Atelier
     #[ORM\JoinColumn(nullable: false)]
     private $animateurs;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image;
+
     public function __construct()
     {
         $this->plannings = new ArrayCollection();
@@ -152,6 +155,18 @@ class Atelier
     public function setAnimateurs(?Animateur $animateurs): self
     {
         $this->animateurs = $animateurs;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

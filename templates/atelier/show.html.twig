@@ -31,10 +31,14 @@
                 <th>Statut</th>
                 <td>{{ atelier.statut }}</td>
             </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ atelier.image }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_atelier_index') }}">back to list</a>
+    <a href="{{ path('app_listeAtelier_index') }}">back to list</a>
 
     <a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}">edit</a>
 

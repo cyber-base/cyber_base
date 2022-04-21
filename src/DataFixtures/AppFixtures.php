@@ -16,7 +16,7 @@ use App\Entity\Partenaire;
 
 
 
-class PlaningFixtures extends Fixture
+class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -24,28 +24,27 @@ class PlaningFixtures extends Fixture
             $Faker = Factory::create("fr_FR");
 
             $quartier = new Quartier();
-            $quartier->setNomQuartier($Faker->streetName());
-            $quartier->setNomQuartier($Faker->streetName());
+            $quartier->setNomQuartier('Quartier'.$i);
 
             $partenaire = new Partenaire();
-            $partenaire->setNomEtablissement($Faker->streetName())
-                ->setTypeEtablissement($Faker->streetName());
+            $partenaire->setNomEtablissement('Partenaire '.$i)
+                       ->setTypeEtablissement($Faker->company);
 
             $usager = new Usager();
             $usager->setNom($Faker->firstName())
-                ->setPrenom($Faker->lastName());
+                    ->setPrenom($Faker->lastName());
             $usager->setEmail($Faker->email())
-                ->setTel($Faker->phoneNumber());
-            $usager->setAdresse($Faker->streetAddress())
-                ->setVille($Faker->streetName())
-                ->setCp($Faker->postcode());
+                   ->setTel($Faker->phoneNumber());
             $usager->setPassword($Faker->md5())
-                ->setRoles(["ROLE_ANIMATEUR"])
-                ->setCategorie($Faker->title())
-                ->setNiveau($Faker->century())
-                ->setLoisir($Faker->company())
-                ->setQuartiers($quartier)
-                ->setPartenaires($partenaire);
+                    ->setAdresse($Faker->streetAddress())
+                    ->setVille($Faker->city())
+                    ->setCp($Faker->postcode())
+                    ->setRoles(["ROLE_USAGER"])
+                    ->setCategorie('profession '.$i)
+                    ->setNiveau('Level',$Faker->numberBetween(1, 3))
+                    ->setLoisir('loisir '. $i)
+                    ->setPartenaires($partenaire)
+                    ->setQuartiers($quartier);
 
             $animateur = new Animateur();
 
@@ -58,16 +57,17 @@ class PlaningFixtures extends Fixture
 
             $atelier = new Atelier();
 
-            $atelier->setLibelle($Faker->title());
+            $atelier->setLibelle('Atelier'.$i);
             $atelier->setDate($Faker->dateTime());
             $atelier->setHeureDebut($Faker->dateTime());
             $atelier->setHeureFin($Faker->dateTime());
             $atelier->setStatut('en attente');
+            $atelier->setImage($Faker->imageUrl(400, 300, 'cats'));
             $atelier->setAnimateurs($animateur);
 
             $poste = new Poste();
-            $poste->setLibelle($Faker->name())
-                ->setTypePoste($Faker->title());
+            $poste->setLibelle('Poste'.$i)
+                  ->setTypePoste('Type'.$i);
             $manager->persist($partenaire);
             
 

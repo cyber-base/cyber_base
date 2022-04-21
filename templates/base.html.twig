@@ -18,7 +18,7 @@
       {# debut navbar #}
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">CYBER BASE</a>
+                <a class="navbar-brand" href="{{ path('app_home') }}">CYBER BASE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -31,13 +31,13 @@
                             <a class="nav-link" aria-current="page" href="{{ path('app_animateur_index') }}">Animateurs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ path('app_listeAtelier_index') }}">Ateliers</a>
+                            <a class="nav-link"  aria-current="page" href="{{ path('app_usager_index') }}">Usagers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ path('app_planning_index') }}">Planning</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"  aria-current="page" href="{{ path('app_usager_index') }}">Usagers</a>
+                            <a class="nav-link" aria-current="page" href="{{ path('app_listeAtelier_index') }}">Ateliers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"  aria-current="page" href="{{ path('app_quartier_index') }}">Quartiers</a>
@@ -45,18 +45,15 @@
                         <li class="nav-item">
                             <a class="nav-link"  aria-current="page" href="{{ path('app_partenaire_index') }}">Partenaires</a>
                         </li>
-                        {% if is_granted ("ROLE_ADMIN") %}
                         <li class="nav-item">
-                            <a class="nav-link"  aria-current="page" href="{{ path('app_animateur_index') }}">Animateurs</a>
+                            <a class="nav-link"  aria-current="page" href="{{ path('app_poste_index') }}">Postes</a>
+                        </li
+                        <li class="nav-item">
+                              <a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">Déconnexion</a>
                         </li>
                         <li class="nav-item">
-                              {# <a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">Déconnexion</a> #}
+                              <a class="btn btn-light fw-bold" href="{{ path('app_login') }}">Connectez-vous</a>
                         </li>
-                                {% else %}
-                        <li class="nav-item">
-                              {# <a class="btn btn-light fw-bold" href="{{ path('app_login') }}">Connectez-vous</a> #}
-                        </li>
-                        {% endif %}
 
                     </ul>
                     <form class="d-flex">

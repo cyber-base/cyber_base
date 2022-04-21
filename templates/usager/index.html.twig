@@ -1,26 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Usager index{% endblock %}
+{% block title %}Cyber Base - Liste Usagers{% endblock %}
 
 {% block body %}
-    <h1>Usager index</h1>
+    <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES USAGERS</h3>
 
-    <table class="table">
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_usager_new') }}">+ Usager</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Prenom</th>
-                <th>Tel</th>
+                <th>Prénom</th>
+                <th>Tél</th>
                 <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
+                {# <th>Roles</th>
+                <th>Password</th> #}
                 <th>Categorie</th>
                 <th>Niveau</th>
                 <th>Loisir</th>
                 <th>Adresse</th>
                 <th>Ville</th>
-                <th>Cp</th>
+                {# <th>Code postale</th> #}
                 <th>actions</th>
             </tr>
         </thead>
@@ -32,14 +36,14 @@
                 <td>{{ usager.prenom }}</td>
                 <td>{{ usager.tel }}</td>
                 <td>{{ usager.email }}</td>
-                <td>{{ usager.roles ? usager.roles|json_encode : '' }}</td>
-                <td>{{ usager.password }}</td>
+                {# <td>{{ usager.roles ? usager.roles|json_encode : '' }}</td>
+                <td>{{ usager.password }}</td> #}
                 <td>{{ usager.categorie }}</td>
                 <td>{{ usager.niveau }}</td>
                 <td>{{ usager.loisir }}</td>
                 <td>{{ usager.adresse }}</td>
                 <td>{{ usager.ville }}</td>
-                <td>{{ usager.cp }}</td>
+                {# <td>{{ usager.cp }}</td> #}
                 <td>
                     <a href="{{ path('app_usager_show', {'id': usager.id}) }}">show</a>
                     <a href="{{ path('app_usager_edit', {'id': usager.id}) }}">edit</a>

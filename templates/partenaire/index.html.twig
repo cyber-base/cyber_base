@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Partenaire index{% endblock %}
+{% block title %}Cyber Base - Liste Partenaires{% endblock %}
 
 {% block body %}
-    <h1>Partenaire index</h1>
+     <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">PLANNING</h3>
 
-    <table class="table">
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_planning_new') }}">+ Planning</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>NomEtablissement</th>
-                <th>TypeEtablissement</th>
+                <th>Nom Etablissement</th>
+                <th>Type Etablissement</th>
                 <th>actions</th>
             </tr>
         </thead>

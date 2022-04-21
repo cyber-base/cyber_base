@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}liste des ateliers{% endblock %}
+{% block title %}Cyber Base - Liste Ateliers{% endblock %}
 
 {% block body %}
-    <h1>Atelier</h1>
+    <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES ATELIERS</h3>
 
-    <table class="table">
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_atelier_new') }}">+ Atelier</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
         <thead>
             <tr>
                 <th>Id</th>

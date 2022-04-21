@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i = 1; $i < 7; $i++) {
+        for ($i = 1; $i < 9; $i++) {
             $Faker = Factory::create("fr_FR");
 
             $quartier = new Quartier();
@@ -63,6 +63,7 @@ class AppFixtures extends Fixture
             $atelier->setHeureFin($Faker->dateTime());
             $atelier->setStatut('en attente');
             $atelier->setImage($Faker->imageUrl(400, 300, 'cats'));
+         // $atelier->setImage('https://fr.wikipedia.org/wiki/A%C3%A9rodrome_d%27Anaa#/media/Fichier:Anaa-atoll-ISS007-E-14624.png');
             $atelier->setAnimateurs($animateur);
 
             $poste = new Poste();

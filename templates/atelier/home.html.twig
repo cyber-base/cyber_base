@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Atelier index{% endblock %}
+{% block title %}Cyber Base - Accueil{% endblock %}
 
 {% block body %} 
 
     <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTE DES ATELIERS</h3>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-            <a class="btn btn-primary" a href="{{ path('app_atelier_new') }}">+ Atelier</a>
+            <a class="btn btn-primary" a href="{{ path('app_listeAtelier_index') }}">Gestion Atelier</a>
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-4 mx-0">
@@ -16,16 +16,16 @@
 
         <div class="col">
         
-            <div class="card h-100">
-            <img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Atelier :<b> {{ atelier.libelle }}</b></h5>
-                <p class="card-title">Date : <b>{{ atelier.date ? atelier.date|date('d-m-Y') : '' }}</b></p>
-                <p class="card-title">Heure Debut : <b>{{ atelier.heureDebut ? atelier.heureDebut|date('H:i') : '' }}</b></p>
-                <p class="card-title">Heure Fin : <b>{{ atelier.heureFin ? atelier.heureFin|date('H:i') : '' }}</b></p>
-                <p class="card-title">Status : <b>{{ atelier.statut }}</b></p>
-                <a href="" class="btn btn-primary w-100">S'inscrire</a>
-            </div>
+            <div class="card h-100 text-center p-2">
+            <img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="..."><hr>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Atelier :<b> {{ atelier.libelle }}</b></h5>
+                    <p>Date : <b>{{ atelier.date ? atelier.date|date('d-m-Y') : '' }}</b></p>
+                    <p>Heure Debut : <b>{{ atelier.heureDebut ? atelier.heureDebut|date('H:i') : '' }}</b></p>
+                    <p>Heure Fin : <b>{{ atelier.heureFin ? atelier.heureFin|date('H:i') : '' }}</b></p><hr>
+                    <p class="text-center" >Status : <b class="bg-warning">{{ atelier.statut }}</b></p><hr>
+                    <a href="" class="btn btn-primary w-100">S'inscrire</a>
+                </div>
             </div>
         </div>
 

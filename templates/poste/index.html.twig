@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Poste index{% endblock %}
+{% block title %}Cyber Base - Liste Postes{% endblock %}
 
 {% block body %}
-    <h1>Poste index</h1>
+    <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES POSTES</h3>
 
-    <table class="table">
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_poste_new') }}">+ Poste</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Libelle</th>
-                <th>TypePoste</th>
+                <th>Type Poste</th>
                 <th>actions</th>
             </tr>
         </thead>

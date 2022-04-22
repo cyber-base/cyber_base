@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cyber Base - Liste Partenaires{% endblock %}
+
+{% block body %}
+     <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">PLANNING</h3>
+
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_planning_new') }}">+ Planning</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom Etablissement</th>
+                <th>Type Etablissement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partenaire in partenaires %}
+            <tr>
+                <td>{{ partenaire.id }}</td>
+                <td>{{ partenaire.nomEtablissement }}</td>
+                <td>{{ partenaire.typeEtablissement }}</td>
+                <td>
+                    <a href="{{ path('app_partenaire_show', {'id': partenaire.id}) }}">show</a>
+                    <a href="{{ path('app_partenaire_edit', {'id': partenaire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_partenaire_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cyber Base - Liste Postes{% endblock %}
+
+{% block body %}
+    <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES POSTES</h3>
+
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_poste_new') }}">+ Poste</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Type Poste</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for poste in postes %}
+            <tr>
+                <td>{{ poste.id }}</td>
+                <td>{{ poste.libelle }}</td>
+                <td>{{ poste.typePoste }}</td>
+                <td>
+                    <a href="{{ path('app_poste_show', {'id': poste.id}) }}">show</a>
+                    <a href="{{ path('app_poste_edit', {'id': poste.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_poste_new') }}">Create new</a>
+{% endblock %}

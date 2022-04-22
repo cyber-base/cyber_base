@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cyber Base - Liste Ateliers{% endblock %}
+
+{% block body %}
+    <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES ATELIERS</h3>
+
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_atelier_new') }}">+ Atelier</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Date</th>
+                <th>Heure Debut</th>
+                <th>Heure Fin</th>
+                <th>Image</th>
+                <th>Statut</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for atelier in ateliers %}
+            <tr>
+                <td>{{ atelier.id }}</td>
+                <td>{{ atelier.libelle }}</td>
+                <td>{{ atelier.date ? atelier.date|date('d-m-Y') : ''  }}</td>
+                <td>{{ atelier.heureDebut ? atelier.heureDebut|date('H:i') : '' }}</td>
+                <td>{{ atelier.heureFin ? atelier.heureFin|date('H:i') : '' }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="..."  width="50px"; height="70px" alt=""></td>
+                <td>{{  atelier.statut }}</td>
+                <td>
+                    <a href="{{ path('app_atelier_show', {'id': atelier.id}) }}">show</a>
+                    <a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_atelier_new') }}">Create new</a>
+{% endblock %}

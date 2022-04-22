@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cyber base - Liste Quartiers{% endblock %}
+
+{% block body %}
+    <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">lISTE DES QUARTIERS</h3>
+
+         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <a class="btn btn-primary" a href="{{ path('app_quartier_new') }}">+ Quartier</a>
+        </div>
+
+    <table class="table table-hover text-start text-center mb-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomQuartier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quartier in quartiers %}
+            <tr>
+                <td>{{ quartier.id }}</td>
+                <td>{{ quartier.nomQuartier }}</td>
+                <td>
+                    <a href="{{ path('app_quartier_show', {'id': quartier.id}) }}">show</a>
+                    <a href="{{ path('app_quartier_edit', {'id': quartier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_quartier_new') }}">Create new</a>
+{% endblock %}

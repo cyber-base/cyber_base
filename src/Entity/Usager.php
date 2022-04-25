@@ -23,7 +23,7 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
     private $email;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private $roles = ["ROLE_USER"];
 
     #[ORM\Column(type: 'string')]
     private $password;
@@ -103,7 +103,7 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        // $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }

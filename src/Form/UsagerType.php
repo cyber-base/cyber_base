@@ -47,7 +47,7 @@ class UsagerType extends AbstractType
             ->add('cp')
             ->add('quartiers')
             ->add('partenaires')
-            // ->add('roles', ChoiceType::class
+            // ->add('roles')
             // )
             ;
     }

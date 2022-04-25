@@ -6,13 +6,22 @@ use App\Entity\Personne;
 use App\Form\PersonneType;
 use App\Repository\PersonneRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/personne')]
+#[IsGranted("ROLE_ANIMATEUR")]
 class PersonneController extends AbstractController
-{
+{       
+    #[Route('/profile', name: 'app_profile', methods: ['GET'])]
+    public function home(PersonneRepository $personneRepository): Response
+    {
+        return $this->render('animateur/profile.html.twig', [
+            'ateliers' => $personneRepository->findAll(),
+        ]);
+    }
     #[Route('/', name: 'app_personne_index', methods: ['GET'])]
     public function index(PersonneRepository $personneRepository): Response
     {

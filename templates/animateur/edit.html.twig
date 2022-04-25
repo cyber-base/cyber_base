@@ -1,13 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Animateur{% endblock %}
+{% block title %}Edit Animateur
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Animateur</h1>
+	<h1>Edit Animateur</h1>
+	
+	<div class="row">
+		<div class="col">{{ form_row(form.nom) }}</div>
+		<div class="col">{{ form_row(form.prenom) }}</div>
+	</div>
+    <div class="row">
+		<div class="col">{{ form_row(form.tel) }}</div>
+		<div class="col">{{ form_row(form.email) }}</div>
+	</div>
+    <div class="row">
+		<div class="col">{{ form_row(form.plainPassword.first) }}</div>
+		<div class="col">{{ form_row(form.plainPassword.second) }}</div>
+	</div>
 
-    {{ include('animateur/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('animateur/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_animateur_index') }}">back to list</a>
+	<a href="{{ path('app_animateur_index') }}">back to list</a>
 
-    {{ include('animateur/_delete_form.html.twig') }}
+	{{ include('animateur/_delete_form.html.twig') }}
 {% endblock %}

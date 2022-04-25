@@ -8,10 +8,12 @@ use App\Repository\AnimateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/animateur')]
+#[IsGranted("ROLE_ANIMATEUR")]
 class AnimateurController extends AbstractController
 {
     #[Route('/', name: 'app_animateur_index', methods: ['GET'])]
@@ -33,10 +35,11 @@ class AnimateurController extends AbstractController
             $animateur->setPassword(
                 $userPasswordHasher->hashPassword(
                         $animateur,
-                        $form->get('password')->getData()
+                        $form->get('plainPassword')->getData()
                     )
                 );
             $animateurRepository->add($animateur);
+            $this->addFlash('success', 'Votre compte à bien été enregistré.');
             return $this->redirectToRoute('app_animateur_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -9,6 +9,9 @@
          <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
             <a class="btn btn-primary" a href="{{ path('app_planning_new') }}">+ Planning</a>
         </div>
+        {# <div class="mb-3 p-3 fw-bold ">
+    Bienvenue Monsieur {{ app.user.username }} 
+</div> #}
 
     <table class="table table-hover text-start text-center mb-3">
         <thead>
@@ -18,7 +21,11 @@
                 <th>Usager</th>
                 <th>Poste</th>
                 <th>Date</th>
+                <th>Animateur</th>
                 <th>actions</th>
+                {# <th>Heure Debut</th>
+                <th>Heure Fin</th> #}
+                
             </tr>
         </thead>
         <tbody>
@@ -29,6 +36,9 @@
                 <td>{{ planning.usagers }}</td>
                 <td>{{ planning.postes }}</td>
                 <td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>
+                <td>{{ planning.ateliers.animateurs }}</td>
+                {# <td>{{ planning.heureDebut ? planning.heureDebut|date('H:i') : '' }}</td>
+                <td>{{ planning.heureFin ? planning.heureFin|date('H:i') : '' }}</td> #}
                 <td>
                     <a class="btn btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.id}) }}">
                     <i class="fa-regular fa-eye"></i></a>

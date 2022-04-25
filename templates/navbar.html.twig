@@ -1,0 +1,60 @@
+{# debut navbar #}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{ path('app_home') }}">CYBER BASE</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Home</a>
+				</li>
+				{% if is_granted('ROLE_SUPER_ANIMATEUR') %}
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_animateur_index') }}">Animateurs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_quartier_index') }}">Quartiers</a>
+					</li>
+				{% endif %}
+				{% if is_granted('ROLE_ANIMATEUR') %}
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_usager_index') }}">Usagers</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_planning_index') }}">Planning</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_listeAtelier_index') }}">Ateliers</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_partenaire_index') }}">Partenaires</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_poste_index') }}">Postes</a>
+					
+					</li>
+					<li class="nav-item">
+					<a href="{{ path('app_profile') }}">
+					<svg xmlns="http://www.w3.org/2000/svg"  width="50" height="30" fill="currentColor" class="bi bi-person-lines-fill text-light" viewBox="0 0 16 16">
+					<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+				  </svg></a>
+					</li>
+				</li<liclass="nav-item">
+				<a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">Déconnexion</a>
+			</li>
+		{% else %}
+			<li class="nav-item">
+				<a class="btn btn-light fw-bold" href="{{ path('app_login') }}">Connectez-vous</a>
+			</li>
+		{% endif %}
+
+	</ul>
+	<form class="d-flex">
+		<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		<button class="btn btn-success" type="submit">Search</button>
+	</form>
+</div></div>{# fin navbar #}</nav>

@@ -14,8 +14,14 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Usager
+                class: App\Entity\Animateur
                 property: email
+        # app_animateur_provider:
+        #     entity:
+        #         class: App\Entity\Animateur
+        #         property: email
+        
+        
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
@@ -24,11 +30,22 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
+            custom_authenticator:
+                - App\Security\UserAuthenticator
+                
+                
             logout:
                 path: app_logout
                 # where to redirect after logout
                 target: app_login
+        # animateur:
+        #     lazy: true
+        #     provider: app_animateur_provider
+        #     custom_authenticator: App\Security\AnimateurAuthenticator
+        #     logout:
+        #         path: app_logout
+        #         # where to redirect after logout
+        #         target: app_login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -39,8 +56,10 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/super_animateur, roles: ROLE_SUPER_ANIMATEUR }
+         - { path: ^/animateur, roles: ROLE_ANIMATEUR }
+    role_hierarchy:
+         ROLE_SUPER_ANIMATEUR: ['ROLE_ANIMATEUR']
 
 when@test:
     security:

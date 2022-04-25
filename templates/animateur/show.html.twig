@@ -1,46 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animateur{% endblock %}
+{% block title %}Animateur
+{% endblock %}
 
 {% block body %}
-    <h1>Animateur</h1>
+	<h3 class="text-center shadow p-3 bg-secondary bg-opacity-10 w-50 mx-auto">Animateur</h3>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ animateur.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ animateur.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ animateur.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Tel</th>
-                <td>{{ animateur.tel }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ animateur.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ animateur.roles ? animateur.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ animateur.password }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table p-3 mb-2 bg-body border rounded mx-auto w-50">
 
-    <a href="{{ path('app_animateur_index') }}">back to list</a>
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ animateur.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ animateur.nom }}</td>
+			</tr>
+			<tr>
+				<th>Prénom</th>
+				<td>{{ animateur.prenom }}</td>
+			</tr>
+			<tr>
+				<th>Téléphone</th>
+				<td>{{ animateur.tel }}</td>
+			</tr>
+			<tr>
+				<th>E-mail</th>
+				<td>{{ animateur.email }}</td>
+			</tr>
+			<tr>
+				<th>Roles</th>
+				<td>{{ animateur.roles ? animateur.roles|json_encode : '' }}</td>
+			</tr>
+			{# <tr>
+				<th>Password</th>
+				<td>{{ animateur.password }}</td>
+			</tr> #}
+		</tbody>
 
-    <a href="{{ path('app_animateur_edit', {'id': animateur.id}) }}">edit</a>
+	</table>
 
-    {{ include('animateur/_delete_form.html.twig') }}
+	<a href="{{ path('app_animateur_index') }}" class="btn btn-warning">back to list</a>
+
+	<a href="{{ path('app_animateur_edit', {'id': animateur.id}) }}" class="btn btn-primary">edit</a>
+
+	{{ include('animateur/_delete_form.html.twig') }}
+    
 {% endblock %}

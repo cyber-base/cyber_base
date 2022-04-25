@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Animateur{% endblock %}
+{% block title %}Edit Animateur
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Animateur</h1>
+	<h3 class="text-center shadow p-3 bg-secondary bg-opacity-10 w-50 mx-auto">Edit Animateur</h3>
 
-    {{ include('animateur/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_animateur_index') }}">back to list</a>
+		{{ include('animateur/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('animateur/_delete_form.html.twig') }}
+	
+		{{ include('animateur/_delete_form.html.twig') }}
+ 
+
+		<a href="{{ path('app_animateur_index') }}" class="btn btn-warning">back to list</a>
+
 {% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur - Accès interdit{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 mr-auto ml-auto text-center py-5 mt-3">
+            <div class="card justify">
+                <div class="card-body">
+                    <h1 class="card-title alert alert-danger" role="alert">403 - ACCESS DENIED</h1>
+                    <h2 class="card-title">Oops, You don't have permission to access this page</h2>
+                    <p class="card-text">
+                    A web server may return a 403 Forbidden HTTP status code in response to a request from a client for a web page or resource to indicate that the server can be reached and understood the request, but refuses to take any further action. Status code 403 responses are the result of the web server being configured to deny access, for some reason, to the requested resource by the client.
+                    </p>
+
+                    <a href="{{ 'home' }}" class="btn btn-primary">Go Back to Home Page</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

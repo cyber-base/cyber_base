@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Animateur;
 use App\Form\AnimateurType;
 use App\Repository\AnimateurRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/animateur')]
 class AnimateurController extends AbstractController
@@ -22,13 +23,21 @@ class AnimateurController extends AbstractController
     }
 
     #[Route('/new', name: 'app_animateur_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, AnimateurRepository $animateurRepository): Response
+    public function new(Request $request, AnimateurRepository $animateurRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $animateur = new Animateur();
         $form = $this->createForm(AnimateurType::class, $animateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $animateur->setPassword(
+            $userPasswordHasher->hashPassword(
+                    $animateur,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
             $animateurRepository->add($animateur);
             return $this->redirectToRoute('app_animateur_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -48,12 +57,19 @@ class AnimateurController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_animateur_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Animateur $animateur, AnimateurRepository $animateurRepository): Response
+    public function edit(Request $request, Animateur $animateur, AnimateurRepository $animateurRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $form = $this->createForm(AnimateurType::class, $animateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $animateur->setPassword(
+            $userPasswordHasher->hashPassword(
+                    $animateur,
+                    $form->get('plainPassword')->getData()
+                )
+            );
             $animateurRepository->add($animateur);
             return $this->redirectToRoute('app_animateur_index', [], Response::HTTP_SEE_OTHER);
         }

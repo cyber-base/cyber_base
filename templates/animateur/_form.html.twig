@@ -1,4 +1,51 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="p-3 mb-2 bg-body border rounded mx-auto w-50">
+	<hr class="text-primary">
+	{{ form_start(form) }}
+
+	<div class="row">
+		<div class="col">
+			{{ form_row(form.nom, {
+                  label: 'Nom'
+                  }) }}
+		</div>
+
+		<div class="col">
+			{{ form_row(form.prenom, {
+                  label: 'Prénom'
+                }) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{{ form_row(form.email, {
+                label: 'E-mail'
+                 }) }}
+		</div>
+
+		<div class="col">
+			{{ form_row(form.tel, {
+                 label: 'N° Téléphone'
+                 }) }}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+
+			{{ form_row(form.plainPassword.first) }}
+		</div>
+        		<div class="col">
+
+			{{ form_row(form.plainPassword.second) }}
+		</div>
+	</div>
+	{{ form_row(form.roles, {
+            label: 'Role'
+        }) }}
+	<hr class="text-primary">
+	<div class="d-grid gap-2 col-6 mx-auto">
+		<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+	</div>
+
+	{{ form_end(form) }}
+</div>

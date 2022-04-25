@@ -6,10 +6,12 @@ use App\Repository\UsagerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsagerRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Usager extends Personne implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -53,6 +55,9 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
 
     #[ORM\OneToMany(mappedBy: 'usagers', targetEntity: Planning::class)]
     private $plannings;
+
+    #[ORM\Column(type: 'string', length: 30)]
+    private $genre;
 
     public function __construct()
     {
@@ -270,6 +275,18 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
                 $planning->setUsagers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
 
         return $this;
     }

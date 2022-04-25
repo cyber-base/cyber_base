@@ -3,9 +3,11 @@
 {% block title %}New Animateur{% endblock %}
 
 {% block body %}
-    <h1>Create new Animateur</h1>
+<div class="shadow p-3 mb-2 bg-body border-bottom rounded mx-auto w-50">
+		<h3 class="text-center shadow p-3 bg-secondary bg-opacity-10">Ajouter Animateur</h3>
+</div>
 
     {{ include('animateur/_form.html.twig') }}
 
-    <a href="{{ path('app_animateur_index') }}">back to list</a>
+    <a href="{{ path('app_animateur_index') }}" class="btn btn-warning">back to list</a>
 {% endblock %}

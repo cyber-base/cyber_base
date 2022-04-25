@@ -5,11 +5,11 @@
 {% block body %}
     <h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES POSTES</h3>
 
-         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-            <a class="btn btn-primary" a href="{{ path('app_poste_new') }}">+ Poste</a>
-        </div>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+		<a  href="{{ path('app_poste_new') }}" class="btn btn-primary">+ Poste</a>
+	</div>
 
-    <table class="table table-hover text-start text-center mb-3">
+	<table class="table table-hover text-start text-center mb-3">
         <thead>
             <tr>
                 <th>Id</th>
@@ -24,18 +24,25 @@
                 <td>{{ poste.id }}</td>
                 <td>{{ poste.libelle }}</td>
                 <td>{{ poste.typePoste }}</td>
-                <td>
-                    <a href="{{ path('app_poste_show', {'id': poste.id}) }}">show</a>
-                    <a href="{{ path('app_poste_edit', {'id': poste.id}) }}">edit</a>
-                </td>
+              <td>
+                    <a class="btn btn-outline-secondary" href="{{ path('app_poste_show', {'id': poste.id}) }}">
+                    <i class="fa-regular fa-eye"></i></a>
+                    
+                    <a class="btn btn-outline-secondary" href="{{ path('app_poste_edit', {'id': poste.id}) }}">
+                    <i class="fa-regular fa-pen-to-square"></i></a>
+
+                    <a class="btn btn-outline-secondary" href="{{ path('app_poste_delete', {'id': poste.id}) }}">
+                    <i class="fa-regular fa-trash-can"></i></a>
+                </td>>
             </tr>
         {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            
+				<div class="alert alert-danger" role="alert">
+					no records found!
+				</div>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_poste_new') }}">Create new</a>
+
 {% endblock %}

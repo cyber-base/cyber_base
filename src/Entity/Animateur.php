@@ -6,10 +6,12 @@ use App\Repository\AnimateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: AnimateurRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Animateur extends Personne implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -18,13 +20,13 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    protected $email;
+    private $email;
 
     #[ORM\Column(type: 'json')]
-    protected $roles = [];
+    private $roles = [];
 
     #[ORM\Column(type: 'string')]
-    protected $password;
+    private $password;
 
     #[ORM\OneToMany(mappedBy: 'animateurs', targetEntity: Atelier::class)]
     private $ateliers;
@@ -34,11 +36,6 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
         $this->ateliers = new ArrayCollection();
     }
 
-
-    // public function __toString()
-    // {
-    //     return $this->getNom() .' '. $this->getPrenom();
-    // }
     
     public function getEmail(): ?string
     {
@@ -76,8 +73,8 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        // $roles[] = '';
+        // guarantee every user at least has ROLE_ANIMATEUR
+        // $roles[] = 'ROLE_ANIMATEUR';
 
         return array_unique($roles);
     }

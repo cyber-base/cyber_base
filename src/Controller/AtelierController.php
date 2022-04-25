@@ -16,13 +16,19 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class AtelierController extends AbstractController
 {
 
-    #[Route('/', name: 'app_home', methods: ['GET'])]
+    #[Route('', name: 'app_home', methods: ['GET'])]
     public function home(AtelierRepository $atelierRepository): Response
     {
         return $this->render('atelier/home.html.twig', [
             'ateliers' => $atelierRepository->findAll(),
         ]);
     }
+
+    // #[Route('/', name: 'index', methods: ['GET'])]
+    // public function index2(AtelierRepository $atelierRepository): Response
+    // {
+    //     return $this->redirectToRoute('app_home');
+    // }
 
     #[Route('/liste_atelier', name: 'app_listeAtelier_index', methods: ['GET'])]
     public function index(AtelierRepository $atelierRepository): Response
@@ -68,6 +74,10 @@ class AtelierController extends AbstractController
             }
 
             $atelierRepository->add($atelier);
+              $this->addFlash(
+                'success',
+                "L'atelier est ajouté avec succes ."
+             );
             return $this->redirectToRoute('app_listeAtelier_index', [], Response::HTTP_SEE_OTHER);
         }
 

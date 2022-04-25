@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+
+	<div class="shadow p-3 mb-2 bg-body border-bottom rounded mx-auto w-50 mt-5">
+		<h3 class="text-center shadow p-3 bg-secondary bg-opacity-10">Ajouter Animateur</h3>
+		<hr class="text-primary">
+		{{ form_start(registrationForm) }}
+
+		<div class="row">
+			<div class="col">
+				{{ form_row(registrationForm.nom, {
+                  label: 'Nom'
+                  }) }}
+			</div>
+
+			<div class="col">
+				{{ form_row(registrationForm.prenom, {
+                  label: 'Prénom'
+                }) }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				{{ form_row(registrationForm.email, {
+                label: 'E-mail'
+                 }) }}
+			</div>
+
+			<div class="col">
+				{{ form_row(registrationForm.tel, {
+                 label: 'N° Téléphone'
+                 }) }}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+
+				{{ form_row(registrationForm.plainPassword.first) }}
+			</div>
+			<div class="col">
+
+				{{ form_row(registrationForm.plainPassword.second) }}
+			</div>
+		</div>
+		{{ form_row(registrationForm.roles, {
+            label: 'Role'
+        }) }}
+		{{ form_row(registrationForm.agreeTerms) }}
+		<div class="d-grid gap-2 col-6 mx-auto">
+			<button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+		</div>
+		{{ form_end(registrationForm) }}
+	</div>
+
+{% endblock %}

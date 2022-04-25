@@ -5,17 +5,16 @@ namespace App\Form;
 use App\Entity\Animateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
-
-
-
-class AnimateurType extends AbstractType
+class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -24,6 +23,29 @@ class AnimateurType extends AbstractType
             ->add('prenom')
             ->add('tel')
             ->add('email')
+            ->add('roles', ChoiceType::class, [
+                'choices' =>[
+                    'Super Animateur'=>'ROLE_SUPER_ANIMATEUR',
+                    'Animateur'=>'ROLE_ANIMATEUR'
+                ],
+
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a role',
+                    ])],
+
+                // 'expanded' => true,
+                'multiple' => true,
+                'label' => 'Roles'
+                ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
+                ],
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -47,24 +69,8 @@ class AnimateurType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('roles', ChoiceType::class, [
-                'choices' =>[
-                    'Super Animateur'=>'ROLE_SUPER_ANIMATEUR',
-                    'Animateur'=>'ROLE_ANIMATEUR'
-                ],
-
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a role',
-                    ])],
-
-                // 'expanded' => true,
-                'multiple' => true,
-                'label' => 'Roles'
-                ])
-               ;
-        }
-    
+        ;
+    }
 
     public function configureOptions(OptionsResolver $resolver): void
     {

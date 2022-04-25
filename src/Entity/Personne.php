@@ -49,7 +49,7 @@ class Personne
 
     public function setNom(string $nom): self
     {
-        $this->nom = $nom;
+        $this->nom = strtoupper($nom);
 
         return $this;
     }
@@ -61,7 +61,7 @@ class Personne
 
     public function setPrenom(string $prenom): self
     {
-        $this->prenom = $prenom;
+        $this->prenom = ucfirst(strtolower($prenom));
 
         return $this;
     }

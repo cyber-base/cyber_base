@@ -30,12 +30,13 @@ class AppFixtures extends Fixture
             $partenaire->setNomEtablissement('Partenaire '.$i)
                        ->setTypeEtablissement($Faker->company);
 
-            $usager = new Usager();
-            $usager->setNom($Faker->firstName())
+             $usager = new Usager();
+             $usager->setGenre($Faker->titleMale())
+                    ->setNom($Faker->firstName())
                     ->setPrenom($Faker->lastName());
-            $usager->setEmail($Faker->email())
-                   ->setTel($Faker->phoneNumber());
-            $usager->setPassword($Faker->md5())
+             $usager->setEmail($Faker->email())
+                    ->setTel($Faker->phoneNumber());
+             $usager->setPassword($Faker->md5())
                     ->setAdresse($Faker->streetAddress())
                     ->setVille($Faker->city())
                     ->setCp($Faker->postcode())

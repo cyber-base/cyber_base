@@ -5,9 +5,10 @@ namespace App\Form;
 use App\Entity\Atelier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class AtelierType extends AbstractType
 {
@@ -15,7 +16,10 @@ class AtelierType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('date')
+            ->add('date', DateType::class, [
+                // renders it as a single text box
+                'widget' => 'single_text',
+            ])
             ->add('heureDebut')
             ->add('heureFin')
             ->add('statut')

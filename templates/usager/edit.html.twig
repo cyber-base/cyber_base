@@ -1,13 +1,114 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Usager{% endblock %}
+{% block title %}Edit Usager
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Usager</h1>
+	
+	<div class="shadow p-3 mb-2 bg-body border-bottom rounded mx-auto w-50 mt-5">
+		<h3 class="text-center shadow p-2 bg-secondary bg-opacity-10">Modifier Usager</h3>
+		<hr class="text-primary">
+		{{ form_start(form) }}
+		<div class="row">
+			<div class="col">
+				{{ form_row(form.genre, {
+                  label: 'Civilité :'
+                  }) }}
+			</div>
+			<div class="row">
+				<div class="col">
+					{{ form_row(form.nom, {
+                  label: 'Nom*'
+                  }) }}<span class="obligatoire">*</span>
+				</div>
 
-    {{ include('usager/_form.html.twig', {'button_label': 'Update'}) }}
+				<div class="col">
+					{{ form_row(form.prenom, {
+                  label: 'Prénom'
+                }) }}<span class="obligatoire">*</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					{{ form_row(form.email, {
+                label: 'E-mail'
+                 }) }}
+				</div>
 
-    <a href="{{ path('app_usager_index') }}">back to list</a>
+				<div class="col">
+					{{ form_row(form.tel, {
+                 label: 'Téléphone'
+                 }) }}
+				</div>
+			</div>
 
-    {{ include('usager/_delete_form.html.twig') }}
-{% endblock %}
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.plainPassword.first) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.plainPassword.second) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-4">
+
+					{{ form_row(form.categorie, {
+                 label: 'Catégorie'
+                 }) }}
+				</div>
+				<div class="col-4">
+
+					{{ form_row(form.niveau) }}
+				</div>
+
+
+				<div class="col-4">
+
+					{{ form_row(form.loisir) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.adresse) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.cp, {
+                 label: 'Code postale'
+                 }) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.ville) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.quartiers, {
+                 label: 'Quartier'
+                 }) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.partenaires, {
+                 label: 'Partenaire'
+                 }) }}
+				</div>
+			</div>
+			{{ include('usager/_form.html.twig', {'button_label': 'Update'}) }}
+
+			<a href="{{ path('app_usager_index') }}">back to list</a>
+
+			{{ include('usager/_delete_form.html.twig') }}
+		{% endblock %}

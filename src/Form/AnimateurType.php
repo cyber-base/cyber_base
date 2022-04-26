@@ -28,16 +28,16 @@ class AnimateurType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'les mots de passe ne sont pas indentiques.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirmation password'],
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmation Mot de passe'],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entrez un mot de passe svp',
                     ]),
                     new Length([
                         'min' => 6,
@@ -46,23 +46,23 @@ class AnimateurType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ->add('roles', ChoiceType::class, [
-                'choices' =>[
-                    'Super Animateur'=>'ROLE_SUPER_ANIMATEUR',
-                    'Animateur'=>'ROLE_ANIMATEUR'
-                ],
+            ]);
+            // ->add('roles', ChoiceType::class, [
+            //     'choices' =>[
+            //         'Super Animateur'=>'ROLE_SUPER_ANIMATEUR',
+            //         'Animateur'=>'ROLE_ANIMATEUR'
+            //     ],
 
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a role',
-                    ])],
+            //     'constraints' => [
+            //         new NotBlank([
+            //             'message' => 'Please enter a role',
+            //         ])],
 
-                // 'expanded' => true,
-                'multiple' => true,
-                'label' => 'Roles'
-                ])
-               ;
+            //     // 'expanded' => true,
+            //     'multiple' => true,
+            //     'label' => 'Roles'
+            //     ])
+            //    ;
         }
     
 

@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -34,7 +35,7 @@ class UsagerType extends AbstractType
             ->add('tel')
             ->add('email')
             ->add('categorie', ChoiceType::class, [
-                
+
                 'choices'  => [
                     'Salarié' => 'Salarie',
                     'Chômeur' => 'Chomeur',
@@ -49,6 +50,7 @@ class UsagerType extends AbstractType
                     'Avanvé' => 'Avance',
                 ],
             ])
+
             ->add('loisir')
             ->add('adresse')
             ->add('ville')
@@ -62,8 +64,8 @@ class UsagerType extends AbstractType
                 'invalid_message' => 'The password fields must match.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirmation password'],
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmation Mot de passe'],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -77,8 +79,7 @@ class UsagerType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

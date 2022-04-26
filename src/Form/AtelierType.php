@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AtelierType extends AbstractType
 {
@@ -22,7 +23,13 @@ class AtelierType extends AbstractType
             ])
             ->add('heureDebut')
             ->add('heureFin')
-            ->add('statut')
+            ->add('statut', ChoiceType::class, [
+                
+                'choices'  => [
+                    'En attente' => 'En attent',
+                    'Confirmé' => 'Confirmé',
+                ],
+            ])
             ->add('animateurs')
             ->add('photo', FileType::class, [
                 'label' => 'Sélectionner fichier',

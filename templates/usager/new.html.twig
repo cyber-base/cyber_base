@@ -4,11 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	{# <h1>Create new Usager</h1>
-	
-		{{ include('usager/_form.html.twig') }}
-	
-		<a href="{{ path('app_usager_index') }}">back to list</a> #}
+
 
 	<div class="shadow p-3 mb-2 bg-body border-bottom rounded mx-auto w-50 mt-5">
 		<h3 class="text-center shadow p-3 bg-secondary bg-opacity-10">Ajouter Usager</h3>
@@ -16,20 +12,14 @@
 		{{ form_start(form) }}
 
 		<div class="row">
-			<div class="col">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-					<label class="form-check-label" for="flexRadioDefault1">{{ form_row(form.genre) }}</label>
-				</div>
-			</div>
-			<div class="col">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-					<label class="form-check-label" for="flexRadioDefault2">Femme</label>
-				</div>
+
+			<div class="col-6">
+				{{ form_row(form.genre, {
+                  label: 'Civilité',
+                  placeholder: "Select a value",
+                  }) }}
 			</div>
 		</div>
-        
 
 		<div class="row">
 			<div class="col">
@@ -44,51 +34,6 @@
                 }) }}
 			</div>
 		</div>
-		<div class="row">
-			<div class="col">
-				{{ form_row(form.email, {
-                label: 'E-mail'
-                 }) }}
-			</div>
-
-			<div class="col">
-				{{ form_row(form.tel, {
-                 label: 'Téléphone'
-                 }) }}
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col">
-
-				{{ form_row(form.plainPassword.first) }}
-			</div>
-			<div class="col">
-
-				{{ form_row(form.plainPassword.second) }}
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col">
-
-				{{ form_row(form.categorie, {
-                 label: 'Catégorie'
-                 }) }}
-			</div>
-			<div class="col">
-
-				{{ form_row(form.niveau) }}
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col">
-
-				{{ form_row(form.loisir) }}
-			</div>
-		</div>
-
 		<div class="row">
 			<div class="col">
 
@@ -107,29 +52,80 @@
 
 				{{ form_row(form.ville) }}
 			</div>
+			<div class="row">
+				<div class="col">
+					{{ form_row(form.email, {
+                label: 'E-mail'
+                 }) }}
+				</div>
+
+				<div class="col">
+					{{ form_row(form.tel, {
+                 label: 'Téléphone'
+                 }) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.plainPassword.first) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.plainPassword.second) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.categorie, {
+                 label: 'Catégorie',
+                placeholder: "Select a value",
+                 }) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.niveau, {
+                placeholder: "Select a value",
+                 }) }}
+
+				</div>
+				<div class="col">
+
+					{{ form_row(form.loisir, {
+                placeholder: "Select a value",
+                 }) }}
+				</div>
+			</div>
+
+
 		</div>
 
 		<div class="row">
 			<div class="col">
 
 				{{ form_row(form.quartiers, {
-                 label: 'Quartier'
+                 label: 'Quartier',
+                placeholder: "Select a value",
                  }) }}
 			</div>
 			<div class="col">
 
 				{{ form_row(form.partenaires, {
-                 label: 'Partenaire'
+                 label: 'Partenaire',
+                placeholder: "Select a value",
                  }) }}
 			</div>
 		</div>
 
 
-		<div class=" d-flex d-grid gap-2 col-6 mx-auto">
+		<div class=" d-flex d-grid gap-2 col-6 mx-auto my-4">
 			<button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
-            <a href="{{ path('app_usager_index') }}" class="btn btn-warning">back to list</a>
+			<a href="{{ path('app_usager_index') }}" class="btn btn-warning">back to list</a>
 		</div>
-		
+
 		{{ form_end(form) }}
 	</div>
 {% endblock %}

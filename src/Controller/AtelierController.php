@@ -97,14 +97,43 @@ class AtelierController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_atelier_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Atelier $atelier, AtelierRepository $atelierRepository): Response
+    public function edit(Request $request, Atelier $atelier, AtelierRepository $atelierRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(AtelierType::class, $atelier);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $photo = $form->get('photo')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($photo) {
+                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$photo->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $photo->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+            } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $atelier->setImage($newFilename);
+            }
 
             $atelierRepository->add($atelier);
+              $this->addFlash(
+                'success',
+                "L'atelier est modifié avec succès ."
+             );
             return $this->redirectToRoute('app_listeAtelier_index', [], Response::HTTP_SEE_OTHER);
         }
 

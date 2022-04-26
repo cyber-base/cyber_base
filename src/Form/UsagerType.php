@@ -6,6 +6,7 @@ use App\Entity\Usager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,13 +22,33 @@ class UsagerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('genre')
+        ->add('genre', ChoiceType::class, [
+            'choices'  => [
+                'Homme' => 'Homme',
+                'Femme' => 'Femme',
+            ],
+            'placeholder' => 'Select a value',
+        ])
             ->add('nom')
             ->add('prenom')
             ->add('tel')
             ->add('email')
-            ->add('categorie')
-            ->add('niveau')
+            ->add('categorie', ChoiceType::class, [
+                
+                'choices'  => [
+                    'Salarié' => 'Salarie',
+                    'Chômeur' => 'Chomeur',
+                    'Etudiant' => 'Etudiant',
+                ],
+            ])
+            ->add('niveau', ChoiceType::class, [
+
+                'choices'  => [
+                    'Débutant' => 'Debutant',
+                    'Intermidiare' => 'Intermidiare',
+                    'Avanvé' => 'Avance',
+                ],
+            ])
             ->add('loisir')
             ->add('adresse')
             ->add('ville')

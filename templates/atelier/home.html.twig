@@ -17,9 +17,9 @@
 
         <div class="col">
         
-            <div class="card h-100 text-center">
-            <img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="{{ atelier.image }}"><hr>
-                <div class="card-body">
+            <div class="card h-100 text-center border border-primary">
+            <img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top w-100 h-100 mx-auto p-2" style="" alt="{{ atelier.image }}">
+                <div class="card-body border border-primary">
                     <h5 class="card-title text-center text-white bg-primary w-100">Atelier :<b> {{ atelier.libelle }}</b></h5><hr>
                     <p class="card-text text-center">Animateur : <b>{{ atelier.animateurs }}</b></p>
                     <p class="card-text text-center">Date : <b>{{ atelier.date ? atelier.date|date('d-m-Y') : '' }}</b></p>

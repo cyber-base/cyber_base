@@ -39,6 +39,10 @@ class AnimateurController extends AbstractController
             );
 
             $animateurRepository->add($animateur);
+            $this->addFlash(
+                'success',
+                "Animateur ajouté avec succès ."
+             );
             return $this->redirectToRoute('app_animateur_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -71,6 +75,10 @@ class AnimateurController extends AbstractController
                 )
             );
             $animateurRepository->add($animateur);
+            $this->addFlash(
+                'success',
+                "Animateur modifié avec succès ."
+             );
             return $this->redirectToRoute('app_animateur_index', [], Response::HTTP_SEE_OTHER);
         }
 

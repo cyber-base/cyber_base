@@ -9,7 +9,7 @@
         "node-sass": "^6.0.1",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.50.0",
-        "sass-loader": "^12.0.0",
+        "sass-loader": "^12.6.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",

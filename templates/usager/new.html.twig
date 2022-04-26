@@ -5,32 +5,21 @@
 
 {% block body %}
 	{# <h1>Create new Usager</h1>
-	
-		{{ include('usager/_form.html.twig') }}
-	
-		<a href="{{ path('app_usager_index') }}">back to list</a> #}
+		
+			{{ include('usager/_form.html.twig') }}
+		
+			<a href="{{ path('app_usager_index') }}">back to list</a> #}
 
 	<div class="shadow p-3 mb-2 bg-body border-bottom rounded mx-auto w-50 mt-5">
 		<h3 class="text-center shadow p-3 bg-secondary bg-opacity-10">Ajouter Usager</h3>
 		<hr class="text-primary">
 		{{ form_start(form) }}
-
-		<div class="row">
-			<div class="col">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-					<label class="form-check-label" for="flexRadioDefault1">{{ form_row(form.genre) }}</label>
+		<div class="row	">
+			<div class="col-4">
+				{{ form_row(form.genre, {
+                  label: 'Civilité :'
+                  }) }}
 				</div>
-			</div>
-			<div class="col">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-					<label class="form-check-label" for="flexRadioDefault2">Femme</label>
-				</div>
-			</div>
-		</div>
-        
-
 		<div class="row">
 			<div class="col">
 				{{ form_row(form.nom, {
@@ -70,20 +59,20 @@
 		</div>
 
 		<div class="row">
-			<div class="col">
+			<div class="col-4">
 
 				{{ form_row(form.categorie, {
                  label: 'Catégorie'
                  }) }}
 			</div>
-			<div class="col">
+			<div class="col-4">
 
 				{{ form_row(form.niveau) }}
 			</div>
-		</div>
+		
 
-		<div class="row">
-			<div class="col">
+		
+			<div class="col-4">
 
 				{{ form_row(form.loisir) }}
 			</div>
@@ -127,9 +116,9 @@
 
 		<div class=" d-flex d-grid gap-2 col-6 mx-auto">
 			<button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
-            <a href="{{ path('app_usager_index') }}" class="btn btn-warning">back to list</a>
+			<a href="{{ path('app_usager_index') }}" class="btn btn-warning">back to list</a>
 		</div>
-		
+
 		{{ form_end(form) }}
 	</div>
 {% endblock %}

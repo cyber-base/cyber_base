@@ -13,6 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/personne')]
 class PersonneController extends AbstractController
 {
+    #[Route('/profile', name: 'app_profile', methods: ['GET'])]
+    public function home(PersonneRepository $personneRepository): Response
+    {
+        return $this->render('animateur/profile.html.twig', [
+            'ateliers' => $personneRepository->findAll(),
+        ]);
+    }
+    
     #[Route('/', name: 'app_personne_index', methods: ['GET'])]
     public function index(PersonneRepository $personneRepository): Response
     {

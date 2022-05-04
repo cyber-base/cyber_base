@@ -8,7 +8,6 @@ use App\Repository\UsagerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -20,7 +19,6 @@ class UsagerController extends AbstractController
     #[Route('/', name: 'app_usager_index', methods: ['GET'])]
     public function index(UsagerRepository $usagerRepository): Response
     {
-        
      return $this->render('usager/index.html.twig', [
             'usagers' => $usagerRepository->findAll(),
        ]);
@@ -110,8 +108,5 @@ class UsagerController extends AbstractController
         return  $this->json($usagerRepository->findAll(), 200, [], ['groups' => 'usager:read']);
 
     }
-
-
-
 
 }

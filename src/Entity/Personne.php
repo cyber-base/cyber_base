@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\DiscriminatorColumn(name:"type", type: "string")]
 #[ORM\DiscriminatorMap(["personne" => "Personne", "usager" => "Usager", "animateur" => "Animateur"])]
 
-class Personne
+class Personne 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -82,4 +82,5 @@ class Personne
 
         return $this;
     }
+
 }

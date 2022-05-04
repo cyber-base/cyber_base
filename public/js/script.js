@@ -169,9 +169,7 @@ function afficheDataListAtelier() {
 
   //   afficheLesAteliers(ateliers);
   afficheDataListAtelier(ateliers);
-  
-
-
+ 
 })();
 
 

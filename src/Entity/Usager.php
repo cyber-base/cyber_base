@@ -2,17 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\UsagerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UsagerRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: UsagerRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+
 class Usager extends Personne implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -65,7 +67,6 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
     #[Groups('usager:read')]
     private $partenaires;
 
-
     #[ORM\OneToMany(mappedBy: 'usagers', targetEntity: Planning::class)]
     #[Groups('usager:read')]
     private $plannings;
@@ -74,14 +75,21 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
     #[Groups('usager:read')]
     private $genre;
 
+    #[ORM\Column(name:'created', type: 'datetime', options:["default"=>"CURRENT_TIMESTAMP"])]
+    private $dateCreation =  'CURRENT_TIMESTAMP';
+
+
     public function __construct()
     {
         $this->plannings = new ArrayCollection();
+        $this->dateCreation = new \Datetime();
     }
 
     public function __toString()
     {
         return $this->getNom() .' '. $this->getPrenom();
+        return $this->getGenre();
+
     }
 
     public function getEmail(): ?string
@@ -305,4 +313,21 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
 
         return $this;
     }
+
+ 
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+ 
+   
 }

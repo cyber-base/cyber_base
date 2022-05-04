@@ -39,11 +39,11 @@
 			{{ form_row(form.plainPassword.second) }}
 		</div>
 	</div>
-	{# {% if is_granted("ROLE_SUPER_ANIMATEUR") %} #}
+
 	{{ form_row(form.roles, {
             label: 'Role'
         }) }}
-		{# {% endif %} #}
+		
 	<hr class="text-primary">
 	<div class="d-grid gap-2 col-6 mx-auto">
 		<button class="btn btn-primary">{{ button_label|default('Save') }}</button>

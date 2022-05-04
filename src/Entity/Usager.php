@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\UsagerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UsagerRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Ignore;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsagerRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+
 class Usager extends Personne implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -46,27 +48,45 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
     #[ORM\Column(type: 'string', length: 10)]
     private $cp;
 
+    /**
+     * @Ignore()
+     */
     #[ORM\ManyToOne(targetEntity: Quartier::class, inversedBy: 'usagers')]
     #[ORM\JoinColumn(nullable: false)]
     private $quartiers;
+    /**
+     * @Ignore()
+     */
 
     #[ORM\ManyToOne(targetEntity: Partenaire::class, inversedBy: 'usagers')]
     private $partenaires;
-
+    /**
+     * @Ignore()
+     */
     #[ORM\OneToMany(mappedBy: 'usagers', targetEntity: Planning::class)]
     private $plannings;
 
     #[ORM\Column(type: 'string', length: 30)]
     private $genre;
 
+    #[ORM\Column(name:'created', type: 'datetime', options:["default"=>"CURRENT_TIMESTAMP"])]
+    private $dateCreation =  'CURRENT_TIMESTAMP';
+
+
+
+    
+
     public function __construct()
     {
         $this->plannings = new ArrayCollection();
+        $this->dateCreation = new \Datetime();
     }
 
     public function __toString()
     {
         return $this->getNom() .' '. $this->getPrenom();
+        return $this->getGenre();
+
     }
 
     public function getEmail(): ?string
@@ -290,4 +310,21 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
 
         return $this;
     }
+
+ 
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+ 
+   
 }

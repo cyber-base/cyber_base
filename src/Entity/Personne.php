@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PersonneRepository;
+use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PersonneRepository;
 
 #[ORM\Entity(repositoryClass: PersonneRepository::class)]
 // #[ORM\Entity(name:"Personne")]
@@ -11,7 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\DiscriminatorColumn(name:"type", type: "string")]
 #[ORM\DiscriminatorMap(["personne" => "Personne", "usager" => "Usager", "animateur" => "Animateur"])]
 
-class Personne
+class Personne 
+// implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -77,4 +79,13 @@ class Personne
 
         return $this;
     }
+
+   
+
+    // public function jsonSerialize()
+    // {
+    //     $vars = get_object_vars($this);
+
+    //     return $vars;
+    // }
 }

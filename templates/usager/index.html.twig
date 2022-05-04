@@ -4,15 +4,76 @@
 {% endblock %}
 
 {% block body %}
+
 	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES USAGERS</h3>
+	{# <div class="row d-flex m-3 justify-content-center">
+		<div class="col-sm-6">
+
+			<input id="rechercheUsagers" list="dataListNom"  type="search" onkeyup="rechercheUsagers()" placeholder="Rechercher" class="form-control">
+			{# onkeyup="rechercheUsagers()" #}
+			{# <datalist id="dataListNom"></datalist> #}
+
+		{# </div>
+
+	</div>
+
+	<script> #}
+
+		{# let datas = {{ usagers|json_encode()|raw }}; #}
+		{# let datas = {{ usagers|json_encode()|raw }}; #}
+		{# console.log(datas)
+
+function rechercheUsagers() {
+let nomRechercher = document.querySelector("#rechercheUsagers").value
+console.log(nomRechercher)
+let resultat = [];
+for (let i = 0; i < datas.length; i++) {
+let usager = datas[i];
+if ((usager.nom.toLowerCase() + " " + usager.prenom.toLowerCase()).includes(nomRechercher.toLowerCase())) {
+resultat.push(usager);
+}
+
+}
+console.log(resultat)
+} #} 
+
+{# /**
+		        * Falcultatif :
+		        * Procedure qui permet de constituer le dataList de manière dynamique
+		        */ #}
+{# 
+function afficheDataList() {
+let chaine = "";
+for (let i = 0; i < datas.length; i++) {
+let nomUsager = datas[i].nom;
+let prenomUsager = datas[i].prenom;
+chaine += `<option value='${nomUsager} ${prenomUsager} '></option>`
+
+}
+document.querySelector("#dataListNom").innerHTML = chaine;
+}
+
+afficheDataList(); #}
+
+
+{# // Fin des définitions de fonction
+
+// Invocations
+
+// Fin des invocations #}
+	{# </script> #}
+{# 
+
+	<script src="../public/js/script.js"></script> #}
+
 
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
 		<a class="btn btn-primary" href="{{ path('app_usager_new') }}">+ Usager</a>
 	</div>
 	{% for message in app.flashes('success') %}
-	<div class="alert alert-success mt-4">
-	{{ message }}
-	</div>
+		<div class="alert alert-success mt-4">
+			{{ message }}
+		</div>
 	{% endfor %}
 	<table class="table table-hover text-start text-center mb-3">
 		<thead>
@@ -23,7 +84,7 @@
 				<th>Tél</th>
 				<th>Email</th>
 				{# <th>Roles</th>
-				                <th>Password</th> #}
+																						                <th>Password</th> #}
 				<th>Categorie</th>
 				<th>Niveau</th>
 				<th>Loisir</th>
@@ -42,7 +103,7 @@
 					<td>{{ usager.tel }}</td>
 					<td>{{ usager.email }}</td>
 					{# <td>{{ usager.roles ? usager.roles|json_encode : '' }}</td>
-					                <td>{{ usager.password }}</td> #}
+																											                <td>{{ usager.password }}</td> #}
 					<td>{{ usager.categorie }}</td>
 					<td>{{ usager.niveau }}</td>
 					<td>{{ usager.loisir }}</td>

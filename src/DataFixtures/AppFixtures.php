@@ -42,6 +42,7 @@ class AppFixtures extends Fixture
                     ->setCp($Faker->postcode())
                     ->setRoles(["ROLE_USAGER"])
                     ->setCategorie('profession '.$i)
+                    // ->setDateCreation($Faker->dateTime())
                     ->setNiveau('Level',$Faker->numberBetween(1, 3))
                     ->setLoisir('loisir '. $i)
                     ->setPartenaires($partenaire)

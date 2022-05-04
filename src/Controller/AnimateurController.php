@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/animateur')]
+
 class AnimateurController extends AbstractController
 {
     #[Route('/', name: 'app_animateur_index', methods: ['GET'])]

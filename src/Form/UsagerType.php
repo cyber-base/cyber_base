@@ -23,6 +23,7 @@ class UsagerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        
         ->add('genre', ChoiceType::class, [
             'choices'  => [
                 'Homme' => 'Homme',
@@ -38,8 +39,15 @@ class UsagerType extends AbstractType
 
                 'choices'  => [
                     'Salarié' => 'Salarie',
-                    'Chômeur' => 'Chomeur',
+                    'Retraité' => 'Retraité',
+                    'demandeur d\'emploi' => 'demandeur d\'emploi',
+                    'Collègue' => 'Collègue',
                     'Etudiant' => 'Etudiant',
+                    'Scolaire' => 'Scolaire',
+                    'Association' => 'Association',
+                    'Centre de loisirs' => 'Centre de loisirs',
+                    'Antennes de quartier' => 'Antennes de quartier',
+
                 ],
             ])
             ->add('niveau', ChoiceType::class, [

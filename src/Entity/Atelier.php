@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AtelierRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AtelierRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: AtelierRepository::class)]
 class Atelier
@@ -13,31 +16,40 @@ class Atelier
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('atelier:read')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Groups('atelier:read')]
     private $libelle;
 
     #[ORM\Column(type: 'date')]
+    #[Groups('atelier:read')]
     private $date;
 
     #[ORM\Column(type: 'time')]
+    #[Groups('atelier:read')]
     private $heureDebut;
 
     #[ORM\Column(type: 'time')]
+    #[Groups('atelier:read')]
     private $heureFin;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Groups('atelier:read')]
     private $statut;
 
     #[ORM\OneToMany(mappedBy: 'ateliers', targetEntity: Planning::class)]
+    #[Groups('atelier:read')]
     private $plannings;
 
     #[ORM\ManyToOne(targetEntity: Animateur::class, inversedBy: 'ateliers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('atelier:read')]
     private $animateurs;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('atelier:read')]
     private $image;
 
     public function __construct()

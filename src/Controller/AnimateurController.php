@@ -8,12 +8,15 @@ use App\Repository\AnimateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/animateur')]
 class AnimateurController extends AbstractController
 {
+    #[IsGranted('ROLE_ANIMATEUR')]
     #[Route('/', name: 'app_animateur_index', methods: ['GET'])]
     public function index(AnimateurRepository $animateurRepository): Response
     {
@@ -22,6 +25,7 @@ class AnimateurController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_SUPER_ANIMATEUR')]
     #[Route('/new', name: 'app_animateur_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AnimateurRepository $animateurRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
@@ -52,6 +56,7 @@ class AnimateurController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_SUPER_ANIMATEUR')]
     #[Route('/{id}', name: 'app_animateur_show', methods: ['GET'])]
     public function show(Animateur $animateur): Response
     {
@@ -60,6 +65,7 @@ class AnimateurController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_SUPER_ANIMATEUR')]
     #[Route('/{id}/edit', name: 'app_animateur_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Animateur $animateur, AnimateurRepository $animateurRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
@@ -88,6 +94,7 @@ class AnimateurController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_SUPER_ANIMATEUR')]
     #[Route('/{id}', name: 'app_animateur_delete', methods: ['POST'])]
     public function delete(Request $request, Animateur $animateur, AnimateurRepository $animateurRepository): Response
     {

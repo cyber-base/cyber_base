@@ -62,6 +62,7 @@ class UsagerRepository extends ServiceEntityRepository implements PasswordUpgrad
         $this->_em->flush();
     }
 
+
     // /**
     //  * @return Usager[] Returns an array of Usager objects
     //  */

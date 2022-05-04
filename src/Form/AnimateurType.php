@@ -46,23 +46,23 @@ class AnimateurType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ]);
-            // ->add('roles', ChoiceType::class, [
-            //     'choices' =>[
-            //         'Super Animateur'=>'ROLE_SUPER_ANIMATEUR',
-            //         'Animateur'=>'ROLE_ANIMATEUR'
-            //     ],
+            ])
+            ->add('roles', ChoiceType::class, [
+                'choices' =>[
+                    'Super Animateur'=>'ROLE_SUPER_ANIMATEUR',
+                    'Animateur'=>'ROLE_ANIMATEUR'
+                ],
 
-            //     'constraints' => [
-            //         new NotBlank([
-            //             'message' => 'Please enter a role',
-            //         ])],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a role',
+                    ])],
 
-            //     // 'expanded' => true,
-            //     'multiple' => true,
-            //     'label' => 'Roles'
-            //     ])
-            //    ;
+                // 'expanded' => true,
+                'multiple' => true,
+                'label' => 'Roles'
+                ])
+               ;
         }
     
 

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UsagerRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -20,43 +21,57 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+        #[Groups('usager:read')]
     private $email;
 
     #[ORM\Column(type: 'json')]
+        #[Groups('usager:read')]
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
+        #[Groups('usager:read')]
     private $password;
 
     #[ORM\Column(type: 'string', length: 50)]
+        #[Groups('usager:read')]
     private $categorie;
 
     #[ORM\Column(type: 'string', length: 50)]
+        #[Groups('usager:read')]
     private $niveau;
 
     #[ORM\Column(type: 'string', length: 50)]
+        #[Groups('usager:read')]
     private $loisir;
 
     #[ORM\Column(type: 'string', length: 100)]
+        #[Groups('usager:read')]
     private $adresse;
 
     #[ORM\Column(type: 'string', length: 50)]
+        #[Groups('usager:read')]
     private $ville;
 
     #[ORM\Column(type: 'string', length: 10)]
+        #[Groups('usager:read')]
     private $cp;
 
     #[ORM\ManyToOne(targetEntity: Quartier::class, inversedBy: 'usagers')]
     #[ORM\JoinColumn(nullable: false)]
+        #[Groups('usager:read')]
     private $quartiers;
 
     #[ORM\ManyToOne(targetEntity: Partenaire::class, inversedBy: 'usagers')]
+    #[Groups('usager:read')]
     private $partenaires;
 
+
     #[ORM\OneToMany(mappedBy: 'usagers', targetEntity: Planning::class)]
+    #[Groups('usager:read')]
     private $plannings;
 
     #[ORM\Column(type: 'string', length: 30)]
+    #[Groups('usager:read')]
     private $genre;
 
     public function __construct()

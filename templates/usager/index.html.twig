@@ -2,54 +2,58 @@
 
 {% block title %}Cyber Base - Liste Usagers
 {% endblock %}
-
 {% block body %}
 	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES USAGERS</h3>
 
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
 		<a class="btn btn-primary" href="{{ path('app_usager_new') }}">+ Usager</a>
 	</div>
-	{% for message in app.flashes('success') %}
-	<div class="alert alert-success mt-4">
-	{{ message }}
+	<div class="row d-flex m-3 justify-content-center">
+		<div class="col-sm-6">
+			<input id="rechercheUsager" list="dataListNom" onkeyup="rechercheNomUsager()" type="search" placeholder="Rechercher" class="form-control">
+			<datalist id="dataListNom"></datalist>
+		</div>
 	</div>
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success mt-4">
+			{{ message }}
+		</div>
 	{% endfor %}
-	<table class="table table-hover text-start text-center mb-3">
+
+	<table class="table table-striped table-hover  text-center mb-3">
 		<thead>
 			<tr>
 				<th>Id</th>
+				<th>Sexe</th>
 				<th>Nom</th>
 				<th>Prénom</th>
 				<th>Tél</th>
 				<th>Email</th>
-				{# <th>Roles</th>
-				                <th>Password</th> #}
-				<th>Categorie</th>
-				<th>Niveau</th>
-				<th>Loisir</th>
 				<th>Adresse</th>
 				<th>Ville</th>
-				{# <th>Code postale</th> #}
 				<th>actions</th>
 			</tr>
 		</thead>
-		<tbody>
-			{% for usager in usagers %}
-				<tr>
+		<tbody id="divUsagers">
+
+{# 
+			{% for usager in usagers %} #}
+				{# <tr>
 					<td>{{ usager.id }}</td>
 					<td>{{ usager.nom }}</td>
 					<td>{{ usager.prenom }}</td>
 					<td>{{ usager.tel }}</td>
-					<td>{{ usager.email }}</td>
+					<td>{{ usager.email }}</td>  #}
 					{# <td>{{ usager.roles ? usager.roles|json_encode : '' }}</td>
-					                <td>{{ usager.password }}</td> #}
-					<td>{{ usager.categorie }}</td>
+																																						{# <td>{{ usager.password }}</td> #}
+					 {# <td>{{ usager.categorie }}</td>
 					<td>{{ usager.niveau }}</td>
 					<td>{{ usager.loisir }}</td>
 					<td>{{ usager.adresse }}</td>
 					<td>{{ usager.ville }}</td>
-					{# <td>{{ usager.cp }}</td> #}
-					<td>
+					<td>{{ usager.cp }}</td>  #}
+					{# <td>
 						<a class="btn btn-outline-secondary" href="{{ path('app_usager_show', {'id': usager.id}) }}">
 							<i class="fa-regular fa-eye"></i>
 						</a>
@@ -61,14 +65,14 @@
 						<a class="btn btn-outline-secondary" href="{{ path('app_usager_delete', {'id': usager.id}) }}">
 							<i class="fa-regular fa-trash-can"></i>
 						</a>
-					</td>
-				</tr>
-			{% else %}
+					</td> #}
+				{# </tr> #}
+			{# {% else %}
 
 				<div class="alert alert-danger" role="alert">
 					no records found!
 				</div>
-			{% endfor %}
+			{% endfor %} #}
 		</tbody>
 	</table>
 

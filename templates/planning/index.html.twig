@@ -20,7 +20,7 @@
 				<th>Animateur</th>
 				<th>Usager</th>
 				<th>Poste</th>
-				<th>Date</th>
+				<th>Date Inscription</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -29,7 +29,7 @@
 				<tr>
 					<td>CB-00{{ planning.id }}</td>
 					<td>{{ planning.ateliers }}</td>
-					<td></td>
+					<td>{{ planning.ateliers.animateurs }}</td>
 					<td>{{ planning.usagers }}</td>
 					<td>{{ planning.postes }}</td>
 					<td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>

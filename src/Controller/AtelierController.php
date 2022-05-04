@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -16,19 +17,13 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class AtelierController extends AbstractController
 {
 
-    #[Route('', name: 'app_home', methods: ['GET'])]
+    #[Route('/', name: 'app_home', methods: ['GET'])]
     public function home(AtelierRepository $atelierRepository): Response
     {
         return $this->render('atelier/home.html.twig', [
             'ateliers' => $atelierRepository->findAll(),
         ]);
     }
-
-    // #[Route('/', name: 'index', methods: ['GET'])]
-    // public function index2(AtelierRepository $atelierRepository): Response
-    // {
-    //     return $this->redirectToRoute('app_home');
-    // }
 
     #[Route('/liste_atelier', name: 'app_listeAtelier_index', methods: ['GET'])]
     public function index(AtelierRepository $atelierRepository): Response
@@ -37,8 +32,6 @@ class AtelierController extends AbstractController
             'ateliers' => $atelierRepository->findAll(),
         ]);
     }
-
-
 
     #[Route('/new', name: 'app_atelier_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AtelierRepository $atelierRepository, SluggerInterface $slugger): Response
@@ -86,7 +79,6 @@ class AtelierController extends AbstractController
             'form' => $form,
         ]);
     }
-
 
     #[Route('/{id}', name: 'app_atelier_show', methods: ['GET'])]
     public function show(Atelier $atelier): Response
@@ -153,5 +145,11 @@ class AtelierController extends AbstractController
         return $this->redirectToRoute('app_listeAtelier_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/api/atelier', name: 'atelier', methods: ['GET'])]
+    public function usagers(AtelierRepository $atelierRepository): Response
+    {
+        return  $this->json($atelierRepository->findAll(), 200, [], ['groups' => 'atelier:read']);
+
+    }
     
 }

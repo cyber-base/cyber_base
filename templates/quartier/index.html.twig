@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">lISTE DES QUARTIERS</h3>
+	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTE DES QUARTIERS</h3>
 
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
 		<a class="btn btn-primary" a href="{{ path('app_quartier_new') }}">+ Quartier</a>
@@ -23,6 +23,8 @@
 				<tr>
 					<td>{{ quartier.id }}</td>
 					<td>{{ quartier.nomQuartier }}</td>
+
+					{% if is_granted('ROLE_SUPER_ANIMATEUR') %}
 					<td>
 						<a class="btn btn-outline-secondary" href="{{ path('app_quartier_show', {'id': quartier.id}) }}">
 							<i class="fa-regular fa-eye"></i>
@@ -36,6 +38,9 @@
 							<i class="fa-regular fa-trash-can"></i>
 						</a>
 					</td>
+					{% else %}
+					<td class="text-danger"> Access Denied</td>
+					{% endif %}
 				</tr>
 			{% else %}
 

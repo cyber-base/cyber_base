@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
                        ->setTypeEtablissement($Faker->company);
 
              $usager = new Usager();
-             $usager->setGenre($Faker->titleMale())
+             $usager->setGenre('Homme','Femme')
                     ->setNom($Faker->firstName())
                     ->setPrenom($Faker->lastName());
              $usager->setEmail($Faker->email())
@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
             $atelier = new Atelier();
 
             $atelier->setLibelle('Atelier'.$i);
-            $atelier->setDate($Faker->dateTime());
+            $atelier->setDate($Faker->dateTimeBetween('now', '+1year'));
             $atelier->setHeureDebut($Faker->dateTime());
             $atelier->setHeureFin($Faker->dateTime());
             $atelier->setStatut('en attente');

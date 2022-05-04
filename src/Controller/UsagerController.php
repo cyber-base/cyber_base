@@ -8,8 +8,11 @@ use App\Repository\UsagerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
+
 
 #[Route('/usager')]
 class UsagerController extends AbstractController
@@ -17,10 +20,13 @@ class UsagerController extends AbstractController
     #[Route('/', name: 'app_usager_index', methods: ['GET'])]
     public function index(UsagerRepository $usagerRepository): Response
     {
-        return $this->render('usager/index.html.twig', [
+        
+     return $this->render('usager/index.html.twig', [
             'usagers' => $usagerRepository->findAll(),
-        ]);
+       ]);
+
     }
+
 
     #[Route('/new', name: 'app_usager_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UsagerRepository $usagerRepository, UserPasswordHasherInterface $userPasswordHasher): Response
@@ -96,4 +102,16 @@ class UsagerController extends AbstractController
 
         return $this->redirectToRoute('app_usager_index', [], Response::HTTP_SEE_OTHER);
     }
+
+  //  #[IsGranted('ROLE_SUPER_ANIMATEUR')]
+    #[Route('/api/usager', name: 'api_usager', methods: ['GET'])]
+    public function usagers(UsagerRepository $usagerRepository): Response
+    {
+        return  $this->json($usagerRepository->findAll(), 200, [], ['groups' => 'usager:read']);
+
+    }
+
+
+
+
 }

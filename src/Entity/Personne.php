@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PersonneRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PersonneRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PersonneRepository::class)]
 // #[ORM\Entity(name:"Personne")]
@@ -16,15 +17,19 @@ class Personne
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('usager:read')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Groups('usager:read')]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Groups('usager:read')]
     private $prenom;
 
     #[ORM\Column(type: 'string', length: 20)]
+    #[Groups('usager:read')]
     private $tel;
 
     // public function __toString()

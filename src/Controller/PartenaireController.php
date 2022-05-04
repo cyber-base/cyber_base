@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Partenaire;
 use App\Form\PartenaireType;
 use App\Repository\PartenaireRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/partenaire')]
 class PartenaireController extends AbstractController

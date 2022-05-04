@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Planning;
 use App\Form\PlanningType;
 use App\Repository\PlanningRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/planning')]
 class PlanningController extends AbstractController
@@ -18,6 +19,7 @@ class PlanningController extends AbstractController
     {
         return $this->render('planning/index.html.twig', [
             'plannings' => $planningRepository->findAll(),
+            //  'plannings' => $planningRepository->findAnimateurByIdAtelier(),
         ]);
     }
 

@@ -26,7 +26,8 @@ class AtelierType extends AbstractType
             ->add('statut', ChoiceType::class, [
                 
                 'choices'  => [
-                    'En attente' => 'En attent',
+                    'Annulé' => 'Annulé',
+                    'En attente' => 'En attente',
                     'Confirmé' => 'Confirmé',
                 ],
             ])

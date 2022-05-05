@@ -35,8 +35,8 @@
 					<td>{{ atelier.libelle }}</td>
 					<td>{{ atelier.animateurs }}</td>
 					<td>{{ atelier.date ? atelier.date|date('d-m-Y') : ''  }}</td>
-					<td>{{ atelier.heureDebut ? atelier.heureDebut|date('H:i') : '' }}</td>
-					<td>{{ atelier.heureFin ? atelier.heureFin|date('H:i') : '' }}</td>
+					<td>{{ atelier.heureDebut }}</td>
+					<td>{{ atelier.heureFin }}</td>
 					<td><img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="{{ atelier.image }}" width="50px" ; height="70px" alt=""></td>
 					<td>{{  atelier.statut }}</td>
 					<td>

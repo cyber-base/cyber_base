@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\UsagerRepository;
+use Monolog\Handler\Curl\Util;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
@@ -80,7 +81,7 @@ class ChartController extends AbstractController
                     // dump($usagerCatSalarie),
                     'data' =>[$usagerCatSalarie, $usagerCatretraite, $usagerDemandeurDemploi, $usagerCollegue,$usagerScolaire, $usagerEtudiant ,$usagerAssociation
                     , $usagerCentreDeLoisir, $usagerAntennesDeQuartier],
-                    '' =>[" %"] 
+                    
 
                 ],
                 
@@ -184,6 +185,49 @@ class ChartController extends AbstractController
 
 
 
+        ]);
+    }
+
+
+    #[Route('/chart2', name: 'app_chart2', methods: ['GET'])]
+    public function index(UsagerRepository $usagerRepository,ChartBuilderInterface $chartBuilder): Response
+    {
+        $chart = $chartBuilder->createChart(Chart::TYPE_SCATTER);
+       
+        $chart->setData([
+            
+            'labels' => ['9h00-10h00'],
+            'datasets' => [
+                [
+                    'label' => 'My First dataset',
+                    'backgroundColor' => [
+                        'rgb(255, 99, 132)',
+                        'rgb(70, 159, 25)',
+                        'rgb(24, 106, 162)',
+                        'rgb(77, 37, 121)',
+                        'rgb(180, 23, 70)',
+                        'rgb(23, 180, 148)',
+                        'rgb(180, 177, 23)',
+                        'rgb(83, 177, 243)',
+                        'rgb(30, 33, 36)'
+                    ],
+                   
+                    'data' =>[],
+                    
+
+                ],
+                
+            ],
+            'hoverOffset' => 20,
+        ]);
+
+       
+
+
+        return $this->render('chart/chart2.html.twig', [
+        'chart' => $chart,
+        'huitEtNeuf' => $usagerRepository->countHeureDeNeufEtDix(),
+        'neufEtDix' => $usagerRepository->countHeureDeDixEtOnze()
         ]);
     }
 }

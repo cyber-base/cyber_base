@@ -8,8 +8,10 @@ use App\Repository\UsagerRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[IsGranted('ROLE_ANIMATEUR')]
 class ChartController extends AbstractController
 {
     // #[Route('/chart2', name: 'app_chart_new')]

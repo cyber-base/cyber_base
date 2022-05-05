@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[IsGranted('ROLE_ANIMATEUR')]
 #[Route('/partenaire')]
 class PartenaireController extends AbstractController
 {

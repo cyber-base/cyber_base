@@ -6,11 +6,12 @@
 {% block body %}
 	<h3 class="text-center shadow p-3 bg-secondary bg-opacity-10 w-50 mx-auto">Animateur</h3>
 
+<div class="p-3 mb-2 bg-body border rounded mx-auto">
 	<table class="table p-3 mb-2 bg-body border rounded mx-auto w-50">
 
 		<tbody>
 			<tr>
-				<th>Id</th>
+				<th>ID</th>
 				<td>{{ animateur.id }}</td>
 			</tr>
 			<tr>
@@ -30,7 +31,7 @@
 				<td>{{ animateur.email }}</td>
 			</tr>
 			<tr>
-				<th>Roles</th>
+				<th>Rôle</th>
 				<td>{{ animateur.roles ? animateur.roles|json_encode : '' }}</td>
 			</tr>
 			{# <tr>
@@ -41,10 +42,14 @@
 
 	</table>
 
-	<a href="{{ path('app_animateur_index') }}" class="btn btn-warning">back to list</a>
 
-	<a href="{{ path('app_animateur_edit', {'id': animateur.id}) }}" class="btn btn-primary">edit</a>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+	<a href="{{ path('app_animateur_index') }}" class="btn btn-secondary">Retour</a>
+
+	<a href="{{ path('app_animateur_edit', {'id': animateur.id}) }}" class="btn btn-primary">Modifier</a>
 
 	{{ include('animateur/_delete_form.html.twig') }}
+	</div>
+	</div>
     
 {% endblock %}

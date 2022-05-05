@@ -162,7 +162,7 @@ function afficheDataListAtelier() {
 
 (async () => {
 
-  const resp = await fetch('https://localhost:8000/home/api/atelier');
+  const resp = await fetch('https://localhost:8000/atelier/api/atelier');
   ateliers = await resp.json();
 
   console.log(ateliers);

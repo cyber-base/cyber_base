@@ -190,27 +190,31 @@ class ChartController extends AbstractController
     #[Route('/chart2', name: 'app_chart2', methods: ['GET'])]
     public function index(UsagerRepository $usagerRepository,ChartBuilderInterface $chartBuilder): Response
     {
-        $chart = $chartBuilder->createChart(Chart::TYPE_SCATTER);
-       
+        $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $huitEtNeuf = $usagerRepository->countHeureDeNeufEtDix();
+        $neufEtDix =  $usagerRepository->countHeureDeDixEtOnze();
+        $dixEtOnze = $usagerRepository->countHeureDeDixEtOnze();
+        $dixEtOnze = $usagerRepository->countHeureDeOnzeEtDouze();
+        $douzeEtTreize = $usagerRepository->countHeureDeDouzeEtTreize();
+        $treizeEtQuatorze = $usagerRepository->countHeureDeTreizeEtQuatorze();
+        $QuatorzeEtQuinze = $usagerRepository->countHeureDeQuatorzeEtQuinze();
+        $quinzeEtSeize = $usagerRepository->countHeureDeQuinzeEtSeize();
+        $seizeEtDixSept = $usagerRepository->countHeureDeSeizeEtDixSept();
+        $dixSeptEtDixHuit = $usagerRepository->countHeureDeDixseptEtDixHuit();
+        $dixHuitEtDixNeuf = $usagerRepository->countHeureDeDixhuitEtDixNeuf();
         $chart->setData([
             
-            'labels' => ['9h00-10h00'],
+            'labels' => ['9h00-10h00', '10h00-11h00', '11h00-12h00', '12h00-13h00', '13h00-14h00', '14h00-15h00', '15h00-16h00'
+            ,'16h00-17h00', '17h00-18h00','18h00-19h00'],
             'datasets' => [
                 [
-                    'label' => 'My First dataset',
-                    'backgroundColor' => [
-                        'rgb(255, 99, 132)',
-                        'rgb(70, 159, 25)',
-                        'rgb(24, 106, 162)',
-                        'rgb(77, 37, 121)',
-                        'rgb(180, 23, 70)',
-                        'rgb(23, 180, 148)',
-                        'rgb(180, 177, 23)',
-                        'rgb(83, 177, 243)',
-                        'rgb(30, 33, 36)'
-                    ],
-                   
-                    'data' =>[],
+                    'label' => 'Lundi',
+                    'data' => [$huitEtNeuf[0][1],$neufEtDix[0][1],$dixEtOnze[0][1],$douzeEtTreize[0][1],$treizeEtQuatorze[0][1],
+                    $QuatorzeEtQuinze[0][1],$quinzeEtSeize[0][1],$seizeEtDixSept[0][1],$dixSeptEtDixHuit[0][1],$dixHuitEtDixNeuf[0][1]],
+                    'fill' => false,
+                    // 'borderColor' => 'rgb(100, 192, 192)',
+                    'tension' => 0.1
+                    
                     
 
                 ],
@@ -218,14 +222,25 @@ class ChartController extends AbstractController
             ],
             'hoverOffset' => 20,
         ]);
-
-       
-
+        $days = ceil(abs( strtotime('2000-01-25') - strtotime('2010-02-20') ) / 86400);
+        // $months = ;
+        $MOIS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet'
+        ,'Août', 'Septembre','Octobre', 'Novembre', 'Décembre'];
+        
 
         return $this->render('chart/chart2.html.twig', [
+        'diff' => $days,
         'chart' => $chart,
-        'huitEtNeuf' => $usagerRepository->countHeureDeNeufEtDix(),
-        'neufEtDix' => $usagerRepository->countHeureDeDixEtOnze()
+        'neufEtDix' => $usagerRepository->countHeureDeNeufEtDix(),
+        'dixEtOnze' => $usagerRepository->countHeureDeDixEtOnze(),
+        'onzeEtDouze' => $usagerRepository->countHeureDeOnzeEtDouze(),
+        'douzeEtTreize' => $usagerRepository->countHeureDeDouzeEtTreize(),
+        'treizeEtQuatorze' => $usagerRepository->countHeureDeTreizeEtQuatorze(),
+        'quatorzeEtQuinze' => $usagerRepository->countHeureDeQuatorzeEtQuinze(),
+        'quinzeEtSeize' => $usagerRepository->countHeureDeQuinzeEtSeize(),
+        'seizeEtDixSept' => $usagerRepository->countHeureDeSeizeEtDixSept(),
+        'dixSeptEtDixHuit' => $usagerRepository->countHeureDeDixseptEtDixHuit(),
+        'dixHuitEtDixNeuf' => $usagerRepository->countHeureDeDixhuitEtDixNeuf(),
         ]);
     }
 }

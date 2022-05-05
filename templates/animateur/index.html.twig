@@ -6,17 +6,18 @@
 {% block body %}
 	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTE DES ANIMATEURS</h3>
 
-	{% if is_granted('ROLE_SUPER_ANIMATEUR') %}
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+		{% if is_granted('ROLE_SUPER_ANIMATEUR') %}
 		<a class="btn btn-primary" href="{{ path('app_animateur_new') }}">+ Animateur</a>
+			{% endif %}
 	</div>
-	{% endif %}
+
 	{% for message in app.flashes('success') %}
 	<div class="alert alert-success mt-4">
 	{{ message }}
 	</div>
 	{% endfor %}
-	<table class="table table-hover text-start text-center mb-3">
+	<table class="table table-striped table-hover text-start text-center mb-3">
 		<thead>
 			<tr>
 				<th>Id</th>

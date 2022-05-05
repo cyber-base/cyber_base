@@ -13,11 +13,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-#[Route('/home')]
+#[Route('/')]
 class AtelierController extends AbstractController
 {
 
-    #[Route('/', name: 'app_home', methods: ['GET'])]
+    #[Route('/home', name: 'app_home', methods: ['GET'])]
     public function home(AtelierRepository $atelierRepository): Response
     {
         return $this->render('atelier/home.html.twig', [
@@ -25,6 +25,7 @@ class AtelierController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ANIMATEUR')]
     #[Route('/liste_atelier', name: 'app_listeAtelier_index', methods: ['GET'])]
     public function index(AtelierRepository $atelierRepository): Response
     {
@@ -33,7 +34,8 @@ class AtelierController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_atelier_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ANIMATEUR')]
+    #[Route('/atelier/new', name: 'app_atelier_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AtelierRepository $atelierRepository, SluggerInterface $slugger): Response
     {
         $atelier = new Atelier();
@@ -80,7 +82,8 @@ class AtelierController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_atelier_show', methods: ['GET'])]
+    #[IsGranted('ROLE_ANIMATEUR')]
+    #[Route('/atelier/{id}', name: 'app_atelier_show', methods: ['GET'])]
     public function show(Atelier $atelier): Response
     {
         return $this->render('atelier/show.html.twig', [
@@ -88,7 +91,8 @@ class AtelierController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_atelier_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ANIMATEUR')]
+    #[Route('/atelier/{id}/edit', name: 'app_atelier_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Atelier $atelier, AtelierRepository $atelierRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(AtelierType::class, $atelier);
@@ -135,7 +139,8 @@ class AtelierController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_atelier_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ANIMATEUR')]
+    #[Route('/atelier/{id}', name: 'app_atelier_delete', methods: ['POST'])]
     public function delete(Request $request, Atelier $atelier, AtelierRepository $atelierRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$atelier->getId(), $request->request->get('_token'))) {
@@ -145,7 +150,8 @@ class AtelierController extends AbstractController
         return $this->redirectToRoute('app_listeAtelier_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/api/atelier', name: 'atelier', methods: ['GET'])]
+    #[IsGranted('ROLE_SUPER_ANIMATEUR')]
+    #[Route('atelier/api/atelier', name: 'atelier', methods: ['GET'])]
     public function usagers(AtelierRepository $atelierRepository): Response
     {
         return  $this->json($atelierRepository->findAll(), 200, [], ['groups' => 'atelier:read']);

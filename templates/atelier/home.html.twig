@@ -44,10 +44,10 @@
 	                                        <b>{{ atelier.date ? atelier.date|date('d-m-Y') : '' }}</b>
 	                                    </p>
 	                                    <p class="card-text text-center">Heure Début :
-	                                        <b>{{ atelier.heureDebut ? atelier.heureDebut|date('H:i') : '' }}</b>
+	                                        <b>{{ atelier.heureDebut }}</b>
 	                                    </p>
 	                                    <p class="card-text text-center">Heure Fin :
-	                                        <b>{{ atelier.heureFin ? atelier.heureFin|date('H:i') : '' }}</b>
+	                                        <b>{{ atelier.heureFin }}</b>
 	                                    </p>
 	                                    <p class="card-text text-center">Status :
 	                                        {% if  atelier.statut == 'En attente' %}

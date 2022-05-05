@@ -76,7 +76,7 @@ function afficheDataList() {
   
 (async () => {
 
-  const res = await fetch('https://localhost:8000/usager/api/usager');
+  const res = await fetch('http://127.0.0.1:8000/usager/api/usager');
   usagers = await res.json();
 
   console.log(usagers);
@@ -161,8 +161,8 @@ function afficheDataListAtelier() {
 }
 
 (async () => {
-
-  const resp = await fetch('https://localhost:8000/home/api/atelier');
+  
+  const resp = await fetch('http://127.0.0.1:8000/home/api/atelier');
   ateliers = await resp.json();
 
   console.log(ateliers);

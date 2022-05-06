@@ -4,50 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<form method="POST" class="w-25 mt-5">
-	            {% if error %}
-	                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-	            {% endif %}
-	    
-	            {% if app.user %}
-	                <div class="mb-3">
-	                    You are logged in as
-	                    {{ app.user.username }},
-	                    <a href="{{ path('app_logout') }}">Logout</a>
-	                </div>
-	            {% endif %}
-	    
-	            <h1 class="h3 mb-3 font-weight-normal">Formulaire de Connexion</h1>
-	            <div class="mb-3">
-	                <label for="inputEmail" class="form-label">E-mail</label>
-	                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Adresse E-mail" autocomplete="email" required autofocus aria-describedby="emailHelp"></div>
-	                <div class="mb-3">
-	                    <label for="inputPassword" class="form-label">Password</label>
-	                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
-	                        <div class="mb-3">
-	                            <a href="">
-	                                Forgot password?</a>
-	                        </div>
-	                        <input
-	                            type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">{#
-	                                				        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-	                                				        See https://symfony.com/doc/current/security/remember_me.html
-	                                				        <div class="checkbox mb-3">
-	                                				            <label>
-	                                				                <input type="checkbox" name="_remember_me"> Remember me
-	                                				            </label>
-	                                				        </div>
-	                                				    #}
-	</div>
-	<button type="submit" class="btn btn-primary">Connexion</button>
-	    
-	    					
-	                    </form> 
-
-
-		{# <div class="login-box"> 
-		<h2>Login</h2>
-		<form method="POST">
+	<div class="p-3 mb-2 bg-body border rounded mx-auto w-50">
+		<form method="POST" class="p-3">
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 			{% endif %}
@@ -59,196 +17,64 @@
 					<a href="{{ path('app_logout') }}">Logout</a>
 				</div>
 			{% endif %}
-			<div class="user-box">
-				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus aria-describedby="emailHelp">
-				<label>Adresse Mail</label>
-			</div>
-			<div class="user-box">
 
-				<input type="password" name="password" id="inputPassword" autocomplete="current-password" required>
-				<label>Mot de passe</label>
+			<h1 class="h3 mb-3 font-weight-normal text-center">Formulaire de Connexion</h1><hr>
+			<div class="mb-3">
+				<label for="inputEmail" class="form-label">Adresee Mail</label>
+				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Adresse E-mail" autocomplete="email" required autofocus aria-describedby="emailHelp"></div>
+			<div class="mb-3">
+				<label for="inputPassword" class="form-label">Mot de passe</label>
+				<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
+				<div class="mb-3">
+					<a href="">
+						Forgot password?</a>
+				</div>
+				<input
+				type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 			</div>
+      <div class="d-grid gap-2 col-3 mx-auto">
+			<button type="submit" class="btn btn-primary">Connexion</button>
+      </div>
 
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			<a href="" type="submit">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				Submit
-			</a>
+
 		</form>
-	</div> #}
+  </div>
 
-	<style>
 
-{# html {
-  height: 100%;
-}
-body {
-  margin:0;
-  padding:0;
-  font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
-}
+		{# <div class="login-box"> 
+				<h2>Login</h2>
+				<form method="POST">
+					{% if error %}
+						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
+		
+					{% if app.user %}
+						<div class="mb-3">
+							You are logged in as
+							{{ app.user.username }},
+							<a href="{{ path('app_logout') }}">Logout</a>
+						</div>
+					{% endif %}
+					<div class="user-box">
+						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus aria-describedby="emailHelp">
+						<label>Adresse Mail</label>
+					</div>
+					<div class="user-box">
+		
+						<input type="password" name="password" id="inputPassword" autocomplete="current-password" required>
+						<label>Mot de passe</label>
+					</div>
+		
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<a href="" type="submit">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						Submit
+					</a>
+				</form>
+			</div> #}
 
-.login-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  background: rgba(0,0,0,.5);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px;
-}
 
-.login-box h2 {
-  margin: 0 0 30px;
-  padding: 0;
-  color: #fff;
-  text-align: center;
-}
-
-.login-box .user-box {
-  position: relative;
-}
-
-.login-box .user-box input {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
-}
-.login-box .user-box label {
-  position: absolute;
-  top:0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  pointer-events: none;
-  transition: .5s;
-}
-
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #03e9f4;
-  font-size: 12px;
-}
-
-.login-box form a {
-  position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  color: #03e9f4;
-  font-size: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  overflow: hidden;
-  transition: .5s;
-  margin-top: 40px;
-  letter-spacing: 4px
-}
-
-.login-box a:hover {
-  background: #03e9f4;
-  color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #03e9f4,
-              0 0 25px #03e9f4,
-              0 0 50px #03e9f4,
-              0 0 100px #03e9f4;
-}
-
-.login-box a span {
-  position: absolute;
-  display: block;
-}
-
-.login-box a span:nth-child(1) {
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #03e9f4);
-  animation: btn-anim1 1s linear infinite;
-}
-
-@keyframes btn-anim1 {
-  0% {
-    left: -100%;
-  }
-  50%,100% {
-    left: 100%;
-  }
-}
-
-.login-box a span:nth-child(2) {
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, #03e9f4);
-  animation: btn-anim2 1s linear infinite;
-  animation-delay: .25s
-}
-
-@keyframes btn-anim2 {
-  0% {
-    top: -100%;
-  }
-  50%,100% {
-    top: 100%;
-  }
-}
-
-.login-box a span:nth-child(3) {
-  bottom: 0;
-  right: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(270deg, transparent, #03e9f4);
-  animation: btn-anim3 1s linear infinite;
-  animation-delay: .5s
-}
-
-@keyframes btn-anim3 {
-  0% {
-    right: -100%;
-  }
-  50%,100% {
-    right: 100%;
-  }
-}
-
-.login-box a span:nth-child(4) {
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(360deg, transparent, #03e9f4);
-  animation: btn-anim4 1s linear infinite;
-  animation-delay: .75s
-}
-
-@keyframes btn-anim4 {
-  0% {
-    bottom: -100%;
-  }
-  50%,100% {
-    bottom: 100%;
-  }
-}
-
-	</style> #}
-{% endblock %}
+		{% endblock %}

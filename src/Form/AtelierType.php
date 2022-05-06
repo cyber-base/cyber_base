@@ -71,6 +71,7 @@ class AtelierType extends AbstractType
 
 
                 ],
+                'placeholder' => 'Choisir le thème de l\'atelier',
             ])
             ->add('date', DateType::class, [
                 // renders it as a single text box
@@ -93,7 +94,9 @@ class AtelierType extends AbstractType
                         '17H' => '17H',
                         '18H' => '18H',
                     ],
+                    'placeholder' => 'Choisir une horaire',
                 ],
+                
             )
             ->add('heureFin', ChoiceType::class,
             [
@@ -111,6 +114,7 @@ class AtelierType extends AbstractType
                     '19H' => '19H',
 
                 ],
+                'placeholder' => 'Choisir une horaire',
             ],
             )
             ->add('statut', ChoiceType::class, [
@@ -120,9 +124,11 @@ class AtelierType extends AbstractType
                     'En attente' => 'En attente',
                     'Confirmé' => 'Confirmé',
                 ],
+                'placeholder' => 'Choisir une statut',
             ])
             
             ->add('animateurs')
+
             ->add('image', FileType::class, [
                 'label' => 'Sélectionner fichier',
                 'mapped' => false,

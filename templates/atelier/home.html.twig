@@ -29,9 +29,9 @@
 
                 <div class="col">
 
-                    <div class="card h-100 text-center border border-primary">
+                    <div class="card h-100 text-center border border-secondary">
                         <img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top w-100 h-100 mx-auto p-2" style="" alt="{{ atelier.image }}">
-                            <div class="card-body border border-primary">
+                            <div class="card-body border border-secondary">
                                 <h5 class="card-title text-center text-white bg-primary w-100">Atelier :<b>
                                         {{ atelier.libelle }}</b>
                                 </h5>
@@ -40,33 +40,40 @@
                                         <b>{{ atelier.animateurs }}</b>
                                     </p>
                                     <p class="card-text text-center">Date :
-                                        <b>{{ atelier.date ? atelier.date|date('d-m-Y') : '' }}</b>
+                                        <b>{{ atelier.date ? atelier.date|date('d / m / Y') : '' }}</b>
                                     </p>
-                                    <p class="card-text text-center">Heure Début :
-                                        <b>{{ atelier.heureDebut }}</b>
-                                    </p>
-                                    <p class="card-text text-center">Heure Fin :
-                                        <b>{{ atelier.heureFin }}</b>
+                                    <p class="card-text text-center"> Horaire : 
+
+                                        <b>{{ atelier.heureDebut }}
+                                        </b>
+
+                                        <i class="fa-solid fa-arrow-right-long"></i>
+                                        <b>
+                                            {{ atelier.heureFin }}</b>
                                     </p>
                                     <p class="card-text text-center">Status :
                                         {% if  atelier.statut == 'En attente' %}
-                                            <b class="text-warning">{{ atelier.statut }}</b>
+                                            <b class="text-warning">{{ atelier.statut }}
+                                                <i class="fa-solid fa-hourglass-start"></i>
+                                            </b>
                                         </p>
-                                        {% if is_granted ("ROLE_ANIMATEUR") %}
-                                            <button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
-                                        {% endif %}
+                                        <button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
                                     {% elseif atelier.statut == 'Confirmé' %}
-                                        <b class="text-success">{{ atelier.statut }}</b>
+                                        <b class="text-success">{{ atelier.statut }}
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </b>
                                     </p>
                                     {% if is_granted ("ROLE_ANIMATEUR") %}
                                         <a href="{{ path('app_planning_new') }}" class="btn btn-primary w-100 btn-sm ">S'inscrire</a>
+                                    {% else %}
+                                        <a href="{{ path('app_login') }}" class="btn btn-primary w-100 btn-sm ">S'inscrire</a>
                                     {% endif %}
                                 {% elseif atelier.statut == 'Annulé' %}
-                                    <b class="text-danger">{{ atelier.statut }}</b>
+                                    <b class="text-danger">{{ atelier.statut }}
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </b>
                                 </p>
-                                {% if is_granted ("ROLE_ANIMATEUR") %}
-                                    <button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
-                                {% endif %}
+                                <button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
                             {% endif %}
                             <hr class="text-primary"></div>
                         </div>
@@ -75,4 +82,3 @@
             </div>
         </div>
     {% endblock %}
-

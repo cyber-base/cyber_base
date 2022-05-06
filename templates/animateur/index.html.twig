@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cyber Base - Liste Animateur
+{% block title %}Cyber Base - Liste des Animateurs
 {% endblock %}
 
 {% block body %}
-	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTE DES ANIMATEURS</h3>
+	<h3 class="text-center fw-bold text-dark text-decoration-underline">LISTE DES ANIMATEURS</h3>
 
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
 		{% if is_granted('ROLE_SUPER_ANIMATEUR') %}

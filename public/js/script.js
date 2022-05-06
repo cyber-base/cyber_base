@@ -1,5 +1,5 @@
 //Declaration d'une variable 
-let usagers;
+// let usagers;
 
 //Fonction qui permet d'afficher les usagers
 // utilise la fonction afficheusager
@@ -19,13 +19,15 @@ function afficheDesUsagers(desUsagers) {
 
 function rechercheNomUsager() {
   let NomRechercher = document.querySelector("#rechercheUsager").value
-  console.log(NomRechercher)
+  // console.log(NomRechercher)
   let resultat = [];
   for (let i = 0; i < usagers.length; i++) {
     let unUsager = usagers[i];
     if (unUsager.nom.toLowerCase().includes(NomRechercher.toLowerCase()) || unUsager.prenom.toLowerCase().includes(NomRechercher.toLowerCase())) {
       resultat.push(unUsager);
     }
+
+     
 
   }
   afficheDesUsagers(resultat);
@@ -67,6 +69,7 @@ function afficheDataList() {
   for (let i = 0; i < usagers.length; i++) {
     let nomUsager = usagers[i].nom;
     let prenomUsager = usagers[i].prenom;
+    
     chaine += `<option value='${nomUsager} ${prenomUsager}'>${nomUsager} ${prenomUsager}</option>`
   }
   document.querySelector("#dataListNom").innerHTML = chaine;
@@ -116,7 +119,7 @@ function afficheLesAteliers(lesAteliers) {
 
 function rechercheTitreAtelier() {
   let TitreRechercher = document.querySelector("#rechercheAtelier").value
-  console.log(TitreRechercher)
+  // console.log(TitreRechercher)
   let resultat = [];
   for (let i = 0; i < ateliers.length; i++) {
     let unAtelier = ateliers[i];

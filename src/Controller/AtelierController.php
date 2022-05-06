@@ -150,7 +150,7 @@ class AtelierController extends AbstractController
         return $this->redirectToRoute('app_listeAtelier_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[IsGranted('ROLE_SUPER_ANIMATEUR')]
+    // #[IsGranted('ROLE_SUPER_ANIMATEUR')]
     #[Route('atelier/api/atelier', name: 'atelier', methods: ['GET'])]
     public function usagers(AtelierRepository $atelierRepository): Response
     {

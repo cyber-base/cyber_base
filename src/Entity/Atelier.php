@@ -60,7 +60,7 @@ class Atelier
     
     public function __toString()
     {
-        return $this->getLibelle();
+        return $this->getLibelle()." - ".$this->getDate()->format('d/m/Y')." De ". $this->getHeureDebut() ." À ".$this->getHeureFin();
     }
 
 

@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">LISTES DES ATELIERS</h3>
+	<h3 class="text-center fw-bold text-dark text-decoration-underline">LISTES DES ATELIERS</h3>
 
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
 		<a class="btn btn-primary" href="{{ path('app_atelier_new') }}">+ Atelier</a>
@@ -37,7 +37,7 @@
 					<td>{{ atelier.date ? atelier.date|date('d-m-Y') : ''  }}</td>
 					<td>{{ atelier.heureDebut }}</td>
 					<td>{{ atelier.heureFin }}</td>
-					<td><img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="{{ atelier.image }}" width="50px" ; height="70px" alt=""></td>
+					<td><img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="{{ atelier.image }}" style="width: 7rem; height:6rem"></td>
 					<td>{{  atelier.statut }}</td>
 					<td>
 						<a class="btn btn-outline-secondary" href="{{ path('app_atelier_show', {'id': atelier.id}) }}">

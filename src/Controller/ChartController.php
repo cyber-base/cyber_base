@@ -69,7 +69,7 @@ class ChartController extends AbstractController
                     $catAssociation = $usagerRepository->countAssociationByUsager(),
                     $catCentreDeLoisir = $usagerRepository->countCentreDeLoisirByUsager(),
                     $catAntennesDeQuartier = $usagerRepository->countAntennesDeQuartierByUsager(),
-                    $usagerCatSalarie = (($salarie[0][1] / $usagerTotal[0][1])*100),
+                    $usagerCatSalarie = ($salarie[0][1] / $usagerTotal[0][1])*100,
                     $usagerCatretraite = ($retraite[0][1] / $usagerTotal[0][1])*100,
                     $usagerDemandeurDemploi = ($demandeurDemploi[0][1] / $usagerTotal[0][1])*100,
                     $usagerCollegue = ($catCollegue[0][1] / $usagerTotal[0][1])*10,
@@ -86,7 +86,8 @@ class ChartController extends AbstractController
                 ],
                 
             ],
-            'hoverOffset' => 20,
+            'hoverOffset' => 4,
+            
         ]);
         return $this->render('chart/index.html.twig', [
             'chart' => $chart,

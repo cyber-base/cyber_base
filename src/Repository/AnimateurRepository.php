@@ -62,6 +62,16 @@ class AnimateurRepository extends ServiceEntityRepository implements PasswordUpg
         $this->_em->flush();
     }
 
+    
+    public function findAnimateurByGenreFemme()
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "select a.genre from App\Entity\Animateur a where lower(a.genre) = '%femme'"
+            );
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Animateur[] Returns an array of Animateur objects
     //  */

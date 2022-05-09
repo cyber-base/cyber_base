@@ -4,13 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Animateur;
 use App\Form\AnimateurType;
+use App\Form\ResetPassType;
 use App\Repository\AnimateurRepository;
+use Symfony\Component\Mailer\Swift_Mailer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Mailer\Mailer;
 
 #[Route('/animateur')]
 
@@ -20,8 +25,10 @@ class AnimateurController extends AbstractController
     #[Route('/', name: 'app_animateur_index', methods: ['GET'])]
     public function index(AnimateurRepository $animateurRepository): Response
     {
+        $genre = $animateurRepository->findAnimateurByGenreFemme();
         return $this->render('animateur/index.html.twig', [
             'animateurs' => $animateurRepository->findAll(),
+            'genre' => $genre,
         ]);
     }
 
@@ -65,7 +72,7 @@ class AnimateurController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_SUPER_ANIMATEUR')]
+    #[IsGranted('ROLE_ANIMATEUR')]
     #[Route('/{id}/edit', name: 'app_animateur_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Animateur $animateur, AnimateurRepository $animateurRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
@@ -104,4 +111,7 @@ class AnimateurController extends AbstractController
 
         return $this->redirectToRoute('app_animateur_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
 }

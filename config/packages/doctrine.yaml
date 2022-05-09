@@ -15,6 +15,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+        dql:
+            datetime_functions:
+                DayName: DoctrineExtensions\Query\Mysql\DayName
 
 when@test:
     doctrine:
@@ -40,3 +43,4 @@ when@prod:
                     adapter: cache.app
                 doctrine.system_cache_pool:
                     adapter: cache.system
+ 

@@ -20,6 +20,13 @@ class AnimateurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('genre', ChoiceType::class, [
+            'choices'  => [
+                'Homme' => 'Homme',
+                'Femme' => 'Femme',
+            ],
+            'placeholder' => 'Select a value',
+        ])
             ->add('nom')
             ->add('prenom')
             ->add('tel')

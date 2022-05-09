@@ -1,7 +1,11 @@
 <div class="p-3 mb-2 bg-body border rounded mx-auto w-50">
 
 	{{ form_start(form) }}
-
+	<div class="col">
+	{{ form_row(form.genre, {
+		  label: 'Sexe'
+		  }) }}
+</div>
 	<div class="row">
 		<div class="col">
 			{{ form_row(form.nom, {

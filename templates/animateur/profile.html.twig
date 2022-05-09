@@ -9,27 +9,36 @@
 	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">Mon Profile</h3>
 
 	{# {% if app.user %}
-		<div class="mb-3">
-			<b>Bienvenue Monsieur</b>
-			{{ app.user.nom }}
-			{{ app.user.prenom }}
-    {% endif %} #}
-		</div>
-		<div class="container profile">
-			<div class="avatar-flip">
-				<img src="http://media.idownloadblog.com/wp-content/uploads/2012/04/Phil-Schiller-headshot-e1362692403868.jpg" height="150" width="150">
-				<img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
-			</div>
-			<div class="profile_pr">
-				<h2>{{ app.user.nom }} {{ app.user.prenom }}</h2>
-				<h4>{{ app.user.email }}</h4>
-				<p>ANIMATEUR</p>
-        <a href="{{ path('app_animateur_edit', {'id':app.user.id}) }}"><input class="btn btn-primary"  type="submit"  value="Modifier le profile"></a>
-        
+						<div class="mb-3">
+							<b>Bienvenue Monsieur</b>
+							{{ app.user.nom }}
+							{{ app.user.prenom }}
+				    {% endif %} #}
+</div>
+<div class="container profile">
+	<div class="avatar-flip">
+		{% if app.user.genre == 'Femme' %}
+			<img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
 
-			</div>
-		</div>
-	
+		{% else %}
+			<img src="http://media.idownloadblog.com/wp-content/uploads/2012/04/Phil-Schiller-headshot-e1362692403868.jpg" height="150" width="150">
 
-	<div class="row row-cols-1 row-cols-md-4 g-4 mt-4 mx-0"></div>
-</div>{% endblock %}
+		{% endif %}
+	</div>
+	<div class="profile_pr">
+		<h2>{{ app.user.nom }}
+			{{ app.user.prenom }}</h2>
+		<h4>{{ app.user.email }}</h4>
+		{% if app.user.genre == 'Femme' %}
+			<p>ANIMATRICE</p>
+		{% else %}
+			<p>ANIMATEUR</p>
+		{% endif %}
+		<a href="{{ path('app_animateur_edit', {'id':app.user.id}) }}"><input class="btn btn-primary" type="submit" value="Modifier le profile"></a>
+
+
+	</div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-4 mx-0"></div></div>{% endblock %}

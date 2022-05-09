@@ -751,14 +751,15 @@ class UsagerRepository extends ServiceEntityRepository implements PasswordUpgrad
         return $query->getResult();
     }
 
-    public function countHeureDeNeufEtDix()
+    public function countHeure($jour,$annees,$mois,$debut,$fin)
     {
         $query = $this->getEntityManager()
             ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '9H' AND lower(a.heureFin) = '10H' "
+                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '$debut' AND lower(a.heureFin) = '$fin' and a.date like '$annees-$mois%' and DayName(a.date) like '$jour%'"
             );
         return $query->getResult();
     }
+
     public function countHeureDeDixEtOnze()
     {
         $query = $this->getEntityManager()

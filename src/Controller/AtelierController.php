@@ -157,5 +157,4 @@ class AtelierController extends AbstractController
         return  $this->json($atelierRepository->findAll(), 200, [], ['groups' => 'atelier:read']);
 
     }
-    
 }

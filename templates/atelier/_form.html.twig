@@ -1,49 +1,50 @@
 <div class="p-3 mb-2 bg-body border rounded mx-auto w-50">
-	<hr class="text-primary">
-	{{ form_start(form) }}
+    <hr class="text-primary">
+        {{ form_start(form) }}
 
-	<div class="row">
-		<div class="col">
-			{{ form_row(form.libelle, {
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.libelle, {
                   label: 'Libelle'
                   }) }}
-		</div>
-		<div class="col">
-			{{ form_row(form.animateurs, {
-                  label: 'Animateur'
-                  }) }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			{{ form_row(form.date, {
+            </div>
+            <div class="col">
+                {{ form_row(form.animateurs, {
+                  label: 'Animateur',
+                  placeholder: "Choisir un Animateur",
+                  })
+                }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.date, {
                   label: 'Date'
                 }) }}
-		</div>
+            </div>
 
 
-		<div class="col">
-			{{ form_row(form.heureDebut, {
+            <div class="col">
+                {{ form_row(form.heureDebut, {
                 label: 'Heure début'
                  }) }}
-		</div>
+            </div>
 
-		<div class="col">
-			{{ form_row(form.heureFin, {
+            <div class="col">
+                {{ form_row(form.heureFin, {
                  label: 'Heure fin'
                  }) }}
-		</div>
-	</div>
-	{{ form_row(form.image) }}
-	{{ form_row(form.statut) }}
+            </div>
+        </div>
+        {{ form_row(form.statut) }}
+        {{ form_row(form.image) }}
 
 
+        <hr class="text-primary">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ path('app_listeAtelier_index') }}" class="btn btn-secondary">Retour</a>
+                <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+            </div>
 
-<hr class="text-primary">
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-	<a href="{{ path('app_listeAtelier_index') }}" class="btn btn-secondary">Retour</a>
-	<button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
-</div>
-
-{{ form_end(form) }}
-</div>
+            {{ form_end(form) }}
+        </div>

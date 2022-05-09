@@ -37,7 +37,9 @@
 					<td>{{ atelier.date ? atelier.date|date('d-m-Y') : ''  }}</td>
 					<td>{{ atelier.heureDebut }}</td>
 					<td>{{ atelier.heureFin }}</td>
-					<td><img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="{{ atelier.image }}" style="width: 7rem; height:6rem"></td>
+
+					<td><img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="{{ atelier.image }}" style="width:7rem ; height:5rem" alt=""></td>
+
 					<td>{{  atelier.statut }}</td>
 					<td>
 						<a class="btn btn-outline-secondary" href="{{ path('app_atelier_show', {'id': atelier.id}) }}">

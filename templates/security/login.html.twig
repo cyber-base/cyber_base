@@ -34,19 +34,6 @@
 			</div>	  
 			<hr class="text-primary">
 
-		<h1 class="h3 mb-3 font-weight-normal">Formulaire de Connexion</h1>
-		<div class="mb-3">
-			<label for="inputEmail" class="form-label">E-mail</label>
-			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Adresse E-mail" autocomplete="email" required autofocus aria-describedby="emailHelp">
-		</div>
-		<div class="mb-3">
-			<label for="inputPassword" class="form-label">Password</label>
-			<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
-		<div class="mb-3">
-			<a href="{{ path('app_forgotten_password') }}"> Mot de passe oublié?</a>
-		</div>
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
       <div class="d-grid gap-2 col-3 mx-auto">
 
 

@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="p-3 mb-2 bg-body border rounded mx-auto w-50">
+	<div class="p-3 mb-2border mx-auto w-50 mt-5 shadow-lg rounded-5 p-3 mb-3 border border-1 border-secondary">
 		<form method="POST" class="p-3">
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -18,22 +18,25 @@
 				</div>
 			{% endif %}
 
-			<h1 class="h3 mb-3 font-weight-normal text-center">Formulaire de Connexion</h1><hr>
+			<h1 class="h3 mb-5 font-weight-normal text-center">Formulaire de Connexion</h1><hr class="text-primary">
 			<div class="mb-3">
 				<label for="inputEmail" class="form-label">Adresee Mail</label>
 				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Adresse E-mail" autocomplete="email" required autofocus aria-describedby="emailHelp"></div>
 			<div class="mb-3">
 				<label for="inputPassword" class="form-label">Mot de passe</label>
 				<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
-				<div class="mb-3">
+				<div class="mb-4">
 					<a href="">
-						Forgot password?</a>
+						Mot passe oublié ?</a>
 				</div>
 				<input
 				type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			</div>
+			</div>	  
+			<hr class="text-primary">
+
       <div class="d-grid gap-2 col-3 mx-auto">
-			<button type="submit" class="btn btn-primary">Connexion</button>
+
+			<button type="submit" class="btn btn-primary mt-2">Connexion</button>
       </div>
 
 

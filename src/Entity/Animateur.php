@@ -31,6 +31,9 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     #[ORM\OneToMany(mappedBy: 'animateurs', targetEntity: Atelier::class)]
     private $ateliers;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $reset_token;
+
     public function __construct()
     {
         $this->ateliers = new ArrayCollection();
@@ -147,6 +150,18 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
                 $atelier->setAnimateurs(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->reset_token;
+    }
+
+    public function setResetToken(?string $reset_token): self
+    {
+        $this->reset_token = $reset_token;
 
         return $this;
     }

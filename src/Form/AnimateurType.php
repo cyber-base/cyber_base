@@ -25,7 +25,8 @@ class AnimateurType extends AbstractType
                 'Homme' => 'Homme',
                 'Femme' => 'Femme',
             ],
-            'placeholder' => 'Choisir un Sexe',
+
+            'placeholder' => 'Choisir le Sexe',
         ])
             ->add('nom')
             ->add('prenom')

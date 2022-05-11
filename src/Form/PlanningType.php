@@ -38,6 +38,11 @@ class PlanningType extends AbstractType
                 }
             ])
             ->add('ateliers');
+
+            // ->add('ateliers',TextType::class,[
+            //     'attr' => ['readonly' => true],
+            // ]);
+            
             // ->add('ateliers', EntityType::class, [
             //     'class' => Atelier::class,
             //     'placeholder' => 'Choisir un Atelier',

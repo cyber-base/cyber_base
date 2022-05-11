@@ -17,10 +17,30 @@ class PlanningController extends AbstractController
 {
     #[Route('/', name: 'app_planning_index', methods: ['GET'])]
     public function index(PlanningRepository $planningRepository): Response
+    
+    {   
 
-    {
+        $countUsagers = $planningRepository->countUsagerParAtelier();
+        foreach ($countUsagers as $countUsager ) {
+            $countUsager;
+        }
+
         return $this->render('planning/index.html.twig', [
-            'plannings' => $planningRepository->findAll(),
+
+            'plannings'    => $planningRepository->findAll(),
+            'ateliers'    => $planningRepository->findAllAtelier(),
+            'counts'    => $countUsager,
+          
+            
+        ]);
+    }
+
+    #[Route('/atelier/{ateliers}', name: 'show_list_usgaer_par_atelier', methods: ['GET'])]
+    public function findUsager(PlanningRepository $planningRepository,Planning $planning, String  $ateliers): Response
+    {
+        return $this->render('planning/show.listUsager.html.twig', [
+            'UsagersByAteliers' => $planningRepository->findUsagerByAtelier($ateliers),
+            'plannings'    => $planning,
 
         ]);
     }
@@ -43,7 +63,7 @@ class PlanningController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_planning_show', methods: ['GET'])]
+    #[Route('/atelier/{id}', name: 'app_planning_show', methods: ['GET'])]
     public function show(Planning $planning): Response
     {
         return $this->render('planning/show.html.twig', [
@@ -77,5 +97,10 @@ class PlanningController extends AbstractController
 
         return $this->redirectToRoute('app_planning_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+   
+
 
 }

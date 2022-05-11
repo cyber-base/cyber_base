@@ -32,7 +32,7 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     private $ateliers;
 
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $resetToken;
 
     #[ORM\Column(type: 'string', length: 50)]

@@ -124,22 +124,25 @@ class PlanningRepository extends ServiceEntityRepository
             ->select('p, a')
             ->innerjoin('p.ateliers', 'a')
              ->groupBy('a.libelle, a.date, a.heureDebut')
+             ->orderBy('p.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
 
 
-    public function countUsagerParAtelier(): array
+    public function countUsagerByAtelier(): array
     {
         return $this->createQueryBuilder('p')
-        ->select('count(p.usagers)')
-        ->innerjoin('p.ateliers', 'a')
+
+        ->select('count(p)')
+        ->innerJoin('p.ateliers', 'a')
         // ->innerjoin('p.usagers', 'u')
         // ->innerjoin('p.postes', 'po')
-       // ->where('p.ateliers = :id')
-       // ->setParameter('id', $idAtelier)
+        // ->where('p.ateliers = :id')
+        // ->setParameter('id', $idAtelier)
         ->groupBy('p.ateliers, a.date, a.heureDebut')
+        ->orderBy('p.id', 'ASC')
         ->getQuery()
         ->getResult()
         ;

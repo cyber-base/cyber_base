@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Atelier;
 use App\Entity\Planning;
 use App\Form\PlanningType;
 use App\Repository\PlanningRepository;
@@ -20,18 +21,14 @@ class PlanningController extends AbstractController
     
     {   
 
-        $countUsagers = $planningRepository->countUsagerParAtelier();
-        foreach ($countUsagers as $countUsager ) {
-            $countUsager;
-        }
+    
 
         return $this->render('planning/index.html.twig', [
 
             'plannings'    => $planningRepository->findAll(),
             'ateliers'    => $planningRepository->findAllAtelier(),
-            'counts'    => $countUsager,
-          
-            
+            'counts'       => $planningRepository->countUsagerByAtelier(),
+
         ]);
     }
 
@@ -88,7 +85,7 @@ class PlanningController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_planning_delete', methods: ['POST'])]
+    #[Route('/atelier/{id}', name: 'app_planning_delete', methods: ['POST'])]
     public function delete(Request $request, Planning $planning, PlanningRepository $planningRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$planning->getId(), $request->request->get('_token'))) {

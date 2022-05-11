@@ -34,6 +34,11 @@ class Planning
         $this->date = new \Datetime();
     }
 
+    public function __toString()
+    {
+        return $this->usagers;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

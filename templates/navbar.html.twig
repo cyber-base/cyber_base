@@ -19,6 +19,9 @@
 
 				{% if is_granted ("ROLE_ANIMATEUR") %}
 					<li class="nav-item">
+						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_calendrier') }}">Calendrier</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_animateur_index') }}">Animateurs</a>
 					</li>
 					<li class="nav-item">
@@ -52,28 +55,27 @@
 							</li>
 							<li>
 								{# <a class="dropdown-item" href="{{ path('app_chart2') }}">Stats Frequentation</a> #}
-					{% endif %}
-					
-
+							{% endif %}
+						</ul>
+					</li>
 				</ul>
-			</ul>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					{% if is_granted ("ROLE_ANIMATEUR") %}
-						<li class="nav-item">
-							<a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">
-								<i class="fa-solid fa-power-off"></i>
-								Déconnexion</a>
-						</li>
-					{% else %}
-						<li class="nav-item">
-							<a class="btn btn-primary fw-bold mx-2" href="{{ path('app_login') }}">Connexion</a>
-						</li>
-					{% endif %}
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						{% if is_granted ("ROLE_ANIMATEUR") %}
+							<li class="nav-item">
+								<a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">
+									<i class="fa-solid fa-power-off"></i>
+									Déconnexion</a>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="btn btn-primary fw-bold mx-2" href="{{ path('app_login') }}">Connexion</a>
+							</li>
+						{% endif %}
 
-				</ul>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</div>
-	{# fin navbar #}
-</nav>
+		{# fin navbar #}
+	</nav>

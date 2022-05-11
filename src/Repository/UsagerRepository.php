@@ -843,24 +843,6 @@ class UsagerRepository extends ServiceEntityRepository implements PasswordUpgrad
     }
 
 
-
-
-
-
-    // public function countUsager(){
-
-    //     $qb = $this->_em->createQueryBuilder()
-    //        ->select('count(genre)')
-    //        ->from('usager');
-
-
-    //         $query = $qb->getQuery();
-
-    //     $results = $query->getResult();
-    //     return $results;
-    // }
-
-
     // /**
     //  * @return Usager[] Returns an array of Usager objects
     //  */

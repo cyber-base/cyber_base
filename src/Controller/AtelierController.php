@@ -157,4 +157,16 @@ class AtelierController extends AbstractController
         return  $this->json($atelierRepository->findAll(), 200, [], ['groups' => 'atelier:read']);
 
     }
+
+    
+    #[Route('/calendrier', name: 'app_calendrier', methods: ['GET'])]
+    public function calendrier(): Response
+    {
+ 
+        return $this->render('planning/calendrier.html.twig', [
+            
+            // 'calendrier' => $calendrier,
+         
+        ]);
+    }
 }

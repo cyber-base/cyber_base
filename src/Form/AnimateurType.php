@@ -25,7 +25,7 @@ class AnimateurType extends AbstractType
                 'Homme' => 'Homme',
                 'Femme' => 'Femme',
             ],
-            'placeholder' => 'Select a value',
+            'placeholder' => 'Choisir un Sexe',
         ])
             ->add('nom')
             ->add('prenom')
@@ -48,7 +48,7 @@ class AnimateurType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères ',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

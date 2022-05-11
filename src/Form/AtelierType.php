@@ -124,13 +124,13 @@ class AtelierType extends AbstractType
                     'En attente' => 'En attente',
                     'Confirmé' => 'Confirmé',
                 ],
-                'placeholder' => 'Choisir une statut',
+                'placeholder' => 'Choisir un statut',
             ])
             
             ->add('animateurs')
 
             ->add('image', FileType::class, [
-                'label' => 'Sélectionner fichier',
+                'label' => 'Sélectionner un fichier',
                 'mapped' => false,
                 'required' => false,
             ]);

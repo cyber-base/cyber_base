@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-
+use App\Entity\Atelier;
 use App\Entity\Planning;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -74,5 +74,34 @@ class PlanningRepository extends ServiceEntityRepository
         ;
     }
     */
+    // public function countUsagerByAtelier($atelier)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->select('count(p.*)')
+    //         ->setParameter('val', $atelier)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+
+    // public function countUsagerByLibelleAndDateAndHeure()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select a.heureDebut, a.libelle, a.date,count(p.id) from App\Entity\Planning p join App\Entity\Atelier a WITH p.id = a.id group by a.libelle,a.date,a.heureDebut  "
+    //         );
+    //     return $query->getResult();
+    // }
+
+    // public function countUsagerByAtelier()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(p.id) from App\Entity\Planning p join App\Entity\Atelier a WITH p.id = a.id group by a.libelle,a.date,a.heureDebut  "
+    //         );
+    //     return $query->getResult();
+    // }
+
+    
 
 }

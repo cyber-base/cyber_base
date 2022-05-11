@@ -12,6 +12,8 @@
 		<a class="btn btn-primary" href="{{ path('app_planning_new') }}">+ Planning</a>
 	</div>
 
+	
+
 	<table class="table table-hover text-start text-center mb-3">
 		<thead>
 			<tr>
@@ -20,7 +22,6 @@
 				<th>Animateur</th>
 				<th>Usager</th>
 				<th>Poste</th>
-				<th>Date Inscription</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -30,9 +31,8 @@
 					<td>CB-00{{ planning.id }}</td>
 					<td>{{ planning.ateliers }}</td>
 					<td>{{ planning.ateliers.animateurs }}</td>
-					<td>{{ planning.usagers }}</td>
-					<td>{{ planning.postes }}</td>
-					<td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>
+					<td>{{planning.usagers}}</td>	
+                    <td>{{ planning.postes }}</td>
 					<td>
 						<a class="btn btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.id}) }}">
 							<i class="fa-regular fa-eye"></i>
@@ -50,7 +50,7 @@
 			{% else %}
 
 				<div class="alert alert-danger" role="alert">
-					no records found!
+				Aucun enregistrement trouvé!
 				</div>
 			{% endfor %}
 		</tbody>

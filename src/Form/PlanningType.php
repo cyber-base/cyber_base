@@ -37,13 +37,15 @@ class PlanningType extends AbstractType
                     return $poste->getLibelle();
                 }
             ])
-            ->add('ateliers', EntityType::class, [
-                'class' => Atelier::class,
-                'placeholder' => 'Choisir un Atelier',
-                'choice_label' => function ($atelier) {
-                    return $atelier->getLibelle();
-                }
-            ]);
+            ->add('ateliers');
+            // ->add('ateliers', EntityType::class, [
+            //     'class' => Atelier::class,
+            //     'placeholder' => 'Choisir un Atelier',
+            //     'choice_label' => function ($atelier) {
+            //         return $atelier->getLibelle()." - ".$atelier->getDate()->format('d/m/Y')." De ". $atelier->getHeureDebut() ." À ".$atelier->getHeureFin();
+
+            //     }
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -8,20 +8,20 @@
 
 	<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">Mon Profile</h3>
 
-	{# {% if app.user %}
-						<div class="mb-3">
-							<b>Bienvenue Monsieur</b>
-							{{ app.user.nom }}
-							{{ app.user.prenom }}
-				    {% endif %} #}
 </div>
 <div class="container profile">
 	<div class="avatar-flip">
+
 		{% if app.user.genre == 'Femme' %}
-			<img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
+
+			<img src="{{ asset('img/femme1.jpg') }}" height="150" width="150">
+			<img src="{{ asset('img/femme.jpg') }}" height="150" width="150">
+
 
 		{% else %}
-			<img src="http://media.idownloadblog.com/wp-content/uploads/2012/04/Phil-Schiller-headshot-e1362692403868.jpg" height="150" width="150">
+			<img src="{{ asset('img/homme2.jpg') }}" height="150" width="150">
+			<img src="{{ asset('img/homme.jpg')}}" height="150" width="150">
+
 
 		{% endif %}
 	</div>

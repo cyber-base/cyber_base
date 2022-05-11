@@ -17,10 +17,11 @@ class PlanningController extends AbstractController
 {
     #[Route('/', name: 'app_planning_index', methods: ['GET'])]
     public function index(PlanningRepository $planningRepository): Response
+
     {
         return $this->render('planning/index.html.twig', [
             'plannings' => $planningRepository->findAll(),
-            //  'plannings' => $planningRepository->findAnimateurByIdAtelier(),
+
         ]);
     }
 
@@ -76,4 +77,5 @@ class PlanningController extends AbstractController
 
         return $this->redirectToRoute('app_planning_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

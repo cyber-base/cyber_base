@@ -29,7 +29,7 @@ class UsagerType extends AbstractType
                 'Homme' => 'Homme',
                 'Femme' => 'Femme',
             ],
-            'placeholder' => 'Select a value',
+            'placeholder' => 'Choisir un sexe',
         ])
             ->add('nom')
             ->add('prenom')
@@ -69,7 +69,7 @@ class UsagerType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'les mots de passe ne sont pas identiques.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
@@ -78,11 +78,11 @@ class UsagerType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entrez un mot de passe svp',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères ',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

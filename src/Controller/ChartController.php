@@ -44,7 +44,7 @@ class ChartController extends AbstractController
     {
 
         $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
-        var_dump($chart);
+        
         $chart->setData([
 
             'labels' => ['Salariés', 'Retraités', 'Demandeur d\'emploi', 'Collègues', 'Etudiants', 'Scolaires', 'Associations', 'Centre de loisirs', 'Antennes de quartier'],
@@ -261,29 +261,23 @@ class ChartController extends AbstractController
             'hoverOffset' => 20,
         ]);
        
-        $horaires = [
-            $neufEtDix = 10,
-            $dixEtOnze = $usagerRepository->countHeure($annees, $mois, '10H', '11H', $jour),
-            $onzeEtDouze = $usagerRepository->countHeure($annees, $mois, '11H', '12H', $jour),
-            $douzeEtTreize = $usagerRepository->countHeure($annees, $mois, '12H', '13H', $jour),
-            $treizeEtQuatorze = $usagerRepository->countHeure($annees, $mois, '13H', '14H', $jour),
-            $QuatorzeEtQuinze = $usagerRepository->countHeure($annees, $mois, '14H', '15H', $jour),
-            $quinzeEtSeize = $usagerRepository->countHeure($annees, $mois, '15H', '16H', $jour),
-            $seizeEtDixSept = $usagerRepository->countHeure($annees, $mois, '16H', '17H', $jour),
-            $dixSeptEtDixHuit = $usagerRepository->countHeure($annees, $mois, '17H', '18H', $jour),
-            $dixHuitEtDixNeuf = $usagerRepository->countHeure($annees, $mois, '18H', '19H', $jour),
-        ];
+     
 
 
         return $this->render('chart/chart2.html.twig', [
-            
+            'data' => [
+                $neufEtDix[0][1], $dixEtOnze[0][1], $onzeEtDouze[0][1], $douzeEtTreize[0][1], $treizeEtQuatorze[0][1],
+                $QuatorzeEtQuinze[0][1], $quinzeEtSeize[0][1], $seizeEtDixSept[0][1], $dixSeptEtDixHuit[0][1], $dixHuitEtDixNeuf[0][1]
+            ],
             'heures' => $heures,
             'semaine' => $semaine,
             'jour' => $jour,
-            'horaires' => $horaires,
+            // 'lesHeures' => $lesHeures,
             'chart' => $chart,
            
            
         ]);
     }
+
+
 }

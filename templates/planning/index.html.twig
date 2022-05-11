@@ -12,39 +12,51 @@
 		<a class="btn btn-primary" href="{{ path('app_planning_new') }}">+ Planning</a>
 	</div>
 
-	<table class="table table-hover text-start text-center mb-3">
+	<table class="table table-hover table-striped text-start text-center mb-3">
 		<thead>
 			<tr>
 				<th>Réf</th>
 				<th>Atelier</th>
 				<th>Animateur</th>
-				<th>Usager</th>
-				<th>Poste</th>
-				<th>Date Inscription</th>
+				<th>Usagers inscrit</th>
+				<th>Date Création</th>
 				<th>actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for planning in plannings %}
+			{# {{ dump(ateliers)}} #}
+		
+
+			{% for planning in ateliers %}
+
+					
 				<tr>
 					<td>CB-00{{ planning.id }}</td>
 					<td>{{ planning.ateliers }}</td>
 					<td>{{ planning.ateliers.animateurs }}</td>
-					<td>{{ planning.usagers }}</td>
-					<td>{{ planning.postes }}</td>
+					<td> 	
+				
+					{{ dump(counts) }}
+				
+							</td>
 					<td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>
 					<td>
-						<a class="btn btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.id}) }}">
+						{# <a class="btn btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.id}) }}">
+													<i class="fa-regular fa-eye"></i>
+												</a> #}
+						<a class="btn btn-sm btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.ateliers.id }) }}">
 							<i class="fa-regular fa-eye"></i>
+							Liste Usagers
 						</a>
-
-						<a class="btn btn-outline-secondary" href="{{ path('app_planning_edit', {'id': planning.id}) }}">
+						<a class="btn btn-sm btn-outline-secondary" href="{{ path('app_planning_edit', {'id': planning.id}) }}">
 							<i class="fa-regular fa-pen-to-square"></i>
+							Editer Planning
 						</a>
 
-						<a class="btn btn-outline-secondary" href="{{ path('app_planning_delete', {'id': planning.id}) }}">
-							<i class="fa-regular fa-trash-can"></i>
-						</a>
+
+						{# <a class="btn btn-outline-secondary" href="{{ path('app_planning_delete', {'id': planning.id}) }}">
+													<i class="fa-regular fa-trash-can"></i>
+												</a> #}
 					</td>
 				</tr>
 			{% else %}
@@ -53,6 +65,7 @@
 					no records found!
 				</div>
 			{% endfor %}
+
 		</tbody>
 	</table>
 

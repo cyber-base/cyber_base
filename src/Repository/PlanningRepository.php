@@ -3,9 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Planning;
+use App\Entity\Atelier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query\Expr\Select;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -46,10 +48,13 @@ class PlanningRepository extends ServiceEntityRepository
     }
 
 
+
+
     // /**
     //  * @return Planning[] Returns an array of Planning objects
     //  */
     /*
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('p')
@@ -74,5 +79,43 @@ class PlanningRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findUsagerByAtelier($ateliers): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.ateliers = :id')
+            ->setParameter('id', $ateliers)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findAllAtelier(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p, a')
+            ->innerjoin('p.ateliers', 'a')
+             ->groupBy('a.libelle, a.date, a.heureDebut')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    public function countUsagerParAtelier(): array
+    {
+        return $this->createQueryBuilder('p')
+        ->select('a.libelle, count(p.usagers)')
+        ->innerjoin('p.ateliers', 'a')
+        // ->innerjoin('p.usagers', 'u')
+        // ->innerjoin('p.postes', 'po')
+       // ->where('p.ateliers = :id')
+       // ->setParameter('id', $idAtelier)
+        ->groupBy('p.ateliers, a.date, a.heureDebut')
+        ->getQuery()
+        ->getResult()
+        ;
+
+    }
 
 }

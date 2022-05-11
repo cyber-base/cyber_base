@@ -44,7 +44,7 @@ class ChartController extends AbstractController
     {
 
         $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
-        var_dump($chart);
+        // var_dump($chart);
         $chart->setData([
 
             'labels' => ['Salariés', 'Retraités', 'Demandeur d\'emploi', 'Collègues', 'Etudiants', 'Scolaires', 'Associations', 'Centre de loisirs', 'Antennes de quartier'],
@@ -225,8 +225,9 @@ class ChartController extends AbstractController
         $heures =  [
             '9h00-10h00', '10h00-11h00', '11h00-12h00', '12h00-13h00', '13h00-14h00', '14h00-15h00', '15h00-16h00', '16h00-17h00', '17h00-18h00', '18h00-19h00'
         ];
+        
         // var_dump($semaine);
-
+        
         $neufEtDix = $usagerRepository->countHeure($annees, $mois, '9H', '10H', $jour);
         $dixEtOnze = $usagerRepository->countHeure($annees, $mois, '10H', '11H', $jour);
         $onzeEtDouze = $usagerRepository->countHeure($annees, $mois, '11H', '12H', $jour);
@@ -261,8 +262,10 @@ class ChartController extends AbstractController
             'hoverOffset' => 20,
         ]);
        
-        $horaires = [
-            $neufEtDix = 10,
+    
+
+        $count = [
+            $neufEtDix = $usagerRepository->countHeure($annees, $mois, '9H', '10H', $jour),
             $dixEtOnze = $usagerRepository->countHeure($annees, $mois, '10H', '11H', $jour),
             $onzeEtDouze = $usagerRepository->countHeure($annees, $mois, '11H', '12H', $jour),
             $douzeEtTreize = $usagerRepository->countHeure($annees, $mois, '12H', '13H', $jour),
@@ -273,15 +276,17 @@ class ChartController extends AbstractController
             $dixSeptEtDixHuit = $usagerRepository->countHeure($annees, $mois, '17H', '18H', $jour),
             $dixHuitEtDixNeuf = $usagerRepository->countHeure($annees, $mois, '18H', '19H', $jour),
         ];
+        
 
 
         return $this->render('chart/chart2.html.twig', [
             
-            'heures' => $heures,
-            'semaine' => $semaine,
-            'jour' => $jour,
+            'heures'   => $heures,
+            'semaine'  => $semaine,
+            'jour'     => $jour,
             'horaires' => $horaires,
-            'chart' => $chart,
+            'chart'    => $chart,
+            'count'    => $count,
            
            
         ]);

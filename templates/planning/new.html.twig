@@ -3,9 +3,11 @@
 {% block title %}Nouveau Planning{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau Planning</h1>
+  <div class="p-3 mb-2 bg-body mx-auto w-50" >
+		<h3 class="text-center shadow p-3 ">Inscription Usager</h3>
+</div>
 
     {{ include('planning/_form.html.twig') }}
 
-    <a href="{{ path('app_planning_index') }}">Retour à la liste</a>
+    {# <a href="{{ path('app_planning_index') }}">Retour à la liste</a> #}
 {% endblock %}

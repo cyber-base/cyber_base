@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Atelier;
+use App\Entity\Planning;
 use App\Form\AtelierType;
 use App\Repository\AtelierRepository;
+use App\Repository\PlanningRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,10 +20,11 @@ class AtelierController extends AbstractController
 {
 
     #[Route('/home', name: 'app_home', methods: ['GET'])]
-    public function home(AtelierRepository $atelierRepository): Response
+    public function home(AtelierRepository $atelierRepository, PlanningRepository $planningRepository): Response
     {
         return $this->render('atelier/home.html.twig', [
             'ateliers' => $atelierRepository->findAll(),
+            'counts'       => $planningRepository->countUsagerByAtelier(),
         ]);
     }
 

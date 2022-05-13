@@ -36,7 +36,20 @@
                  }) }}
             </div>
         </div>
-        {{ form_row(form.statut) }}
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.nbrPlaces, {
+                  label: 'Nombre de places',
+
+                  })
+                }}
+            </div>
+              <div class="col">
+                {{ form_row(form.statut, {
+                  label: 'Statut'
+                  }) }}
+            </div>
+        </div>
         {{ form_row(form.image) }}
 
 

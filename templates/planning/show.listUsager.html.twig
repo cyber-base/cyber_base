@@ -5,11 +5,11 @@
 {% block body %}
 		
 	<h4 class="text-center text-dark">LISTE DES USAGERS INSCRIT A l'ATELIER</h4> <br>
-    <h3 class="text-center fw-bold text-dark text-decoration-underline"><span class=" text-danger">{{ plannings.ateliers }}</span></h3>
+    <h3 class="text-center fw-bold text-dark text-decoration-underline"><span class=" text-danger">{{ planning.ateliers }}</span></h3>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-between m-3">
         <a class="btn btn-outline-secondary" href="{{ path('app_planning_index') }}"><i class="fa-solid fa-angle-left"></i> Retour</a>
-		<a class="btn btn-outline-primary" href="{{ path('app_planning_new') }}"><i class="fa-solid fa-plus"></i> Usager</a>
+		<a class="btn btn-outline-primary" href="{{ path('app_planning_new_usager', {'ateliers': planning.ateliers.id }) }}"><i class="fa-solid fa-plus"></i> Usager</a>
 	</div>
 
 	{% for message in app.flashes('success') %}

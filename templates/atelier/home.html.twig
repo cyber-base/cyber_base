@@ -5,7 +5,7 @@
 
 {% block body %}
 
-<h3 class="text-center fw-bold text-dark text-decoration-underline" >CATALOGUES ATELIERS</h3>
+<h3 class="text-center fw-bold text-dark text-decoration-underline">CATALOGUES ATELIERS</h3>
 {# <h4 class="text-primary">Bienvenue, {{ app.user.prenom }} {{ app.user.nom }}</h4> #}
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
@@ -23,63 +23,76 @@
 <div id="divAteliers" class="row row-cols-1 row-cols-md-4 g-4 justify-content-center"></div>
 
 
-<div class="row row-cols-1 row-cols-md-4 g-4 mt-4 mx-0">
-
+<div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4 mt-4 mx-0">
+	{% set i = 0 %}
 	{% for atelier in ateliers %}
 
-                <div class="col">
+		<div class="col">
 
-                    <div class="card h-100 text-center border border-secondary">
-                        <img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top w-100 h-100 mx-auto p-2" style="" alt="{{ atelier.image }}">
-                            <div class="card-body border border-secondary">
-                                <h5 class="card-title text-center text-white bg-primary w-100">Atelier :<b>
-                                        {{ atelier.libelle }}</b>
-                                </h5>
-                                <hr>
-                                    <p class="card-text text-center">Animateur :
-                                        <b>{{ atelier.animateurs }}</b>
-                                    </p>
-                                    <p class="card-text text-center">Date :
-                                        <b>{{ atelier.date ? atelier.date|date('d / m / Y') : '' }}</b>
-                                    </p>
-                                    <p class="card-text text-center"> Horaire : 
+			<div class="card h-100">
+				<img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top w-100 h-100 mx-auto" alt="{{ atelier.image }}">
+				<div class="card-body">
+					<h5 class="card-title text-center text-white bg-primary w-100">Atelier :<b>
+							{{ atelier.libelle }}</b>
+					</h5>
+					<hr>
+					<p class="card-text text-center">Animateur :
+						<b>{{ atelier.animateurs }}</b>
+					</p>
+					<p class="card-text text-center">Date :
+						<b>{{ atelier.date ? atelier.date|date('d / m / Y') : '' }}</b>
+					</p>
+					<p class="card-text text-center">
+						Horaire :
 
-                                        <b>{{ atelier.heureDebut }}
-                                        </b>
+						<b>{{ atelier.heureDebut }}
+						</b>
 
-                                        <i class="fa-solid fa-arrow-right-long"></i>
-                                        <b>
-                                            {{ atelier.heureFin }}</b>
-                                    </p>
-                                    <p class="card-text text-center">Statut :
-                                        {% if  atelier.statut == 'En attente' %}
-                                            <b class="text-warning">{{ atelier.statut }}
-                                                <i class="fa-solid fa-hourglass-start"></i>
-                                            </b>
-                                        </p>
-                                        <button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
-                                    {% elseif atelier.statut == 'Confirmé' %}
-                                        <b class="text-success">{{ atelier.statut }}
-                                            <i class="fa-solid fa-circle-check"></i>
-                                        </b>
-                                    </p>
-                                    {% if is_granted ("ROLE_ANIMATEUR") %}
-                                        <a href="{{ path('app_planning_new') }}" class="btn btn-primary w-100 btn-sm ">S'inscrire</a>
-                                    {% else %}
-                                        <a href="{{ path('app_login') }}" class="btn btn-primary w-100 btn-sm ">S'inscrire</a>
-                                    {% endif %}
-                                {% elseif atelier.statut == 'Annulé' %}
-                                    <b class="text-danger">{{ atelier.statut }}
-                                        <i class="fa-solid fa-circle-xmark"></i>
-                                    </b>
-                                </p>
-                                <button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
-                            {% endif %}
-                            <hr class="text-primary"></div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    {% endblock %}
+						<i class="fa-solid fa-arrow-right-long"></i>
+						<b>
+							{{ atelier.heureFin }}</b>
+					</p>
+					<p class="card-text text-center">
 
+						{% if (atelier.nbrPlaces - (counts[i][1]) == 0) %}
+							<b class="text-danger">Complet</b>
+						
+						{% elseif atelier.nbrPlaces - counts[i][1] >= 3 %}
+						Places disponible :
+						<b class="text-success">{{ atelier.nbrPlaces - (counts[i][1]) }}</b>
+
+						{% else %}
+							Places disponible :
+							<b class="text-danger">{{ atelier.nbrPlaces - (counts[i][1]) }}</b>
+							{% set i = i + 1 %}
+						{% endif %}
+
+
+					</p>
+					<p class="card-text text-center">Statut :
+						{% if  atelier.statut == 'En attente' %}
+							<b class="text-warning">{{ atelier.statut }}
+								<i class="fa-solid fa-hourglass-start"></i>
+							</b>
+						</p>
+						<button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
+					{% elseif atelier.statut == 'Confirmé' %}
+						<b class="text-success">{{ atelier.statut }}
+							<i class="fa-solid fa-circle-check"></i>
+						</b>
+					</p>
+					{% if is_granted ("ROLE_ANIMATEUR") %}
+						<a href="{{ path('app_planning_new_usager', {'ateliers': atelier.id }) }}" class="btn btn-primary w-100 btn-sm">S'inscrire</a>
+					{% else %}
+						<a href="{{ path('app_login') }}" class="btn btn-primary w-100 btn-sm ">S'inscrire</a>
+					{% endif %}
+				{% elseif atelier.statut == 'Annulé' %}
+					<b class="text-danger">{{ atelier.statut }}
+						<i class="fa-solid fa-circle-xmark"></i>
+					</b>
+				</p>
+				<button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
+			{% endif %}
+			<hr class="text-primary"></div>
+	</div>
+</div>{% endfor %}</div></div>{% endblock %}

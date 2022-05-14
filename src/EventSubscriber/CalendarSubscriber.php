@@ -1,14 +1,11 @@
 
 <?php
 
-use CalendarBundle\Entity\Event;
 use CalendarBundle\CalendarEvents;
-use App\Repository\AnimateurRepository;
+use CalendarBundle\Entity\Event;
 use CalendarBundle\Event\CalendarEvent;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class CalendarSubscriber implements EventSubscriberInterface
 {

@@ -52,6 +52,9 @@ class Atelier
     #[Groups('atelier:read')]
     private $image;
 
+    #[ORM\Column(type: 'integer')]
+    private $nbrPlaces;
+
     public function __construct()
     {
         $this->plannings = new ArrayCollection();
@@ -179,6 +182,18 @@ class Atelier
     public function setImage($image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getNbrPlaces(): ?int
+    {
+        return $this->nbrPlaces;
+    }
+
+    public function setNbrPlaces(int $nbrPlaces): self
+    {
+        $this->nbrPlaces = $nbrPlaces;
 
         return $this;
     }

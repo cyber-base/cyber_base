@@ -29,6 +29,7 @@
 				<th>Date</th>
 				<th>Heure Debut</th>
 				<th>Heure Fin</th>
+				<th>Places Max</th>
 				<th>Image</th>
 				<th>Statut</th>
 				<th>actions</th>
@@ -43,6 +44,7 @@
 					<td>{{ atelier.date ? atelier.date|date('d-m-Y') : ''  }}</td>
 					<td>{{ atelier.heureDebut }}</td>
 					<td>{{ atelier.heureFin }}</td>
+					<td>{{ atelier.nbrPlaces }}</td>
 
 					<td><img src="{{ asset('uploads/images/' ~ atelier.image) }}" class="card-img-top" alt="{{ atelier.image }}" style="width:7rem ; height:5rem" alt=""></td>
 

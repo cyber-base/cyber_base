@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class AtelierType extends AbstractType
 {
@@ -127,6 +128,15 @@ class AtelierType extends AbstractType
             ])
             
             ->add('animateurs')
+            ->add('nbrPlaces', IntegerType::class, [
+                'required' => true,
+                    'attr' => [
+                        'min' => 1,
+                        'placeholder' => 'Veuillez saisir le Nombre de places',
+
+                    ],
+   
+            ])
 
             ->add('image', FileType::class, [
                 'label' => 'Sélectionner un fichier',

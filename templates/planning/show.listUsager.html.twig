@@ -9,7 +9,10 @@
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-between m-3">
         <a class="btn btn-outline-secondary" href="{{ path('app_planning_index') }}"><i class="fa-solid fa-angle-left"></i> Retour</a>
-		<a class="btn btn-outline-primary" href="{{ path('app_planning_new_usager', {'ateliers': planning.ateliers.id}) }}"><i class="fa-solid fa-plus"></i> Usager</a>
+
+
+		<a class="btn btn-outline-primary" href="{{ path('app_planning_new_usager', {'ateliers': planning.ateliers.id }) }}"><i class="fa-solid fa-plus"></i> Usager</a>
+
 	</div>
 
 	{% for message in app.flashes('success') %}

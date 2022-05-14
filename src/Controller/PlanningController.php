@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Usager;
 use App\Entity\Atelier;
 use App\Entity\Planning;
 use App\Form\PlanningType;
@@ -32,15 +33,17 @@ class PlanningController extends AbstractController
         ]);
     }
 
-    #[Route('/atelier/{ateliers}', name: 'show_list_usgaer_par_atelier', methods: ['GET'])]
+    #[Route('/atelier/{ateliers}', name: 'show_list_usager_par_atelier', methods: ['GET'])]
     public function findUsager(PlanningRepository $planningRepository,Planning $planning, String  $ateliers): Response
     {
         return $this->render('planning/show.listUsager.html.twig', [
             'UsagersByAteliers' => $planningRepository->findUsagerByAtelier($ateliers),
-            'plannings'    => $planning,
+            'planning'    => $planning,
 
         ]);
     }
+
+    
 
     #[Route('/new', name: 'app_planning_new', methods: ['GET', 'POST'])]
     public function new(Request $request, PlanningRepository $planningRepository): Response
@@ -53,12 +56,54 @@ class PlanningController extends AbstractController
             $planningRepository->add($planning);
             return $this->redirectToRoute('app_planning_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('planning/new.html.twig', [
             'planning' => $planning,
+            
             'form' => $form,
         ]);
     }
+
+    // #[Route('/new/{id}', name: 'app_planning_new_usager', methods: ['GET', 'POST'])]
+    // public function newNew(Request $request, Planning $plannings, PlanningRepository $planningRepository): Response
+    // {
+    //     $planning = new Planning();
+    //     $form = $this->createForm(PlanningType::class, $planning);
+    //     $form->handleRequest($request);
+               
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $planningRepository->add($planning);
+    //         return $this->redirectToRoute('app_planning_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->renderForm('planning/new.html.twig', [
+    //         'planning' => $planning,
+    //         'form' => $form,
+    //         'plannings' => $plannings,
+           
+    //     ]);
+    // }
+
+    #[Route('/atelier/{ateliers}/new/usager', name: 'app_planning_new_usager', methods: ['GET', 'POST'])]
+    public function newUsager(Request $request, PlanningRepository $planningRepository, Planning $plannings): Response
+    {
+        $planning = new Planning();
+        $form = $this->createForm(PlanningType::class, $planning);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $planningRepository->add($planning);
+            return $this->redirectToRoute('app_planning_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('planning/new.html.twig', [
+            // 'planning' => $planning,
+            'form' => $form,
+            'plannings' => $plannings,
+        ]);
+    }
+
+    
+
 
     #[Route('/atelier/{id}', name: 'app_planning_show', methods: ['GET'])]
     public function show(Planning $planning): Response

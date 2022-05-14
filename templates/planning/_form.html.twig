@@ -1,4 +1,44 @@
+<div class="p-3 mb-2 bg-body border rounded mx-auto w-50">
+	
+		{# {{ dump(poste) }} #}
+{# 	
+	<div class="col mb-3">
+		<label class="form-label">Atelier séléctionné</label>
+		<input disabled type="text" value="{{ planning.ateliers}}" class="form-control">
+	</div> #}
+	{{ form_start(form) }}
+	<div class="col">
+		{{ form_row(form.usagers, {
+		  label: 'Usager'
+		  }) }}
+	</div>
+	<div class="col">
+	{{ form_row(form.ateliers, {
+		  label: 'Atelier'
+		}) }}
+</div>
+	{# {% if poste != null %} #}
+			<div class="col">
+			{{ form_row(form.postes, {
+                  label: 'Poste'
+                }) }}
+		</div>
+	{# {% endif %} #}
+
+
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<a href="{{ path('app_planning_index') }}" class="btn btn-secondary">Retour</a>
+		<button class="btn btn-primary">{{ button_label|default('save') }}</button>
+
+	</div>
+	<hr class="text-primary">
+
+	{{ form_end(form) }}
+</div>
+
+
+{# 
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Enregistré') }}</button>
-{{ form_end(form) }}
+{{ form_end(form) }} #}

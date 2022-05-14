@@ -210,7 +210,7 @@ class ChartController extends AbstractController
         $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
         $semaine = ['Monday', ' Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         foreach ($semaine as $jour) {
-            $horaires[] = [
+            $horaires = [
                 'neufEtDix' => $usagerRepository->countHeure($annees, $mois, '9H', '10H', $jour),
                 'dixEtOnze' => $usagerRepository->countHeure($annees, $mois, '10H', '11H', $jour),
                 'onzeEtDouze' => $usagerRepository->countHeure($annees, $mois, '11H', '12H', $jour),
@@ -239,6 +239,7 @@ class ChartController extends AbstractController
         $seizeEtDixSept = $usagerRepository->countHeure($annees, $mois, '16H', '17H', $jour);
         $dixSeptEtDixHuit = $usagerRepository->countHeure($annees, $mois, '17H', '18H', $jour);
         $dixHuitEtDixNeuf = $usagerRepository->countHeure($annees, $mois, '18H', '19H', $jour);
+        var_dump( $neufEtDix);
         $chart->setData([
 
             'labels' => [
@@ -265,15 +266,16 @@ class ChartController extends AbstractController
 
 
         return $this->render('chart/chart2.html.twig', [
+            'heures' => $heures,
+            'semaine' => $semaine,
+            'jour' => $jour,
+            'horaires' => $horaires,
+            'chart' => $chart,
             'data' => [
                 $neufEtDix[0][1], $dixEtOnze[0][1], $onzeEtDouze[0][1], $douzeEtTreize[0][1], $treizeEtQuatorze[0][1],
                 $QuatorzeEtQuinze[0][1], $quinzeEtSeize[0][1], $seizeEtDixSept[0][1], $dixSeptEtDixHuit[0][1], $dixHuitEtDixNeuf[0][1]
             ],
-            'heures' => $heures,
-            'semaine' => $semaine,
-            'jour' => $jour,
-            // 'lesHeures' => $lesHeures,
-            'chart' => $chart,
+            
 
     
 

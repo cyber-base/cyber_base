@@ -149,4 +149,37 @@ class PlanningRepository extends ServiceEntityRepository
 
     }
 
+    public function findLibellePosteByPlanning(): array
+    {
+        return $this->createQueryBuilder('p')
+
+        ->select('count(po.libelle)')
+        ->innerJoin('p.postes', 'po','a')
+        // ->innerjoin('p.usagers', 'u')
+        // ->innerjoin('p.postes', 'po')
+        // ->where('p.ateliers = :id')
+        // ->setParameter('id', $idAtelier)
+        ->groupBy('p.ateliers, a.date, a.heureDebut')
+        ->orderBy('p.id', 'ASC')
+        ->getQuery()
+        ->getResult()
+        ;
+
+    }
+
+    // public function findLibellePosteByPlanning(): array
+    // {
+    //     return $this->createQueryBuilder('p')
+
+    //     ->select(' po.libelle')
+    //     ->innerJoin('p.postes', 'po')
+    //     // ->innerjoin('p.usagers', 'u')
+    //     // ->innerjoin('p.postes', 'po')
+    //     // ->where('p.ateliers = :id')
+    //     // ->setParameter('id', $idAtelier)
+    //     ->getQuery()
+    //     ->getResult()
+    //     ;
+
+    
 }

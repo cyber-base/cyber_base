@@ -1,26 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quartier{% endblock %}
+{% block title %}Quartier
+{% endblock %}
 
 {% block body %}
-    <h1>Quartier</h1>
+	<h1 class="text-center  p-2 w-50 mx-auto">Quartier</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ quartier.id }}</td>
-            </tr>
-            <tr>
-                <th>NomQuartier</th>
-                <td>{{ quartier.nomQuartier }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table shadow bg-opacity-10 mx-auto w-75">
+		<tbody>
+			<tr class="table table-secondary">
+				<th>Id</th>
+				<td>{{ quartier.id }}</td>
+			</tr>
+			<tr class="table table-light">
+				<th>NomQuartier</th>
+				<td>{{ quartier.nomQuartier }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+		<a class="btn btn-secondary" href="{{ path('app_quartier_index') }}">Retour</a>
 
-    <a href="{{ path('app_quartier_index') }}">Retour à la liste</a>
+		<a class="btn btn-success" href="{{ path('app_quartier_edit', {'id': quartier.id}) }}">Modifier</a>
 
-    <a href="{{ path('app_quartier_edit', {'id': quartier.id}) }}">Modifier</a>
-
-    {{ include('quartier/_delete_form.html.twig') }}
+		{{ include('quartier/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

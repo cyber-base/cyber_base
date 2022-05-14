@@ -2,14 +2,15 @@
 
 	{{ form_start(form) }}
 	<div class="col">
-	{{ form_row(form.genre, {
+		{{ form_row(form.genre, {
 		  label: 'Sexe'
 		  }) }}
-</div>
+	</div>
 	<div class="row">
 		<div class="col">
 			{{ form_row(form.nom, {
-                  label: 'Nom'
+                  label: 'Nom',
+				 
                   }) }}
 		</div>
 
@@ -38,7 +39,7 @@
 
 			{{ form_row(form.plainPassword.first) }}
 		</div>
-        		<div class="col">
+		<div class="col">
 
 			{{ form_row(form.plainPassword.second) }}
 		</div>
@@ -50,9 +51,9 @@
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<a href="{{ path('app_animateur_index') }}" class="btn btn-secondary">Retour</a>
 		<button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
-		
+
 	</div>
-		<hr class="text-primary">
+	<hr class="text-primary">
 
 	{{ form_end(form) }}
 </div>

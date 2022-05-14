@@ -36,6 +36,7 @@
 					<tbody>
 						{# {% for lheure in lesHeures %} #}
 					{# {% endfor %} #}
+					{% set i = 0  %}
 						{% for heure in heures %}
 
 							<tr class="table-active">
@@ -43,7 +44,8 @@
 								<td>{{heure}}</td>
 							
 						
-								{# <td>{{lesHeures[1][0][1]}}</td> #}
+								<td>{{data[i]}}</td>
+									{% set i = i + 1  %}
 								
 								{% endfor %}
 							</tr>

@@ -760,87 +760,87 @@ class UsagerRepository extends ServiceEntityRepository implements PasswordUpgrad
         return $query->getResult();
     }
 
-    public function countHeureDeDixEtOnze()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '10H' AND lower(a.heureFin) = '11H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeDixEtOnze()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '10H' AND lower(a.heureFin) = '11H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
-    public function countHeureDeOnzeEtDouze()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '11H' AND lower(a.heureFin) = '12H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeOnzeEtDouze()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '11H' AND lower(a.heureFin) = '12H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
-    public function countHeureDeDouzeEtTreize()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '12H' AND lower(a.heureFin) = '13H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeDouzeEtTreize()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '12H' AND lower(a.heureFin) = '13H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
-    public function countHeureDeTreizeEtQuatorze()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '13H' AND lower(a.heureFin) = '14H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeTreizeEtQuatorze()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '13H' AND lower(a.heureFin) = '14H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
-    public function countHeureDeQuatorzeEtQuinze()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '14H' AND lower(a.heureFin) = '15H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeQuatorzeEtQuinze()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '14H' AND lower(a.heureFin) = '15H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
-    public function countHeureDeQuinzeEtSeize()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '15H' AND lower(a.heureFin) = '16H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeQuinzeEtSeize()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '15H' AND lower(a.heureFin) = '16H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
-    public function countHeureDeSeizeEtDixSept()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '16H' AND lower(a.heureFin) = '17H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeSeizeEtDixSept()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '16H' AND lower(a.heureFin) = '17H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
 
-    public function countHeureDeDixseptEtDixHuit()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '17H' AND lower(a.heureFin) = '18H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeDixseptEtDixHuit()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '17H' AND lower(a.heureFin) = '18H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
-    public function countHeureDeDixhuitEtDixNeuf()
-    {
-        $query = $this->getEntityManager()
-            ->createQuery(
-                "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '18H' AND lower(a.heureFin) = '19H'"
-            );
-        return $query->getResult();
-    }
+    // public function countHeureDeDixhuitEtDixNeuf()
+    // {
+    //     $query = $this->getEntityManager()
+    //         ->createQuery(
+    //             "select count(a.libelle) from App\Entity\Atelier a where lower(a.heureDebut) = '18H' AND lower(a.heureFin) = '19H'"
+    //         );
+    //     return $query->getResult();
+    // }
 
 
     // /**

@@ -52,30 +52,43 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li>
 								<a class="dropdown-item" href="{{ path('app_chart') }}">Stats Fonctionnement</a>
-							</li>
-							<li>
+
+
 								{# <a class="dropdown-item" href="{{ path('app_chart2') }}">Stats Frequentation</a> #}
-							{% endif %}
+
+							</li>
 						</ul>
 					</li>
-				</ul>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						{% if is_granted ("ROLE_ANIMATEUR") %}
-							<li class="nav-item">
-								<a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">
-									<i class="fa-solid fa-power-off"></i>
-									Déconnexion</a>
-							</li>
-						{% else %}
-							<li class="nav-item">
-								<a class="btn btn-primary fw-bold mx-2" href="{{ path('app_login') }}">Connexion</a>
-							</li>
-						{% endif %}
+				
+				</li>
 
-					</ul>
-				</div>
+				<a class="btn btn-outline-danger" href="{{ path('app_profile') }}">
+					<i class="fa-solid fa-user"></i>
+				</a>
+				</ul>
+			{% endif %}
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end ">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+					{% if is_granted ("ROLE_ANIMATEUR") %}
+
+						<li class="nav-item">
+							<a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">
+								<i class="fa-solid fa-power-off"></i>
+								Déconnexion</a>
+						</li>
+					{% else %}
+					
+
+				</ul>
 			</div>
+
 		</div>
-		{# fin navbar #}
-	</nav>
+		<div class="me-auto mb-2 mb-lg-0 ">
+			<a class="btn btn-primary fw-bold " href="{{ path('app_login') }}">Se Connecter</a>
+		
+	</div>
+	{% endif %}
+		
+	</div>
+	{# fin navbar #}
+</nav>

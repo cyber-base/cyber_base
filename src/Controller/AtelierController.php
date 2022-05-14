@@ -145,6 +145,10 @@ class AtelierController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$atelier->getId(), $request->request->get('_token'))) {
             $atelierRepository->remove($atelier);
+            $this->addFlash(
+                'danger',
+                "L'atelier est supprimé avec succès ."
+             );
         }
 
         return $this->redirectToRoute('app_listeAtelier_index', [], Response::HTTP_SEE_OTHER);

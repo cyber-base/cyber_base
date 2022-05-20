@@ -53,7 +53,28 @@ class Atelier
     private $image;
 
     #[ORM\Column(type: 'integer')]
+    #[Groups('atelier:read')]
     private $nbrPlaces;
+
+    #[ORM\Column(type: 'datetime')]
+    #[Groups('atelier:read')]
+    private $start;
+
+    #[ORM\Column(type: 'datetime')]
+    #[Groups('atelier:read')]
+    private $end;
+
+    #[ORM\Column(type: 'string', length: 7)]
+    #[Groups('atelier:read')]
+    private $backgroundColor;
+
+    #[ORM\Column(type: 'string', length: 7)]
+    #[Groups('atelier:read')]
+    private $borderColor;
+
+    #[ORM\Column(type: 'string', length: 7)]
+    #[Groups('atelier:read')]
+    private $textColor;
 
     public function __construct()
     {
@@ -194,6 +215,66 @@ class Atelier
     public function setNbrPlaces(int $nbrPlaces): self
     {
         $this->nbrPlaces = $nbrPlaces;
+
+        return $this;
+    }
+
+    public function getStart(): ?\DateTimeInterface
+    {
+        return $this->start;
+    }
+
+    public function setStart(\DateTimeInterface $start): self
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    public function getEnd(): ?\DateTimeInterface
+    {
+        return $this->end;
+    }
+
+    public function setEnd(\DateTimeInterface $end): self
+    {
+        $this->end = $end;
+
+        return $this;
+    }
+
+    public function getBackgroundColor(): ?string
+    {
+        return $this->backgroundColor;
+    }
+
+    public function setBackgroundColor(string $backgroundColor): self
+    {
+        $this->backgroundColor = $backgroundColor;
+
+        return $this;
+    }
+
+    public function getBorderColor(): ?string
+    {
+        return $this->borderColor;
+    }
+
+    public function setBorderColor(string $borderColor): self
+    {
+        $this->borderColor = $borderColor;
+
+        return $this;
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(string $textColor): self
+    {
+        $this->textColor = $textColor;
 
         return $this;
     }

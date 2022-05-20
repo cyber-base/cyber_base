@@ -1,78 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Cyber Base - Planning
+	Cyber Base - Planning
 {% endblock %}
 
 {% block body %}
 
-    <h3 class="text-center fw-bold text-dark text-decoration-underline">PLANNING</h3>
+	<h3 class="text-center fw-bold text-dark text-decoration-underline">PLANNING</h3>
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-        {# <a class="btn btn-primary" href="{{ path('app_planning_new_usagers') }}">+ Planning</a> #}
-    </div>
+	{# <a class="btn btn-primary" href="{{ path('app_planning_new_usagers') }}">+ Planning</a> #}
+</div>
 
-    <table></table>
+<table></table>
 
-    <table class="table table-hover table-striped text-start text-center mb-3">
+<table class="table table-hover table-striped text-start text-center mb-3">
 
-        <thead>
-            <tr>
-                <th>Réf</th>
-                <th>Atelier</th>
-                <th>Animateur</th>
-                <th>Usagers inscrit</th>
-                <th>Date Création</th>
+	<thead>
+		<tr>
+			<th>Réf</th>
+			<th>Atelier</th>
+			<th>Animateur</th>
+			<th>Usagers inscrit</th>
+			<th>Date Création</th>
 
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
 
-            {# {{ dump(counts) }} #}
-            {% set i = 0 %}
-            {% for planning in ateliers %}
-                {# {% for planning in counts %} #}
+		{# {{ dump(counts) }} #}
+		{% set i = 0 %}
+		{% for planning in ateliers %}
+			{# {% for planning in counts %} #}
 
-                <tr>
+			<tr>
 
-                    <td>CB-00{{ planning.id }}</td>
-                    <td>{{ planning.ateliers }}</td>
-                    <td>{{ planning.ateliers.animateurs }}</td>
-                    <td>
-                        {{ counts[i][1] }}
-                        {% set i = i + 1 %}
-                    </td>
-                    <td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>
+				<td>CB-00{{ planning.id }}</td>
+				<td>{{ planning.ateliers }}</td>
+				<td>{{ planning.ateliers.animateurs }}</td>
+				<td>
+					{{ counts[i][1] }}
+					{% set i = i + 1 %}
+				</td>
+				<td>{{ planning.date ? planning.date|date('d-m-Y') : '' }}</td>
 
 
-                    <td>
-                        {# <a class="btn btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.id}) }}">
-                        																																<i class="fa-regular fa-eye"></i>
-                        																															</a> #}
-                        <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.ateliers.id }) }}">
-                            <i class="fa-regular fa-eye"></i>
-                            Liste Usagers
-                        </a>
-                        <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_planning_edit', {'id': planning.id}) }}">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            Editer Planning
-                        </a>
-                        {# <a class="btn btn-outline-secondary" href="{{ path('app_planning_delete', {'id': planning.id}) }}">
-                        																																<i class="fa-regular fa-trash-can"></i>
-                        																															</a> #}
-                    </td>
-                </tr>
+				<td>
 
-            {% else %}
+					<a class="btn btn-sm btn-outline-secondary" href="{{ path('app_planning_new_usager', {'atelier': planning.ateliers.id }) }}">
+						<i class="fa-solid fa-plus"></i>
+						Usager</a>
+					{# <a class="btn btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.id}) }}">
+					                        																																<i class="fa-regular fa-eye"></i>
+					                        																															</a> #}
+					<a class="btn btn-sm btn-outline-secondary" href="{{ path('app_planning_show', {'id': planning.ateliers.id }) }}">
+						<i class="fa-regular fa-eye"></i>
+						Liste Usagers
+					</a>
 
-                <div class="alert alert-danger" role="alert">
-                    Aucun enregistrement trouvé!
-                </div>
+					{# <a class="btn btn-outline-secondary" href="{{ path('app_planning_delete', {'id': planning.id}) }}">
+					                        																																<i class="fa-regular fa-trash-can"></i>
+					                        																															</a> #}
+				</td>
+			</tr>
 
-            {% endfor %}
+		{% else %}
 
-        </tbody>
-    </table>
+			<div class="alert alert-danger" role="alert">
+				Aucun enregistrement trouvé!
+			</div>
 
+		{% endfor %}
+		
+
+
+	</tbody>
+</table>
 {% endblock %}

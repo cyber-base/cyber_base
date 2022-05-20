@@ -6,7 +6,90 @@
   <div class="p-3 mb-2 bg-body mx-auto w-50" >
 		<h3 class="text-center shadow p-3 ">Inscription Usager</h3>
 </div>
-    {{ include('planning/_form.html.twig') }}
+    
+
+	
+		{# {{ dump(postes) }} #}
+	
+    {% set i = 0  %}
+  
+    {% if  (atelier.nbrPlaces - (counts[i][1]) <= 0) %}
+  
+        <div class="row w-75 mx-auto">
+          <div class="col-md-12 mr-auto ml-auto text-center py-5">
+            <div class="card">
+              <div class="card-body">
+                <h1 class="card-title alert alert-danger w-100 mb-4" role="alert">Erreur</h1>
+                <p class="card-text">
+                  Pas de places disponible pour cette atelier :(
+                </p>
+                <p class="card-text">
+                  Pour plus d'information, Veuillez contacter l'administration
+                </p>
+                <a href="{{ path('app_home') }}" class="btn btn-primary mt-2">Go Back to Home Page</a>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      
+      {% set i = i + 1 %}
+  
+    {% else %}
+  
+  <div
+    class="p-3 mb-2 bg-body border rounded mx-auto w-50">
+  
+      {{ form_start(form) }}
+      <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+      </div>
+
+      <div class="col">
+        {{ form_row(form.ateliers, {
+            
+                    label: 'Liste Ateliers'
+                    }) }}
+  
+      </div>
+  
+      <div class="col">
+        {{ form_row(form.usagers, {
+                    label: 'Liste Usagers'
+                    }) }}
+      </div>
+  
+      <div class="col">
+      {# {% if poste.postes.libelle != null %} #}
+        
+    
+        {{ form_row(form.postes, {
+                    label: 'Liste Postes'
+                  }) }}
+                {# {% endif %}   #}
+
+  
+          {# {% for poste in postes %} #}
+
+  {# {{ poste.postes.libelle}} #}
+  
+  {# {% endfor %} #}
+      </div>
+  
+  
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{{ path('app_planning_index') }}" class="btn btn-secondary">Retour</a>
+        <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+  
+      </div>
+      <hr class="text-primary">
+  
+      {{ form_end(form) }}
+   
+  {% endif %}
+  </div>
+  
+  
 
     {# <a href="{{ path('app_planning_index') }}">Retour à la liste</a> #}
 {% endblock %}

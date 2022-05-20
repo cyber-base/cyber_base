@@ -1,5 +1,5 @@
 //Declaration d'une variable 
-// let usagers;
+let usagers;
 
 //Fonction qui permet d'afficher les usagers
 // utilise la fonction afficheusager
@@ -80,7 +80,7 @@ function afficheDataList() {
   
 (async () => {
 
-  const res = await fetch('https:/localhost:8000/usager/api/usager');
+  const res = await fetch('http://127.0.0.1:8000/usager/api/usager');
   usagers = await res.json();
 
   console.log(usagers);
@@ -135,23 +135,80 @@ function rechercheTitreAtelier() {
 
 function afficheAtelier(unAtelier) {
 
-
   return `
   
-  <div class="col">
-    <div class="card h-100">
-      <img src="../uploads/images/${unAtelier.image}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">${unAtelier.libelle.toUpperCase()}</h5>
-        <p class="card-text">${unAtelier.id}</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
+  <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4 mt-4 mx-0">
+  
+  
+		<div class="col">
 
-`;
+			<div class="card h-100">
+				<img src="uploads/images/${unAtelier.image}" class="card-img-top w-100 h-100 mx-auto" alt="{{ atelier.image }}">
+				<div class="card-body">
+					<h5 class="card-title text-center text-white bg-primary w-100">Atelier :<b>
+							${unAtelier.libelle.toUpperCase()}</b>
+					</h5>
+					<hr>
+					<p class="card-text text-center">Animateur :
+						<b>${ unAtelier.animateurs }</b>
+					</p>
+					<p class="card-text text-center">Date :
+						<b>${ unAtelier.date ? atelier.date|date('d / m / Y') : '' }</b>
+					</p>
+					<p class="card-text text-center">
+						Horaire :
+
+						<b>${ unAtelier.heureDebut }
+						</b>
+
+						<i class="fa-solid fa-arrow-right-long"></i>
+						<b>
+							${ unAtelier.heureFin }</b>
+					</p>
+					<p class="card-text text-center">
+
+					
+							<b class="text-danger">Complet</b>
+					
+						
+						Places disponible :
+						<b class="text-success">${ unAtelier.nbrPlaces - (counts[i][1]) }</b>
+
+					
+							Places disponible :
+							<b class="text-danger">${ unAtelier.nbrPlaces - (counts[i][1]) }</b>
+					
+
+
+					</p>
+					<p class="card-text text-center">Statut :
+				
+							<b class="text-warning">${ unAtelier.statut }
+								<i class="fa-solid fa-hourglass-start"></i>
+							</b>
+						</p>
+						<button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
+			
+						<b class="text-success">${ unAtelier.statut }
+							<i class="fa-solid fa-circle-check"></i>
+						</b>
+					</p>
+			
+						<a href="{{ path('app_planning_new_usager', {'atelier': atelier.id }) }}" class="btn btn-primary w-100 btn-sm">S'inscrire</a>
+	
+						<a href="{{ path('app_login') }}" class="btn btn-primary w-100 btn-sm ">S'inscrire</a>
+	
+
+					<b class="text-danger">${ unAtelier.statut }
+						<i class="fa-solid fa-circle-xmark"></i>
+					</b>
+				</p>
+			<hr class="text-primary"></div>
+	</div>
+  
+
+`
+
 }
 //Procedure qui permet de constituer le dataList de manière dynamique
 
@@ -166,7 +223,7 @@ function afficheDataListAtelier() {
 
 (async () => {
   
-  const resp = await fetch('https://localhost:8000/atelier/api/atelier');
+  const resp = await fetch('http://127.0.0.1:8000/atelier/api/atelier');
   ateliers = await resp.json();
   console.log(ateliers);
 
@@ -174,5 +231,4 @@ function afficheDataListAtelier() {
   afficheDataListAtelier(ateliers);
  
 })();
-
 

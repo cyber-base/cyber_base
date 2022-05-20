@@ -78,6 +78,29 @@ class PlanningRepository extends ServiceEntityRepository
     */
 
     
+    public function findPosteLibreByAtelier($ateliers)
+    {
+        $atelierId = $ateliers->getId();
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "select po from App\Entity\Poste po where po.id NOT IN (
+                    select p.id from App\Entity\Planning p where p.ateliers = '$atelierId')
+                    "
+            );
+        return $query->getResult();
+    }
+
+    public function findUsagerLibreByAtelier($ateliers)
+    {
+        $usagerId = $ateliers->getId();
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "select u from App\Entity\Usager u where u.id NOT IN (
+                    select p.id from App\Entity\Planning p where p.usagers = '$usagerId')
+                    "
+            );
+        return $query->getResult();
+    }
 
     public function findUsagerByAtelier($ateliers): array
     {

@@ -1,7 +1,7 @@
 
-	{% set i = 0  %}
 
-	{% if  (plannings.ateliers.nbrPlaces - (counts[i][1]) <= 0) %}
+	
+
 
 			<div class="row w-75 mx-auto">
 				<div class="col-md-12 mr-auto ml-auto text-center py-5">
@@ -21,9 +21,6 @@
 				</div>
 			</div>
 
-		{% set i = i + 1 %}
-
-	{% else %}
 
 <div
 	class="p-3 mb-2 bg-body border rounded mx-auto w-50">
@@ -34,14 +31,17 @@
 		</div>
 
 
-		<div class="col mb-3">
+		{# <div class="col mb-3">
 				 <label class="form-label">Atelier séléctionné</label>
 				<input disabled  type="{{ type|default('text') }}" name="{{ plannings.ateliers }}" value="{{ plannings.ateliers|e }}"  class="form-control"/>
 		
-		</div>
-
+		</div> #}
+		
+			
+		
 		<div class="col">
 			{{ form_row(form.ateliers, {
+				  
                   label: 'Liste Ateliers'
                   }) }}
 
@@ -54,22 +54,20 @@
 		</div>
 
 		<div class="col">
-		{% if poste.postes.libelle != null %}
+		{# {% if poste.postes.libelle != null %} #}
 			
-		{% else %}
-			
-		{% endif %}
+	
 			{{ form_row(form.postes, {
                   label: 'Liste Postes'
                 }) }}
 
 
-				{% for poste in postes %}
+				{# {% for poste in postes %}
 
 {{ poste.postes.libelle}}
 
 	
-{% endfor %}
+{% endfor %} #}
 		</div>
 
 
@@ -81,6 +79,6 @@
 		<hr class="text-primary">
 
 		{{ form_end(form) }}
-	{% endif %}
+
 </div>
 

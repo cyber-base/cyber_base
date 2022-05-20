@@ -1,14 +1,54 @@
-
-
 {% extends 'base.html.twig' %}
 
-{% block title %}calendrier{% endblock %}
+{% block title %}calendrier
+{% endblock %}
 
 {% block body %}
-    {# <h1>{{calendrier}}</h1> #}
-        
 
-       
+	{{ dump(data) }}
+	{{ dump(ferie) }}
 
-    <div id="calendar-holder"></div>
+
+	<div id="calendar"></div>
+
+
+	<script>
+
+
+		document.addEventListener('DOMContentLoaded', () => {
+var calendarEl = document.getElementById('calendar');
+
+var calendar = new FullCalendar.Calendar(calendarEl, {
+defaultView: 'dayGridMonth',
+locale: 'fr',
+timeZone: 'Europe/Paris',
+editable: false,
+
+header: {
+left: 'prev,next today',
+center: 'title',
+right: 'dayGridMonth,timeGridWeek,timeGridDay'
+
+},
+buttonText: {
+today: 'Aujourd\'hui',
+timeGridDay: 'Jour',
+timeGridWeek: 'Semaine',
+dayGridMonth: 'Mois'
+
+},
+events: {{data|raw }},
+
+
+plugins: [
+'interaction', 'dayGrid', 'timeGrid'
+], // https://fullcalendar.io/docs/plugin-index
+
+
+});
+
+calendar.render();
+});
+	</script>
+
 {% endblock %}

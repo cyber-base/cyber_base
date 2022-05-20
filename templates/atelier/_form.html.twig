@@ -30,12 +30,25 @@
                  }) }}
             </div>
 
+        
             <div class="col">
                 {{ form_row(form.heureFin, {
                  label: 'Heure fin'
                  }) }}
             </div>
         </div>
+        <div class="row">
+			<div class="col">
+				{{ form_widget(form.start, {
+        label: 'Heure début'
+         }) }}
+			</div>
+
+			<div class="col">
+				{{ form_widget(form.end, {
+        label: 'Heure début'
+         }) }}
+			</div>
         <div class="row">
             <div class="col">
                 {{ form_row(form.nbrPlaces, {
@@ -48,6 +61,27 @@
                 {{ form_row(form.statut, {
                   label: 'Statut'
                   }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.backgroundColor, {
+                  label: 'Couleur d\'arrière plan',
+
+                  })
+                }}
+            </div>
+              <div class="col">
+                {{ form_row(form.borderColor, {
+                  label: 'Couleur de bordure'
+                  }) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.textColor, {
+                  label: 'Couleur de texte',
+
+                  })
+                }}
             </div>
         </div>
         {{ form_row(form.image) }}

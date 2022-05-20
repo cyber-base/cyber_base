@@ -8,8 +8,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class AtelierType extends AbstractType
 {
@@ -78,6 +80,13 @@ class AtelierType extends AbstractType
                 'widget' => 'single_text',
                 'data' => new \DateTime("now")
             ])
+            ->add('start', DateTimeType::class,[
+                'date_widget' => 'single_text',
+            ])
+            ->add('end', DateTimeType::class,[
+                'date_widget' => 'single_text',
+            ])
+
             ->add(
                 'heureDebut',
                 ChoiceType::class,
@@ -137,6 +146,11 @@ class AtelierType extends AbstractType
                     ],
    
             ])
+            ->add('backgroundColor', ColorType::class)
+
+            ->add('borderColor', ColorType::class)
+            
+            ->add('textColor', ColorType::class)
 
             ->add('image', FileType::class, [
                 'label' => 'Sélectionner un fichier',

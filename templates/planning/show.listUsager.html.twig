@@ -3,15 +3,24 @@
 {% block title %}Cyber Base - Listes des Usagers
 {% endblock %}
 {% block body %}
-		
-	<h4 class="text-center text-dark">LISTE DES USAGERS INSCRIT A l'ATELIER</h4> <br>
-    <h3 class="text-center fw-bold text-dark text-decoration-underline"><span class=" text-danger">{{ planning.ateliers }}</span></h3>
-	
+
+	<h4 class="text-center text-dark">LISTE DES USAGERS INSCRIT A l'ATELIER</h4>
+	<br>
+	<h3 class="text-center fw-bold text-dark text-decoration-underline">
+		<span class=" text-danger">{{ planning.ateliers }}</span>
+	</h3>
+
 	<div class="d-grid gap-2 d-md-flex justify-content-md-between m-3">
-        <a class="btn btn-outline-secondary" href="{{ path('app_planning_index') }}"><i class="fa-solid fa-angle-left"></i> Retour</a>
+		<a class="btn btn-outline-secondary" href="{{ path('app_planning_index') }}">
+			<i class="fa-solid fa-angle-left"></i>
+			Retour</a>
 
+	{{ dump(UsagersByAteliers) }}
 
-		<a class="btn btn-outline-primary" href="{{ path('app_planning_new_usager', {'ateliers': planning.ateliers.id }) }}"><i class="fa-solid fa-plus"></i> Usager</a>
+{# 
+		<a class="btn btn-outline-primary" href="{{ path('app_planning_new_usager', {'atelier': planning.ateliers.id }) }}">
+			<i class="fa-solid fa-plus"></i>
+			Usager</a> #}
 
 	</div>
 
@@ -29,7 +38,7 @@
 				<th>Prénom</th>
 				<th>Tél</th>
 				<th>Email</th>
-                <th>Poste</th>
+				<th>Poste</th>
 				<th>Adresse</th>
 				<th>Ville</th>
 				<th>Inscrit le</th>
@@ -37,35 +46,42 @@
 			</tr>
 		</thead>
 		<tbody>
-		{# {{ dump(UsagersByAteliers)}} #}
+			{# {{ dump(UsagersByAteliers)}} #}
 			{% for UsagersByAtelier in UsagersByAteliers %}
-            <tr>
-				<td>{{ UsagersByAtelier.usagers.id }}</td>
-				<td>{{ UsagersByAtelier.usagers.nom }}</td>
-				<td>{{ UsagersByAtelier.usagers.prenom }}</td>
-				<td>{{ UsagersByAtelier.usagers.tel }}</td>
-				<td>{{ UsagersByAtelier.usagers.email }}</td>
-                <td>{{ UsagersByAtelier.postes }}</td>
-				<td>{{ UsagersByAtelier.usagers.adresse }}</td>
-				<td>{{ UsagersByAtelier.usagers.cp }}
-					-
-					{{ UsagersByAtelier.usagers.ville }}</td>
-				<td>{{ UsagersByAtelier.usagers.dateCreation ?  UsagersByAtelier.usagers.dateCreation|date('d-m-Y') : '' }}</td>
+				<tr>
+					<td>{{ UsagersByAtelier.usagers.id }}</td>
+					<td>{{ UsagersByAtelier.usagers.nom }}</td>
+					<td>{{ UsagersByAtelier.usagers.prenom }}</td>
+					<td>{{ UsagersByAtelier.usagers.tel }}</td>
+					<td>{{ UsagersByAtelier.usagers.email }}</td>
+					<td>{{ UsagersByAtelier.postes }}</td>
+					<td>{{ UsagersByAtelier.usagers.adresse }}</td>
+					<td>{{ UsagersByAtelier.usagers.cp }}
+						-
+						{{ UsagersByAtelier.usagers.ville }}</td>
+					<td>{{ UsagersByAtelier.usagers.dateCreation ?  UsagersByAtelier.usagers.dateCreation|date('d-m-Y') : '' }}</td>
 
-				<td>
-					<a class="btn btn-outline-secondary" href="{{ path('app_usager_show', {'id': UsagersByAtelier.usagers.id}) }}">
-						<i class="fa-regular fa-eye"></i>
-					</a>
+					<td>
+						<a class="btn btn-outline-secondary" href="{{ path('app_usager_show', {'id': UsagersByAtelier.usagers.id}) }}">
+							<i class="fa-regular fa-eye"></i>
+						</a>
 
-					<a class="btn btn-outline-secondary" href="{{ path('app_usager_edit', {'id': UsagersByAtelier.usagers.id}) }}">
-						<i class="fa-regular fa-pen-to-square"></i>
-					</a>
+						<a class="btn btn-outline-secondary" href="{{ path('app_usager_edit', {'id': UsagersByAtelier.usagers.id}) }}">
+							<i class="fa-regular fa-pen-to-square"></i>
+						</a>
 
-					<a class="btn btn-outline-secondary" href="{{ path('app_usager_delete', {'id': UsagersByAtelier.usagers.id}) }}">
-						<i class="fa-regular fa-trash-can"></i>
-					</a>
-				</td>
-               </tr> 
+						<form method="post" action="{{ path('app_planning_delete', {'id': UsagersByAtelier.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ UsagersByAtelier.id) }}">
+							<button class="btn btn-outline-secondary">
+								<i class="fa-regular fa-trash-can"></i>
+							</button>
+						</form>
+
+						{# <a class="btn btn-outline-secondary" href="{{ path('app_usager_delete', {'id': UsagersByAtelier.usagers.id}) }}">
+												<i class="fa-regular fa-trash-can"></i>
+											</a> #}
+					</td>
+				</tr>
 			{% else %}
 
 				<div class="alert alert-danger" role="alert">
@@ -77,8 +93,8 @@
 
 
 	{# <a href="{{ path('app_listeAtelier_index') }}">back to list</a>
-	
-	    <a href="{{ path('app_atelier_edit', {'id': UsagersByAtelier.id}) }}">edit</a>
-	
-	    {{ include('atelier/_delete_form.html.twig') }} #}
+		
+		    <a href="{{ path('app_atelier_edit', {'id': UsagersByAtelier.id}) }}">edit</a>
+		
+		    {{ include('atelier/_delete_form.html.twig') }} #}
 {% endblock %}

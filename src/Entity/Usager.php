@@ -28,7 +28,7 @@ class Usager extends Personne implements UserInterface, PasswordAuthenticatedUse
 
     #[ORM\Column(type: 'json')]
         #[Groups('usager:read')]
-    private $roles = [];
+    private $roles = ["ROLE_USAGER"];
 
     #[ORM\Column(type: 'string')]
         #[Groups('usager:read')]

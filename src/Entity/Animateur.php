@@ -2,16 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\AnimateurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnimateurRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: AnimateurRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+// #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
+   
 class Animateur extends Personne implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -20,12 +23,24 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Email(
+        message: 'Le mail {{ value }} n\'est pas valide.',
+    )]
     private $email;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
-
+    
+    
     #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank(
+        message: 'Le mot de passe n\'est pas valide.',
+    )]
+    #[Assert\Regex(
+        pattern: "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/",
+        message : "Mot de passe n'est pas valide !",
+    )]
     private $password;
 
     #[ORM\OneToMany(mappedBy: 'animateurs', targetEntity: Atelier::class)]
@@ -34,7 +49,16 @@ class Animateur extends Personne implements UserInterface, PasswordAuthenticated
 
     #[ORM\Column(type: 'string', length: 50)]
     private $genre;
-
+    
+    public static function build($nom, $prenom, $email, $password)
+    {
+        $animateur = new Animateur();
+        $animateur->setNom($nom);
+        $animateur->setPrenom($prenom);
+        $animateur->setEmail($email);
+        $animateur->setPassword($password);
+        return $animateur;
+    }
 
     public function __construct()
     {

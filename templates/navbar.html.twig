@@ -9,10 +9,10 @@
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
 				<li class="nav-item ">
 					{% if is_granted ("ROLE_ANIMATEUR") %}
-						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_home') }}">Home</a>
+						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_home') }}">Accueil</a>
 
 					{% else %}
-						<a class="nav-link text-bold text-black fs-5 border-bottom border-warning border-3" aria-current="page" href="{{ path('app_home') }}">Home</a>
+						<a class="nav-link text-bold text-black fs-5 border-bottom border-warning border-3" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
 
 					{% endif %}
 				</li>
@@ -33,11 +33,11 @@
 
 					<li class="nav-item">
 
-						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_planning_index') }}">Planning</a>
+						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_planning_index') }}">Plannings</a>
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_quartier_index') }}">Quartier</a>
+						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_quartier_index') }}">Quartiers</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-bold text-black text-black " aria-current="page" href="{{ path('app_poste_index') }}">Postes</a>
@@ -45,50 +45,52 @@
 					<li class="nav-item">
 						<a class="nav-link text-bold text-black " aria-current="page" href="{{ path('app_partenaire_index') }}">Partenaires</a>
 					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle text-bold text-black " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					<li class="nav-item">
+						<a class="nav-link text-bold text-black" aria-current="page" href="{{ path('app_chart') }}">
 							Statistiques
 						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						{# <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li>
 								<a class="dropdown-item" href="{{ path('app_chart') }}">Stats Fonctionnement</a>
 
 
-								{# <a class="dropdown-item" href="{{ path('app_chart2') }}">Stats Frequentation</a> #}
+								<a class="dropdown-item" href="{{ path('app_chart2') }}">Stats Frequentation</a>
 
 							</li>
-						</ul>
+						</ul> #}
 					</li>
-				
+
 				</li>
 
-				<a class="btn btn-outline-danger" href="{{ path('app_profile') }}">
+				<a class="btn btn-outline-danger" href="{{ path('app_profil') }}">
 					<i class="fa-solid fa-user"></i>
 				</a>
-				</ul>
-			{% endif %}
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end ">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-					{% if is_granted ("ROLE_ANIMATEUR") %}
+			</ul>
+		{% endif %}
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end ">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+				{% if is_granted ("ROLE_ANIMATEUR") %}
+				
 
 						<li class="nav-item">
 							<a class="btn btn-danger ml-3" href="{{ path('app_logout') }}">
 								<i class="fa-solid fa-power-off"></i>
 								Déconnexion</a>
 						</li>
-					{% else %}
-					
 
-				</ul>
+				{% else %}
+
+
+					</ul>
+				</div>
+
 			</div>
+			<div class="me-auto mb-2 mb-lg-0 ">
+				<a class="btn btn-primary fw-bold " href="{{ path('app_login') }}">Se Connecter</a>
 
-		</div>
-		<div class="me-auto mb-2 mb-lg-0 ">
-			<a class="btn btn-primary fw-bold " href="{{ path('app_login') }}">Se Connecter</a>
+			</div>
 		
-	</div>
 	{% endif %}
-		
-	</div>
-	{# fin navbar #}
-</nav>
+
+</div>
+{# fin navbar #}</nav>

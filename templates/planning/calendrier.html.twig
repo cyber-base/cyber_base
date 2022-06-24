@@ -5,8 +5,8 @@
 
 {% block body %}
 
-	{{ dump(data) }}
-	{{ dump(ferie) }}
+	{# {{ dump(data) }} #}
+	{# {{ dump(ferie) }} #}
 
 
 	<div id="calendar"></div>
@@ -38,6 +38,7 @@ dayGridMonth: 'Mois'
 
 },
 events: {{data|raw }},
+
 
 
 plugins: [

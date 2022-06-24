@@ -75,13 +75,13 @@ class ChartController extends AbstractController
                     $catAssociation = $usagerRepository->countAssociationByUsager(),
                     $catCentreDeLoisir = $usagerRepository->countCentreDeLoisirByUsager(),
                     $catAntennesDeQuartier = $usagerRepository->countAntennesDeQuartierByUsager(),
-                    $usagerCatSalarie = (($salarie[0][1] / $usagerTotal[0][1]) * 100),
+                    $usagerCatSalarie = round((($salarie[0][1] / $usagerTotal[0][1]) * 100),2),
                     $usagerCatretraite = ($retraite[0][1] / $usagerTotal[0][1]) * 100,
                     $usagerDemandeurDemploi = ($demandeurDemploi[0][1] / $usagerTotal[0][1]) * 100,
                     $usagerCollegue = ($catCollegue[0][1] / $usagerTotal[0][1]) * 10,
                     $usagerEtudiant = ($catEtudiant[0][1] / $usagerTotal[0][1]) * 100,
                     $usagerScolaire = ($catScolaire[0][1] / $usagerTotal[0][1]) * 100,
-                    $usagerAssociation = ($catAssociation[0][1] / $usagerTotal[0][1]) * 100,
+                    $usagerAssociation = number_format(($catAssociation[0][1] / $usagerTotal[0][1]) * 100,2),
                     $usagerCentreDeLoisir = ($catCentreDeLoisir[0][1] / $usagerTotal[0][1]) * 100,
                     $usagerAntennesDeQuartier = ($catAntennesDeQuartier[0][1] / $usagerTotal[0][1]) * 100,
                     // dump($usagerCatSalarie),
@@ -186,17 +186,6 @@ class ChartController extends AbstractController
             'libTrucagePhotoByLibelleAtelier' => $usagerRepository->countTrucagePhotoByLibelleAtelier(),
             'countWindowsByLibelleAtelier' => $usagerRepository->countWindowsByLibelleAtelier(),
             'libWordExpertByLibelleAtelier' => $usagerRepository->countWordExpertByLibelleAtelier(),
-
-
-
-
-
-
-
-
-
-
-
 
 
         ]);

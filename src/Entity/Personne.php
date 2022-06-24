@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PersonneRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: PersonneRepository::class)]
 // #[ORM\Entity(name:"Personne")]
@@ -22,10 +24,16 @@ class Personne
 
     #[ORM\Column(type: 'string', length: 50)]
     #[Groups('usager:read')]
+    #[Assert\NotBlank(
+        message: 'Veuillez saisir un Nom',
+    )]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 50)]
     #[Groups('usager:read')]
+    #[Assert\NotBlank(
+        message: 'Veuillez saisir un Prenom',
+    )]
     private $prenom;
 
     #[ORM\Column(type: 'string', length: 20)]

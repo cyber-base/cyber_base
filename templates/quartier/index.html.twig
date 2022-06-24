@@ -7,7 +7,9 @@
 	<h3 class="text-center fw-bold text-dark text-decoration-underline">LISTE DES QUARTIERS</h3>
 
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+	{% if is_granted('ROLE_SUPER_ANIMATEUR') %}
 		<a class="btn btn-primary" a href="{{ path('app_quartier_new') }}">+ Quartier</a>
+		{% endif %}
 	</div>
 
 	<table class="table table-hover text-start text-center mb-3">

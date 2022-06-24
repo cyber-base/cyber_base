@@ -15,11 +15,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/personne')]
 class PersonneController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile', methods: ['GET'])]
-    public function home(PersonneRepository $personneRepository): Response
+    #[Route('/profil', name: 'app_profil', methods: ['GET'])]
+    public function home(): Response
     {
-        return $this->render('animateur/profile.html.twig', [
-            'ateliers' => $personneRepository->findAll(),
+        return $this->render('animateur/profil.html.twig', [
+            // 'ateliers' => $personneRepository->findAll(),
         ]);
     }
     

@@ -4,16 +4,11 @@ namespace App\Form;
 
 use App\Entity\Usager;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -80,12 +75,17 @@ class UsagerType extends AbstractType
                     new NotBlank([
                         'message' => 'Entrez un mot de passe svp',
                     ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères ',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                    new Regex([
+                        "pattern" => "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/",
+                        'message' => "votre mot de passe doit contenir au minimum 6 caractères,
+                        au moins une lettre minuscule et une lettre majuscule, un caractère spécial et un chiffre.",
                     ]),
+                    // new Length([
+                    //     'min' => 6,
+                    //     'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères ',
+                    //     // max length allowed by Symfony for security reasons
+                    //     'max' => 4096,
+                    // ]),
                 ],
             ]);
     }

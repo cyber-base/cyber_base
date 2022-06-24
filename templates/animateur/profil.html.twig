@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cyber Base - Accueil
+{% endblock %}
+
+{% block body %}
+	<div class="shadow">
+
+		<h3 class="text-center fw-bold text-dark" style="text-decoration: underline;">Mon Profil</h3>
+
+
+		<div class="container profile">
+			<div class="avatar-flip">
+
+				{% if app.user.genre == 'Femme' %}
+
+					<img src="{{ asset('img/femme1.jpg') }}" height="150" width="150">
+					<img src="{{ asset('img/femme.jpg') }}" height="150" width="150">
+
+
+				{% else %}
+					<img src="{{ asset('img/homme2.jpg') }}" height="150" width="150">
+					<img src="{{ asset('img/homme.jpg')}}" height="150" width="150">
+
+
+				{% endif %}
+			</div>
+			<div class="profil_pr">
+				<h2>{{ app.user.nom }}
+					{{ app.user.prenom }}</h2>
+				<h4>{{ app.user.email }}</h4>
+				{% if (app.user.genre == 'Femme') %}
+					{% if app.user.roles == '["ROLE_ANIMATEUR"]' %}
+
+						<p>ANIMATRICE</p>
+					{% else %}
+						<p>SUPER ANIMATRICE</p>
+					{% endif %}
+				{% endif %}
+
+
+			</div>
+			<a href="{{ path('app_animateur_edit', {'id':app.user.id}) }}"><input class="btn btn-primary m-3" type="submit" value="Modifier le profil"></a>
+
+		</div>
+
+
+	</div>
+{% endblock %}

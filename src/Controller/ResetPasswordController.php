@@ -162,6 +162,7 @@ class ResetPasswordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from(new Address('mailtrapdev@example.com', '"Mailtrap"'))
             ->to($user->getEmail())
+            // ->to('antchaudey@gmail.com')
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([

@@ -6,7 +6,7 @@
 
 
 /* Debut de profile */
-.profile {
+.profil {
   width: 400px;
   margin: 120px auto 120px;
   background-color: #fff;
@@ -14,19 +14,19 @@
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.075);
-  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
-  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.075); */
+  /* -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075); */
   text-align: center;
 }
-.profile:hover .avatar-flip {
+.profil:hover .avatar-flip {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
 }
-.profile:hover .avatar-flip img:first-child {
+.profil:hover .avatar-flip img:first-child {
   opacity: 0;
 }
-.profile:hover .avatar-flip img:last-child {
+.profil:hover .avatar-flip img:last-child {
   opacity: 1;
 }
 .avatar-flip {
@@ -62,19 +62,19 @@
   -webkit-transform: rotateY(180deg);
   opacity: 0;
 }
-.profile_pr h2 {
+.profil_pr h2 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 15px;
   color: #333;
 }
-.profile_pr h4 {
+.profil_pr h4 {
   font-size: 30px;
   color: #00baff;
   letter-spacing: 1px;
   margin-bottom: 25px
 }
-.profile_pr p {
+.profil_pr p {
   font-size: 16px;
   line-height: 26px;
   margin-bottom: 20px;

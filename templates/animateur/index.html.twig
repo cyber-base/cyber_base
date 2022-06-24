@@ -38,7 +38,13 @@
 					<td>{{ animateur.prenom }}</td>
 					<td>{{ animateur.tel }}</td>
 					<td>{{ animateur.email }}</td>
-					<td>{{ animateur.roles ? animateur.roles|json_encode : '' }}</td>
+					<td>{% for role in animateur.roles %}
+						{% if role == 'ROLE_ANIMATEUR' %} Animateur
+						{% else %}
+							Super Animateur
+					{% endif %}
+					{% endfor %}
+					</td>
 
 				{% if is_granted('ROLE_SUPER_ANIMATEUR') %}
 					<td>

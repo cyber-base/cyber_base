@@ -5,24 +5,13 @@
 
 {% block body %}
 
-	{# {{render_chart(dump)}} #}
-	{# {{dump(data)}} #}
-
-
-
 	<div class="row justify-content-center	">
-	
-		<!-- ./col -->
-		<div
-			class="col-lg-3 col-6 ">
-			
 
-			<!-- small box -->
+		<div class="col-lg-3 col-6 ">
+
 			<div class="small-box bg-warning">
 				<div class="inner">
 					<h3>{{countUsager[0][1]}}</h3>
-					{# {{dump(countUsager)}} #}
-
 					<p>Total Usagers</p>
 				</div>
 				<div class="icon">
@@ -33,8 +22,6 @@
 				</a>
 			</div>
 		</div>
-		<!-- ./col -->
-		<!-- ./col -->
 		<div
 			class="col-lg-3 col-6">
 			<!-- small box -->
@@ -71,453 +58,437 @@
 				</a>
 			</div>
 		</div>
-		<div
-			class="col-lg-3 col-6">
-			<!-- small box -->
-			<div class="small-box bg-secondary">
-				<div class="inner">
-					<h3>{{genreHomme[0][1]}}</h3>
-					<p>Usagers Hommes</p>
-				</div>
-				<div class="icon">
-					<i class="ion ion-person-add"></i>
-				</div>
-				<a href="#" class="small-box-footer">More info
-					<i class="fas fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
-	</div>
-	{# debut de tables stats usagers par categories #}
-	<div class="row">
-		<div class="col-6">
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="text-decoration-underline">STATS USAGERS PAR CATEGORIES</th>
 
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="bg bg-black">
-						<td>Categories</td>
-						<td>Nombres</td>
-
-					</tr>
-					<tr class="table-active">
-						<td>Salariés</td>
-						<td>{{ catSalarie[0][1] }}</td>
-
-						{# {{dump(catSalarie)}} #}
-					</tr>
-					<tr class="table-primary">
-						<td>Retraités</td>
-						<td>{{catRetraite[0][1]}}</td>
-
-					</tr>
-					<tr class="table-warning">
-						<td>Demandeur d'emploi</td>
-						<td>{{catDemandeurDemploi[0][1]}}</td>
-						{# {{dump(catDemandeurDemploi[0][1])}} #}
-
-					</tr>
-					<tr class="table-success">
-						<td>Collègues</td>
-						<td>{{catCollegue[0][1]}}</td>
-
-					</tr>
-					<tr class="table-danger">
-						<td>Etudiants</td>
-						<td>{{catEtudiant[0][1]}}</td>
-
-					</tr>
-					<tr class="table-active">
-						<td>Scolaires</td>
-						<td>{{catScolaire[0][1]}}</td>
-
-					</tr>
-					<tr class="table-primary">
-						<td>Associations</td>
-						<td>{{catAssociation[0][1]}}</td>
-
-					</tr>
-					<tr class="table-success">
-						<td>Centre de loisirs</td>
-						<td>{{catCentreDeLoisir[0][1]}}</td>
-
-					</tr>
-					<tr class="table-warning">
-						<td>Antennes de quartier</td>
-						<td>{{catCentreDeLoisir[0][1]}}</td>
-					</tr>
-				</tbody>
-
-			</table>
-			{# fin de tables stats usagers par categories #}
-			<!-- ./col -->
-			{# STATS PUBLICS HOMMES #}
-				<div class="row"> <div class="col">
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="text-decoration-underline">STATS PUBLICS HOMMES</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="bg bg-black">
-								<td>Categories</td>
-								<td>Nombres</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Salariés</td>
-								<td>{{catSalarieByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Retraités</td>
-								<td>{{catRetraiteByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Demandeurs d'emploi</td>
-								<td>{{catDemandeurDemploiByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Collègues</td>
-								<td>{{catCollegueByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Etudiants</td>
-								<td>{{catEtudiantByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Scolaires</td>
-								<td>{{catScolaireByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Associations</td>
-								<td>{{catAssociationByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Centre De Loisirs</td>
-								<td>{{catCentreDeLoisirsByUsagerHomme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-primary">
-								<td>Antennes De quartier</td>
-								<td>{{catAntenneDeQuartierByUsagerHomme[0][1]}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				{# STATS PUBLICS FEMMES #}
-				<div class="col">
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="text-decoration-underline">STATS PUBLICS FEMMES</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="bg bg-black">
-								<td>Categories</td>
-								<td>Nombres</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Salariés</td>
-								<td>{{catSalarieByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Retraités</td>
-								<td>{{catRetraiteByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Demandeur d'emploi</td>
-								<td>{{catDemandeurDemploiByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Collègues</td>
-								<td>{{catCollegueByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Etudiants</td>
-								<td>{{catEtudiantByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Scolaires</td>
-								<td>{{catScolaireByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Associations</td>
-								<td>{{catAssociationByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Centre de loisirs</td>
-								<td>{{catCentreDeLoisirsByUsagerFemme[0][1]}}</td>
-
-							</tr>
-							<tr class="table-danger">
-								<td>Antennes de quartier</td>
-								<td>{{catAntenneDeQuartierByUsagerFemme[0][1]}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<div class="" style="width:30rem; height:30rem">
+		{# debut de tables stats usagers par categories #}
+		<div class="row">
+			<div class="col-6">
+				<table class="table">
 					<thead>
 						<tr>
-							<th>
-								<b class="text-decoration-underline">BILAN DE FONCTIONNEMENT</b>
-							</th>
+							<th class="text-decoration-underline">STATS USAGERS PAR CATEGORIES</th>
 
 						</tr>
 					</thead>
-					{{ render_chart(chart) }}
+					<tbody>
+						<tr class="bg bg-black">
+							<td>Categories</td>
+							<td>Nombres</td>
+
+						</tr>
+						<tr class="table-active">
+							<td>Salariés</td>
+							<td>{{ catSalarie[0][1] }}</td>
+
+							{# {{dump(catSalarie)}} #}
+						</tr>
+						<tr class="table-primary">
+							<td>Retraités</td>
+							<td>{{catRetraite[0][1]}}</td>
+
+						</tr>
+						<tr class="table-warning">
+							<td>Demandeur d'emploi</td>
+							<td>{{catDemandeurDemploi[0][1]}}</td>
+							{# {{dump(catDemandeurDemploi[0][1])}} #}
+
+						</tr>
+						<tr class="table-success">
+							<td>Collègues</td>
+							<td>{{catCollegue[0][1]}}</td>
+
+						</tr>
+						<tr class="table-danger">
+							<td>Etudiants</td>
+							<td>{{catEtudiant[0][1]}}</td>
+
+						</tr>
+						<tr class="table-active">
+							<td>Scolaires</td>
+							<td>{{catScolaire[0][1]}}</td>
+
+						</tr>
+						<tr class="table-primary">
+							<td>Associations</td>
+							<td>{{catAssociation[0][1]}}</td>
+
+						</tr>
+						<tr class="table-success">
+							<td>Centre de loisirs</td>
+							<td>{{catCentreDeLoisir[0][1]}}</td>
+
+						</tr>
+						<tr class="table-warning">
+							<td>Antennes de quartier</td>
+							<td>{{catCentreDeLoisir[0][1]}}</td>
+						</tr>
+					</tbody>
+
+				</table>
+				{# fin de tables stats usagers par categories #}
+				<!-- ./col -->
+				{# STATS PUBLICS HOMMES #}
+					<div class="row"> <div class="col">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="text-decoration-underline">STATS PUBLICS HOMMES</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="bg bg-black">
+									<td>Categories</td>
+									<td>Nombres</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Salariés</td>
+									<td>{{catSalarieByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Retraités</td>
+									<td>{{catRetraiteByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Demandeurs d'emploi</td>
+									<td>{{catDemandeurDemploiByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Collègues</td>
+									<td>{{catCollegueByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Etudiants</td>
+									<td>{{catEtudiantByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Scolaires</td>
+									<td>{{catScolaireByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Associations</td>
+									<td>{{catAssociationByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Centre De Loisirs</td>
+									<td>{{catCentreDeLoisirsByUsagerHomme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-primary">
+									<td>Antennes De quartier</td>
+									<td>{{catAntenneDeQuartierByUsagerHomme[0][1]}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					{# STATS PUBLICS FEMMES #}
+					<div class="col">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="text-decoration-underline">STATS PUBLICS FEMMES</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="bg bg-black">
+									<td>Categories</td>
+									<td>Nombres</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Salariés</td>
+									<td>{{catSalarieByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Retraités</td>
+									<td>{{catRetraiteByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Demandeur d'emploi</td>
+									<td>{{catDemandeurDemploiByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Collègues</td>
+									<td>{{catCollegueByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Etudiants</td>
+									<td>{{catEtudiantByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Scolaires</td>
+									<td>{{catScolaireByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Associations</td>
+									<td>{{catAssociationByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Centre de loisirs</td>
+									<td>{{catCentreDeLoisirsByUsagerFemme[0][1]}}</td>
+
+								</tr>
+								<tr class="table-danger">
+									<td>Antennes de quartier</td>
+									<td>{{catAntenneDeQuartierByUsagerFemme[0][1]}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="" style="width:30rem; height:30rem">
+						<thead>
+							<tr>
+								<th>
+									<b class="text-decoration-underline">BILAN DE FONCTIONNEMENT</b>
+								</th>
+
+							</tr>
+						</thead>
+						{{ render_chart(chart) }}
 
 
+					</div>
 				</div>
 			</div>
-		</div>
-		{# stat atelier  #}
-		<div class="col">
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="text-decoration-underline">STATS ATELIERS</th>
+			{# stat atelier  #}
+			<div class="col">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="text-decoration-underline">STATS ATELIERS</th>
 
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="bg bg-black">
-						<td>Ateliers</td>
-						<td>Nombres</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="bg bg-black">
+							<td>Ateliers</td>
+							<td>Nombres</td>
 
-					</tr>
-					<tr class="table-info">
-						<td>3D Creation</td>
-						<td>{{lib3dCreationByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>3D Creation</td>
+							<td>{{lib3dCreationByLibelleAtelier[0][1]}}</td>
 
-					</tr>
-					<tr class="table-info">
-						<td>Access</td>
-						<td>{{libAccessByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Access</td>
+							<td>{{libAccessByLibelleAtelier[0][1]}}</td>
 
-					</tr>
-					<tr class="table-info">
-						<td>Achat / vente</td>
-						<td>{{libAchatVenteByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Achat / vente</td>
+							<td>{{libAchatVenteByLibelleAtelier[0][1]}}</td>
 
-					</tr>
+						</tr>
 
-					<tr class="table-info">
-						<td>Album photo</td>
-						<td>{{libAlbumPhotoByLibelleAtelier[0][1]}}</td>
+						<tr class="table-info">
+							<td>Album photo</td>
+							<td>{{libAlbumPhotoByLibelleAtelier[0][1]}}</td>
 
-					</tr>
-					<tr class="table-info">
-						<td>Arnaques web</td>
-						<td>{{libArnaquesWebByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Arnaques web</td>
+							<td>{{libArnaquesWebByLibelleAtelier[0][1]}}</td>
 
-					</tr>
-					<tr class="table-info">
-						<td>Blog</td>
-						<td>{{libBlogByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Blog</td>
+							<td>{{libBlogByLibelleAtelier[0][1]}}</td>
 
-					</tr>
-					<tr class="table-info">
-						<td>Clavier</td>
-						<td>{{libClavierByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Clavier</td>
+							<td>{{libClavierByLibelleAtelier[0][1]}}</td>
 
-					</tr>
-					<tr class="table-info">
-						<td>Clé USB</td>
-						<td>{{libCleUsbByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>CMS</td>
-						<td>{{libCmsByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Conférence</td>
-						<td>{{libConferenceByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Création de Site Web</td>
-						<td>{{libCreationDeSiteWebByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Dossier</td>
-						<td>{{libDossierByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Administration</td>
-						<td>{{libAdministrationByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Email débutant</td>
-						<td>{{libEmailDebutantByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Email expert</td>
-						<td>{{libEmailExpertByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Emploi</td>
-						<td>{{libEmploiByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Excel débutant</td>
-						<td>{{libExcelDebutantByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Excel expert</td>
-						<td>{{libExcelExpertByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Graphisme</td>
-						<td>{{libGraphismeByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Graver</td>
-						<td>{{libGraverByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Install Logiciels</td>
-						<td>{{libInstallLogicielsByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Internet débutant</td>
-						<td>{{libInternetDebutantByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Internet expert</td>
-						<td>{{libInternetExpertByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Jeux</td>
-						<td>{{libJeuxByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Linux</td>
-						<td>{{libLinuxByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Logiciels gratuits</td>
-						<td>{{libLogicielsGratuitsByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Mac OS X</td>
-						<td>{{libMacOsxByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>MAO</td>
-						<td>{{libMaoByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Montage artistique</td>
-						<td>{{libMontageArtistiqueByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Montage PC</td>
-						<td>{{libMontagePcByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Montage video</td>
-						<td>{{libMontageVideoByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Nettoyage sécurite</td>
-						<td>{{libNettoyageSecuriteByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Ordi de A à Z</td>
-						<td>{{libOrdiDeAaZByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>PAO</td>
-						<td>{{libPaoByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>PDF</td>
-						<td>{{countPdfByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Photo débutant</td>
-						<td>{{libPhotoDebutantByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Photo expert</td>
-						<td>{{libPhotoExpertByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Photoshop</td>
-						<td>{{libPhotoshopByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>PIM</td>
-						<td>{{libPimByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Power Point</td>
-						<td>{{libPowerPointByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Programmation</td>
-						<td>{{libProgrammationByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Publisher</td>
-						<td>{{libPublisherByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Retouche photo</td>
-						<td>{{libRetouchePhotoByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Scanner</td>
-						<td>{{libScannerByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Souris</td>
-						<td>{{libSourisByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Tablette / Smartphone</td>
-						<td>{{libTabletteSmartphoneByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Trucage photo</td>
-						<td>{{libTrucagePhotoByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Windows</td>
-						<td>{{countWindowsByLibelleAtelier[0][1]}}</td>
-					</tr>
-					<tr class="table-info">
-						<td>Word expert</td>
-						<td>{{libWordExpertByLibelleAtelier[0][1]}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+						</tr>
+						<tr class="table-info">
+							<td>Clé USB</td>
+							<td>{{libCleUsbByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>CMS</td>
+							<td>{{libCmsByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Conférence</td>
+							<td>{{libConferenceByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Création de Site Web</td>
+							<td>{{libCreationDeSiteWebByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Dossier</td>
+							<td>{{libDossierByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Administration</td>
+							<td>{{libAdministrationByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Email débutant</td>
+							<td>{{libEmailDebutantByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Email expert</td>
+							<td>{{libEmailExpertByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Emploi</td>
+							<td>{{libEmploiByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Excel débutant</td>
+							<td>{{libExcelDebutantByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Excel expert</td>
+							<td>{{libExcelExpertByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Graphisme</td>
+							<td>{{libGraphismeByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Graver</td>
+							<td>{{libGraverByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Install Logiciels</td>
+							<td>{{libInstallLogicielsByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Internet débutant</td>
+							<td>{{libInternetDebutantByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Internet expert</td>
+							<td>{{libInternetExpertByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Jeux</td>
+							<td>{{libJeuxByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Linux</td>
+							<td>{{libLinuxByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Logiciels gratuits</td>
+							<td>{{libLogicielsGratuitsByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Mac OS X</td>
+							<td>{{libMacOsxByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>MAO</td>
+							<td>{{libMaoByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Montage artistique</td>
+							<td>{{libMontageArtistiqueByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Montage PC</td>
+							<td>{{libMontagePcByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Montage video</td>
+							<td>{{libMontageVideoByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Nettoyage sécurite</td>
+							<td>{{libNettoyageSecuriteByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Ordi de A à Z</td>
+							<td>{{libOrdiDeAaZByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>PAO</td>
+							<td>{{libPaoByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>PDF</td>
+							<td>{{countPdfByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Photo débutant</td>
+							<td>{{libPhotoDebutantByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Photo expert</td>
+							<td>{{libPhotoExpertByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Photoshop</td>
+							<td>{{libPhotoshopByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>PIM</td>
+							<td>{{libPimByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Power Point</td>
+							<td>{{libPowerPointByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Programmation</td>
+							<td>{{libProgrammationByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Publisher</td>
+							<td>{{libPublisherByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Retouche photo</td>
+							<td>{{libRetouchePhotoByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Scanner</td>
+							<td>{{libScannerByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Souris</td>
+							<td>{{libSourisByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Tablette / Smartphone</td>
+							<td>{{libTabletteSmartphoneByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Trucage photo</td>
+							<td>{{libTrucagePhotoByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Windows</td>
+							<td>{{countWindowsByLibelleAtelier[0][1]}}</td>
+						</tr>
+						<tr class="table-info">
+							<td>Word expert</td>
+							<td>{{libWordExpertByLibelleAtelier[0][1]}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
 
-	{% endblock %}
+		{% endblock %}

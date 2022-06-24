@@ -30,13 +30,17 @@ class UsagerController extends AbstractController
 
     #[IsGranted('ROLE_ANIMATEUR')]
     #[Route('/new', name: 'app_usager_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, UsagerRepository $usagerRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function new(Request $request, UsagerRepository $usagerRepository, 
+    UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $usager = new Usager();
+       // on instancie la class pour creer un objet usager
         $form = $this->createForm(UsagerType::class, $usager);
+        // Qui prend en charge la methode POST
         $form->handleRequest($request);
-
+      
         if ($form->isSubmitted() && $form->isValid()) {
+            // le controlleur procede au traitement des données
             // encode the plain password
             $usager->setPassword(
             $userPasswordHasher->hashPassword(
@@ -45,6 +49,7 @@ class UsagerController extends AbstractController
                 )
             );
             $usagerRepository->add($usager);
+            // on lui passe la method add du repository qui a pour argument usager
             $this->addFlash(
                 'success',
                 "Usager ajouté avec succès ."
@@ -53,7 +58,6 @@ class UsagerController extends AbstractController
         }
 
         return $this->renderForm('usager/new.html.twig', [
-            'usager' => $usager,
             'form' => $form,
         ]);
     }
@@ -69,7 +73,8 @@ class UsagerController extends AbstractController
 
     #[IsGranted('ROLE_ANIMATEUR')]
     #[Route('/{id}/edit', name: 'app_usager_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Usager $usager, UsagerRepository $usagerRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function edit(Request $request, Usager $usager, UsagerRepository $usagerRepository, 
+    UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $form = $this->createForm(UsagerType::class, $usager);
         $form->handleRequest($request);
@@ -107,7 +112,7 @@ class UsagerController extends AbstractController
         return $this->redirectToRoute('app_usager_index', [], Response::HTTP_SEE_OTHER);
     }
 
-  //  #[IsGranted('ROLE_ANIMATEUR')]
+//    #[IsGranted('ROLE_USAGER')]
     #[Route('/api/usager', name: 'api_usager', methods: ['GET'])]
     public function usagers(UsagerRepository $usagerRepository): Response
     {

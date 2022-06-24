@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Entity;
-
-use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AtelierRepository;
 use Doctrine\Common\Collections\Collection;
@@ -84,7 +82,8 @@ class Atelier
     
     public function __toString()
     {
-        return $this->getLibelle()." - ".$this->getDate()->format('d/m/Y')." De ". $this->getHeureDebut() ." À ".$this->getHeureFin();
+        return $this->getLibelle()." - ".$this->getDate()->format('d/m/Y')." De ". $this->getHeureDebut()
+         ." À ".$this->getHeureFin();
     }
 
 

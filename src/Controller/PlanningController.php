@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Usager;
 use App\Entity\Atelier;
 use App\Entity\Planning;
 use App\Form\PlanningType;
@@ -12,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Validator\Constraints\Length;
 
 #[IsGranted('ROLE_ANIMATEUR')]
 #[Route('/planning')]
@@ -132,7 +130,10 @@ class PlanningController extends AbstractController
     {
       
         $donnee = file_get_contents('https://calendrier.api.gouv.fr/jours-feries/metropole/2022.json');
+        // $donnee = file_get_contents('../Api_jour_ferie.json');
+
         $donnees = [];
+      
         $ferie = json_decode($donnee, true);
         foreach ($ferie as $key => $valeur) {
             $donnees[] = [
@@ -140,12 +141,12 @@ class PlanningController extends AbstractController
                 'title' => $valeur,
             ];
                 }
-        $feries = json_encode($donnees);
+        // $feries = json_encode($donnees);
 
         $events = $planningRepository->findAll();
-        $rdvs = [];
+        // $rdvs = [];
         foreach ($events as $event) {
-            $rdvs[] = [
+            $donnees[] = [
                 'id' => $event->getId(),
 
                 'start' => $event->getAteliers()->getstart()->format('Y-m-d H:i:s'),
@@ -162,12 +163,12 @@ class PlanningController extends AbstractController
             ];
         }
 
-        $data =  json_encode($rdvs);
+        $data =  json_encode($donnees);
        
         return $this->renderForm('planning/calendrier.html.twig', [
             
         'data' => $data,
-        'ferie' => $feries,
+        // 'ferie' => $feries,
 
         ]);
     }

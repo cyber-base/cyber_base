@@ -4,17 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Animateur;
 use App\Form\AnimateurType;
-use App\Form\ResetPassType;
 use App\Repository\AnimateurRepository;
-use Symfony\Component\Mailer\Swift_Mailer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\Mailer\Mailer;
 
 #[Route('/animateur')]

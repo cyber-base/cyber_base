@@ -19,12 +19,12 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class AtelierController extends AbstractController
 {
 
-    #[Route('/home', name: 'app_home', methods: ['GET'])]
+    #[Route(['/', '/home'], name: 'app_home', methods: ['GET'])]
     public function home(AtelierRepository $atelierRepository, PlanningRepository $planningRepository): Response
     {
         return $this->render('atelier/home.html.twig', [
             'ateliers' => $atelierRepository->findAll(),
-            'counts'       => $planningRepository->countUsagerByAtelier(),
+            'counts'   => $planningRepository->countUsagerByAtelier(),
         ]);
     }
 
@@ -41,11 +41,15 @@ class AtelierController extends AbstractController
     #[Route('/atelier/new', name: 'app_atelier_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AtelierRepository $atelierRepository, SluggerInterface $slugger): Response
     {
+        // la methode new envoie la vue(new.html.twig)du formulaire pour ajouter un atelier 
         $atelier = new Atelier();
+        // creer un nouveau objet
         $form = $this->createForm(AtelierType::class, $atelier);
         $form->handleRequest($request);
+        // on appelle la methode pour traité les données du formulaire
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // si le formulaire est soumis et le données son valide
             $photo = $form->get('image')->getData();
 
             // this condition is needed because the 'brochure' field is not required

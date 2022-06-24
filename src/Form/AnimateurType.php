@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Animateur;
+use Doctrine\Inflector\Rules\Pattern;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -43,17 +45,22 @@ class AnimateurType extends AbstractType
                 'second_options' => ['label' => 'Confirmation Mot de passe'],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Entrez un mot de passe svp',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères ',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
+            //     'constraints' => [
+            //         new NotBlank([
+            //             'message' => 'Entrez un mot de passe svp',
+            //         ]),
+            //         new Regex([
+            //             "pattern" => "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/",
+            //             'message' => "votre mot de passe doit contenir au minimum 6 caractères,
+            //             au moins une lettre minuscule et une lettre majuscule, un caractère spécial et un chiffre.",
+            //         ]),
+            //         new Length([
+            //             'min' => 6,
+            //             'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères ',
+            //             // max length allowed by Symfony for security reasons
+            //             'max' => 4096,
+            //         ]),
+            //     ],
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' =>[

@@ -32,13 +32,13 @@ function rechercheNomUsager() {
   }
   afficheDesUsagers(resultat);
 }
-
+{/* <td>${unUsager.id}</td>
+    <td>${unUsager.genre}</td> */}
 function afficheUsager(unUsager) {
 
   return `
   <tr>
-    <td>${unUsager.id}</td>
-    <td>${unUsager.genre}</td>
+    
     <td>${unUsager.nom}</td>
     <td>${unUsager.prenom}</td>
     <td>${unUsager.tel}</td>
@@ -46,6 +46,7 @@ function afficheUsager(unUsager) {
     <td>${unUsager.adresse}</td>
     <td>${unUsager.cp} - ${unUsager.ville}</td>
     <td>
+    <div class="d-flex">
     <a class="btn btn-outline-secondary" href="${unUsager.id}">
 							<i class="fa-regular fa-eye"></i>
 						</a>
@@ -57,6 +58,7 @@ function afficheUsager(unUsager) {
 						<a class="btn btn-outline-secondary" href="${unUsager.id}">
 							<i class="fa-regular fa-trash-can"></i>
 						</a>
+    </div>
     </td>
   </tr>
 `
@@ -129,88 +131,10 @@ function rechercheTitreAtelier() {
     }
 
   }
-  //afficheLesAteliers(resultat);
+  // afficheLesAteliers(resultat)
   
 }
 
-function afficheAtelier(unAtelier) {
-
-  return `
-  
-  <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4 mt-4 mx-0">
-  
-  
-		<div class="col">
-
-			<div class="card h-100">
-				<img src="uploads/images/${unAtelier.image}" class="card-img-top w-100 h-100 mx-auto" alt="{{ atelier.image }}">
-				<div class="card-body">
-					<h5 class="card-title text-center text-white bg-primary w-100">Atelier :<b>
-							${unAtelier.libelle.toUpperCase()}</b>
-					</h5>
-					<hr>
-					<p class="card-text text-center">Animateur :
-						<b>${ unAtelier.animateurs }</b>
-					</p>
-					<p class="card-text text-center">Date :
-						<b>${ unAtelier.date ? atelier.date|date('d / m / Y') : '' }</b>
-					</p>
-					<p class="card-text text-center">
-						Horaire :
-
-						<b>${ unAtelier.heureDebut }
-						</b>
-
-						<i class="fa-solid fa-arrow-right-long"></i>
-						<b>
-							${ unAtelier.heureFin }</b>
-					</p>
-					<p class="card-text text-center">
-
-					
-							<b class="text-danger">Complet</b>
-					
-						
-						Places disponible :
-						<b class="text-success">${ unAtelier.nbrPlaces - (counts[i][1]) }</b>
-
-					
-							Places disponible :
-							<b class="text-danger">${ unAtelier.nbrPlaces - (counts[i][1]) }</b>
-					
-
-
-					</p>
-					<p class="card-text text-center">Statut :
-				
-							<b class="text-warning">${ unAtelier.statut }
-								<i class="fa-solid fa-hourglass-start"></i>
-							</b>
-						</p>
-						<button type="button" class="btn btn-lg btn-outline-secondary w-100 btn-sm" disabled>S'inscrire</button>
-			
-						<b class="text-success">${ unAtelier.statut }
-							<i class="fa-solid fa-circle-check"></i>
-						</b>
-					</p>
-			
-						<a href="{{ path('app_planning_new_usager', {'atelier': atelier.id }) }}" class="btn btn-primary w-100 btn-sm">S'inscrire</a>
-	
-						<a href="{{ path('app_login') }}" class="btn btn-primary w-100 btn-sm ">S'inscrire</a>
-	
-
-					<b class="text-danger">${ unAtelier.statut }
-						<i class="fa-solid fa-circle-xmark"></i>
-					</b>
-				</p>
-			<hr class="text-primary"></div>
-	</div>
-  
-
-`
-
-}
-//Procedure qui permet de constituer le dataList de manière dynamique
 
 function afficheDataListAtelier() {
   let chaine = "";
@@ -227,7 +151,7 @@ function afficheDataListAtelier() {
   ateliers = await resp.json();
   console.log(ateliers);
 
-  //   afficheLesAteliers(ateliers);
+    afficheLesAteliers(ateliers);
   afficheDataListAtelier(ateliers);
  
 })();

@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i = 1; $i < 9; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             $Faker = Factory::create("fr_FR");
 
             $quartier = new Quartier();
@@ -49,6 +49,7 @@ class AppFixtures extends Fixture
                     ->setQuartiers($quartier);
 
             $animateur = new Animateur();
+            $animateur->setGenre('Homme','Femme');
 
             $animateur->setNom($Faker->firstName());
             $animateur->setPrenom($Faker->lastName());
@@ -60,12 +61,18 @@ class AppFixtures extends Fixture
             $atelier = new Atelier();
 
             $atelier->setLibelle('Atelier'.$i);
+            $atelier->setStart($Faker->dateTime());
+            $atelier->setEnd($Faker->dateTime());
+            $atelier->setHeureDebut('09:00');
+            $atelier->setHeureFin('10:00');
             $atelier->setDate($Faker->dateTimeBetween('now', '+1year'));
-            $atelier->setHeureDebut($Faker->dateTime());
-            $atelier->setHeureFin($Faker->dateTime());
+ 
             $atelier->setStatut('en attente');
+            $atelier->setNbrPlaces($Faker->numberBetween(10, 15));
+            $atelier->setBackgroundColor('#d33131');
+            $atelier->setBorderColor('#231a1a');
+            $atelier->setTextColor('#ffffff');
             $atelier->setImage($Faker->imageUrl(400, 300, 'cats'));
-         // $atelier->setImage('https://fr.wikipedia.org/wiki/A%C3%A9rodrome_d%27Anaa#/media/Fichier:Anaa-atoll-ISS007-E-14624.png');
             $atelier->setAnimateurs($animateur);
 
             $poste = new Poste();
